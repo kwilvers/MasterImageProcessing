@@ -1,0 +1,51 @@
+﻿<Window x:Class="VS2013_01_manipulations.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Manipulations" Height="1004" Width="827" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="CanMinimize">
+  <Grid x:Name="x_cnv_root">
+    <Grid.Background>
+      <ImageBrush ImageSource="contenu/image/fond_page.png" TileMode="Tile" Stretch="None" Viewport="0,0,397,352" ViewportUnits="Absolute"/>
+    </Grid.Background>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!-- menu de la fenetre -->
+    <Menu x:Name="x_menu" FontSize="16">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FF0A84FF"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.207"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.77"/>
+          <GradientStop Color="#FF0A84FF" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem x:Name="x_men_fichier" Header="Fichier">
+        <MenuItem x:Name="x_men_fichier_quitter" Header="Quitter" Click="x_men_fichier_quitter_Click"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- canvas des donnees -->
+    <Canvas x:Name="x_cnv" Grid.Row="1">
+      <ComboBox x:Name="x_cbx_select" Canvas.Left="10" Canvas.Top="24" Width="664" Height="29" SelectedIndex="0" FontSize="16" FontFamily="Verdana" Cursor="Hand" SelectionChanged="x_cbx_select_SelectionChanged">
+        <ComboBoxItem Content="sélectionnez une action ..."></ComboBoxItem>
+        <ComboBoxItem Content="charger une image embarquée en ressource incorporée dans le package"></ComboBoxItem>
+        <ComboBoxItem Content="charger une image embarquée en ressource dans une DLL"></ComboBoxItem>
+        <ComboBoxItem Content="charger une image embarquée en ressource incorporée dans une DLL"></ComboBoxItem>
+        <ComboBoxItem Content="charger une image stockée sur l'ordinateur"></ComboBoxItem>
+        <ComboBoxItem Content="charger une image embarquée en ressource dont la résolution est de 300 DPI"></ComboBoxItem>
+        <ComboBoxItem Content="charger une image empaquetée dans un zip depuis un serveur web"></ComboBoxItem>
+      </ComboBox>
+      <Border x:Name="x_border_scroll" Canvas.Left="10" Canvas.Top="59" BorderBrush="Black" BorderThickness="1" Height="578">
+        <ScrollViewer x:Name="x_scroll_img" Height="576"  Width="792" HorizontalScrollBarVisibility="Visible" CanContentScroll="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+          <Image x:Name="x_img" Height="559" Width="775" HorizontalAlignment="Left" VerticalAlignment="Top" Source="contenu/image/fond_damier.png" Stretch="None" />
+        </ScrollViewer>
+      </Border>
+      <TextBlock x:Name="x_tbl_uri" Text="URI:" Canvas.Left="10" Canvas.Top="642" Width="794" FontFamily="Consolas" FontSize="16" Background="#FFFFFCEC"></TextBlock>
+      <Border x:Name="x_border_info" Canvas.Left="10" Canvas.Top="666" BorderBrush="Black" BorderThickness="1" Height="259" Width="794">
+        <ScrollViewer x:Name="x_scroll_infos" Height="257"  Width="792" CanContentScroll="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+          <TextBlock x:Name="x_tbl_infos" TextWrapping="Wrap" Text="infos" HorizontalAlignment="Left" VerticalAlignment="Top" Height="257" Width="774" FontFamily="Consolas" FontSize="16" Background="#FFE3F4FD"/>
+        </ScrollViewer>
+      </Border>
+    </Canvas>
+  </Grid>
+</Window>

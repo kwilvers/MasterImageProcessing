@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Windows.Media.Imaging.WriteableBitmap">
+    <Position X="6.75" Y="2" Width="2.5" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="7.5" />
+        <Point X="7.875" Y="7.5" />
+        <Point X="7.875" Y="6.377" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.BitmapSource">
+    <Position X="3.75" Y="2" Width="2.25" />
+    <InheritanceLine Type="System.Windows.Media.ImageSource" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.875" Y="7.441" />
+        <Point X="1.875" Y="8" />
+        <Point X="3.75" Y="8" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.ImageSource" Collapsed="true">
+    <Position X="1" Y="6.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Animation.Animatable" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Freezable" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.DependencyObject" Collapsed="true">
+    <Position X="1" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Threading.DispatcherObject" Collapsed="true">
+    <Position X="1" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

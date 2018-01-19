@@ -1,0 +1,51 @@
+﻿<Window x:Class="VS2013_01_ConvertirNiveauGris.MainWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Convertir en niveau de gris" Height="1040" Width="827" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  ResizeMode="CanMinimize">
+  <Grid x:Name="x_cnv_root">
+    <Grid.Background>
+      <ImageBrush ImageSource="contenu/image/fond_page.png" TileMode="Tile" Stretch="None" Viewport="0,0,397,352" ViewportUnits="Absolute"/>
+    </Grid.Background>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!-- menu de la fenetre -->
+    <Menu x:Name="x_menu" FontSize="16">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FF0A84FF"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.207"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.77"/>
+          <GradientStop Color="#FF0A84FF" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem x:Name="x_men_fichier" Header="Fichier">
+        <MenuItem x:Name="x_men_fichier_quitter" Header="Quitter" Click="x_men_fichier_quitter_Click"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- canvas des donnees -->
+    <Canvas x:Name="x_cnv" Grid.Row="1">
+      <TextBlock Text="Image couleur:" Canvas.Left="10" FontSize="20" FontFamily="Impact" Foreground="Black" Canvas.Top="5"/>
+      <Border x:Name="x_border_scroll" Canvas.Left="10" Canvas.Top="32" BorderBrush="Black" BorderThickness="1" Height="420" Width="789">
+        <ScrollViewer x:Name="x_scroll_img" Height="418"  Width="787" HorizontalScrollBarVisibility="Visible" CanContentScroll="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+          <Image x:Name="x_img" Height="399" Width="770" HorizontalAlignment="Left" VerticalAlignment="Top" Source="contenu/image/fond_damier.png" Stretch="None" />
+        </ScrollViewer>
+      </Border>
+      <ComboBox x:Name="x_cbx_select" Canvas.Left="362" Canvas.Top="468" Width="437" Height="28" SelectedIndex="0" FontSize="16" FontFamily="Verdana" SelectionChanged="x_cbx_select_SelectionChanged">
+        <ComboBoxItem Content=" Sélectionnez une action ..."></ComboBoxItem>
+        <ComboBoxItem Content=" 1 - moyenne des composantes"></ComboBoxItem>
+        <ComboBoxItem Content=" 2 - recommandation 709"></ComboBoxItem>
+      </ComboBox>
+      <TextBlock Text="Image convertie en niveau de gris:" Canvas.Left="10" FontSize="20" FontFamily="Impact" Foreground="Black" Canvas.Top="468"/>
+      <Border Canvas.Left="10" Canvas.Top="501" BorderBrush="Black" BorderThickness="1" Height="420" Width="789">
+        <ScrollViewer Height="418"  Width="787" CanContentScroll="True" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible">
+          <Image x:Name="x_img_conversion" Height="401" Width="770" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Source="contenu/image/fond_damier.png" Stretch="None" />
+        </ScrollViewer>
+      </Border>
+      
+    </Canvas>
+  </Grid>
+</Window>
+

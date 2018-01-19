@@ -1,0 +1,68 @@
+﻿<Window x:Class="VS2013_04_AdditionImage.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Addition d'images" Height="1040" Width="827" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  ResizeMode="CanMinimize">
+  <Grid x:Name="x_cnv_root">
+    <Grid.Background>
+      <ImageBrush ImageSource="contenu/image/fond_page3.png" TileMode="Tile" Stretch="None" Viewport="0,0,397,352" ViewportUnits="Absolute"/>
+    </Grid.Background>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!-- menu de la fenetre -->
+    <Menu x:Name="x_menu" FontSize="16">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FF0A84FF"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.207"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.77"/>
+          <GradientStop Color="#FF0A84FF" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem x:Name="x_men_fichier" Header="Fichier">
+        <MenuItem x:Name="x_men_fichier_quitter" Header="Quitter" Click="x_men_fichier_quitter_Click"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- canvas des donnees -->
+    <Canvas x:Name="x_cnv" Grid.Row="1">
+      <TextBlock Text="Image" Canvas.Left="209" FontSize="20" FontFamily="Arial" Foreground="Black" Canvas.Top="13" Width="390" TextAlignment="Center"/>
+      <Border  Canvas.Left="209" Canvas.Top="41" BorderBrush="Black" BorderThickness="1" Height="420" Width="390">
+        <Image x:Name="x_img_origine" Height="418" Width="388" HorizontalAlignment="Left" VerticalAlignment="Top" Source="contenu/image/fond_damier.png" Stretch="None" />
+      </Border>
+      <Rectangle Height="420" Canvas.Left="10" Canvas.Top="41" Width="184" Stroke="Black"/>
+      <Slider x:Name="x_slider_img_1" Canvas.Left="84" Canvas.Top="51" Width="58" Orientation="Vertical" Height="375" Maximum="255" SmallChange="1" LargeChange="10" Cursor="Hand" Value="0" AutoToolTipPlacement="TopLeft" ValueChanged="x_slider_img_ValueChanged">
+        <Slider.Background>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="White"/>
+          </LinearGradientBrush>
+        </Slider.Background>
+      </Slider>
+      <Rectangle x:Name="x_rect_img_1" Height="375" Canvas.Left="21" Canvas.Top="51" Width="58" Fill="Black"/>
+      <TextBlock Canvas.Left="21" TextWrapping="Wrap" Text="{Binding Value, ElementName=x_slider_img_1, StringFormat= Niveau \= \{0:F0\}}" Canvas.Top="431" Width="133" Height="23" FontSize="16" FontFamily="Verdana"/>
+      <!-- operation -->
+      <TextBlock Text="Résultat de l'addition d'images:" Canvas.Left="10" FontSize="20" FontFamily="Arial" Foreground="Black" Canvas.Top="516"/>
+      <Border Canvas.Left="10" Canvas.Top="544" BorderBrush="Black" BorderThickness="1" Height="420" Width="390">
+        <Image x:Name="x_img_add_1" Height="418" Width="388" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Source="contenu/image/fond_damier.png" Stretch="None" />
+      </Border>
+      <TextBlock Text="Résultat de l'addition d'images:" Canvas.Left="409" FontSize="20" FontFamily="Arial" Foreground="Black" Canvas.Top="516"/>
+      <Border Canvas.Left="409" Canvas.Top="544" BorderBrush="Black" BorderThickness="1" Height="420" Width="390">
+        <Image x:Name="x_img_add_2" Height="418" Width="388" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Source="contenu/image/fond_damier.png" Stretch="None" />
+      </Border>
+      <Rectangle Height="420" Canvas.Left="615" Canvas.Top="41" Width="184" Stroke="Black"/>
+      <Rectangle x:Name="x_rect_img_2" Height="375" Canvas.Left="627" Canvas.Top="51" Width="58" Fill="Black"/>
+      <Slider x:Name="x_slider_img_2" Canvas.Left="700" Canvas.Top="51" Width="58" Orientation="Vertical" Height="375" Maximum="255" SmallChange="1" LargeChange="10" Cursor="Hand" Value="0" AutoToolTipPlacement="TopLeft" ValueChanged="x_slider_img_ValueChanged">
+        <Slider.Background>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="White"/>
+          </LinearGradientBrush>
+        </Slider.Background>
+      </Slider>
+      <TextBlock Canvas.Left="627" TextWrapping="Wrap" Text="{Binding Value, ElementName=x_slider_img_2, StringFormat=Niveau \= \{0:F0\}}" Canvas.Top="431" Width="133" Height="23" FontSize="16" FontFamily="Verdana"/>
+    </Canvas>
+  </Grid>
+</Window>

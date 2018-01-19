@@ -1,0 +1,52 @@
+﻿<Window x:Class="VS2013_05_BicubiqueCouleur.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bicubique couleur" Height="1040" Width="827" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  ResizeMode="CanMinimize">
+  <Grid x:Name="x_cnv_root">
+    <Grid.Background>
+      <ImageBrush ImageSource="contenu/image/fond_page2.png" TileMode="Tile" Stretch="None" Viewport="0,0,397,352" ViewportUnits="Absolute"/>
+    </Grid.Background>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!-- menu de la fenetre -->
+    <Menu x:Name="x_menu" FontSize="16">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FF0A84FF"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.207"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.77"/>
+          <GradientStop Color="#FF0A84FF" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem x:Name="x_men_fichier" Header="Fichier">
+        <MenuItem x:Name="x_men_fichier_quitter" Header="Quitter" Click="x_men_fichier_quitter_Click"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- canvas des donnees -->
+    <Canvas x:Name="x_cnv" Grid.Row="1">
+      <TextBlock Text="Image initiale" Canvas.Left="10" FontSize="20" FontFamily="Arial" Foreground="Black" Canvas.Top="13" Width="390" TextAlignment="Left"/>
+      <Border  Canvas.Left="10" Canvas.Top="41" BorderBrush="Black" BorderThickness="1" Height="420" Width="788">
+        <ScrollViewer x:Name="x_scroll_ini" Width="786" Height="418" HorizontalScrollBarVisibility="Visible">
+          <Image x:Name="x_img" Height="401" Width="769" HorizontalAlignment="Left" VerticalAlignment="Top" Source="contenu/image/fond_damier.png" Stretch="None" />
+        </ScrollViewer>
+      </Border>
+      <Button x:Name="btn_zoom_plus" Content="Zoom ++" Canvas.Left="505" Canvas.Top="9" Width="103" Height="27" FontFamily="Verdana" FontSize="16" Click="btn_zoom_plus_Click" Cursor="Hand" IsTabStop="False"/>
+      <Button x:Name="btn_zoom_moins" Content="Zoom --" Canvas.Left="613" Canvas.Top="9" Width="103" Height="27" FontFamily="Verdana" FontSize="16" Click="btn_zoom_moins_Click" Cursor="Hand" IsTabStop="False"/>
+      <TextBlock x:Name="x_tbl_zoom_ini" Canvas.Left="721" TextWrapping="Wrap" Text="100 %" Canvas.Top="14" Width="77" TextAlignment="Center" FontFamily="Verdana" FontWeight="Bold" Foreground="#FFFF0303" FontSize="16" Background="#FFFFECEC"/>
+      <!-- operation -->
+      <TextBlock Text="Interpolation bicubique" Canvas.Left="10" FontSize="20" FontFamily="Arial" Foreground="Black" Canvas.Top="483" Width="390" TextAlignment="Left"/>
+      <Border Canvas.Left="10" Canvas.Top="511" BorderBrush="Black" BorderThickness="1" Height="420" Width="788">
+        <ScrollViewer Width="786" Height="418" HorizontalScrollBarVisibility="Visible">
+          <Image x:Name="x_img_agrandie" Height="401" Width="769" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Source="contenu/image/fond_damier.png" Stretch="None" />
+        </ScrollViewer>
+      </Border>
+      
+      <Button x:Name="btn_zoom_plus_agrandi" Content="Zoom ++" Canvas.Left="505" Canvas.Top="479" Width="103" Height="27" FontFamily="Verdana" FontSize="16" Click="btn_zoom_plus_agrandi_Click"  Cursor="Hand" IsTabStop="False"/>
+      <Button x:Name="btn_zoom_moins_agrandi" Content="Zoom --" Canvas.Left="613" Canvas.Top="479" Width="103" Height="27" FontFamily="Verdana" FontSize="16" Click="btn_zoom_moins_agrandi_Click"  Cursor="Hand" IsTabStop="False"/>
+      <TextBlock x:Name="x_tbl_zoom_agrandi" Canvas.Left="721" TextWrapping="Wrap" Text="100 %" Canvas.Top="483" Width="77" TextAlignment="Center" FontFamily="Verdana" FontWeight="Bold" Foreground="#FFFF0303" FontSize="16" Background="#FFFFECEC"/>
+    </Canvas>
+  </Grid>
+</Window>

@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Ee]xe_VS2013*/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

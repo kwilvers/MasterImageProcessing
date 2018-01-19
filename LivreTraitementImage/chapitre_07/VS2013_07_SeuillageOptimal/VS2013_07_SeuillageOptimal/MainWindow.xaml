@@ -1,0 +1,32 @@
+﻿<Window x:Class="VS2013_07_SeuillageOptimal.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:visuel="clr-namespace:VS2013_07_SeuillageOptimal"
+        Title="Seuillage optimal" Height="1040" Width="827" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  ResizeMode="CanMinimize">
+  <Grid x:Name="x_cnv_root">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!-- menu de la fenetre -->
+    <Menu x:Name="x_menu" FontSize="16" Grid.Row="0">
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+          <GradientStop Color="#FF0A84FF"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.207"/>
+          <GradientStop Color="#FFFFCEB2" Offset="0.77"/>
+          <GradientStop Color="#FF0A84FF" Offset="1"/>
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem x:Name="x_men_fichier" Header="Fichier">
+        <MenuItem x:Name="x_men_fichier_quitter" Header="Quitter" Click="x_men_fichier_quitter_Click"></MenuItem>
+      </MenuItem>
+    </Menu>
+    <!-- canvas des donnees -->
+    <ScrollViewer Grid.Row="1">
+      <visuel:Page x:Name="x_page"/>
+    </ScrollViewer>
+    
+    
+  </Grid>
+</Window>

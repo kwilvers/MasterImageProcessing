@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Windows.Media.Imaging.BitmapFrame" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.75" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="3.982" />
+        <Point X="6.75" Y="5.096" />
+        <Point X="5.25" Y="5.096" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.BitmapImage" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.75" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="3.982" />
+        <Point X="6.25" Y="4.357" />
+        <Point X="5.865" Y="4.357" />
+        <Point X="5.865" Y="2.062" />
+        <Point X="5.25" Y="2.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.CachedBitmap" Collapsed="true">
+    <Position X="8.5" Y="1" Width="2" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.375" Y="3.982" />
+        <Point X="7.375" Y="4.357" />
+        <Point X="7.75" Y="4.357" />
+        <Point X="7.75" Y="1.438" />
+        <Point X="8.5" Y="1.438" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.CroppedBitmap" Collapsed="true">
+    <Position X="8.5" Y="2" Width="2" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="3.982" />
+        <Point X="7.25" Y="4.524" />
+        <Point X="7.958" Y="4.524" />
+        <Point X="7.958" Y="2.312" />
+        <Point X="8.5" Y="2.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.ColorConvertedBitmap" Collapsed="true">
+    <Position X="8.5" Y="3" Width="2" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.125" Y="3.982" />
+        <Point X="7.125" Y="4.753" />
+        <Point X="8.125" Y="4.753" />
+        <Point X="8.125" Y="3.312" />
+        <Point X="8.5" Y="3.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.FormatConvertedBitmap" Collapsed="true">
+    <Position X="8.5" Y="4" Width="2" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="3.982" />
+        <Point X="7" Y="4.916" />
+        <Point X="8.286" Y="4.916" />
+        <Point X="8.286" Y="4.312" />
+        <Point X="8.5" Y="4.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.RenderTargetBitmap" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.75" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.625" Y="3.982" />
+        <Point X="6.625" Y="4.836" />
+        <Point X="5.625" Y="4.836" />
+        <Point X="5.625" Y="4.062" />
+        <Point X="5.25" Y="4.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.TransformedBitmap" Collapsed="true">
+    <Position X="8.5" Y="5" Width="2" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.875" Y="3.982" />
+        <Point X="6.875" Y="5.312" />
+        <Point X="8.5" Y="5.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.WriteableBitmap" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.75" />
+    <InheritanceLine Type="System.Windows.Media.Imaging.BitmapSource" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.438" Y="3.982" />
+        <Point X="6.438" Y="4.618" />
+        <Point X="5.74" Y="4.618" />
+        <Point X="5.74" Y="3.062" />
+        <Point X="5.25" Y="3.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.Imaging.BitmapSource">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="System.Windows.Media.ImageSource" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="1.875" Y="5.941" />
+        <Point X="1.875" Y="6.316" />
+        <Point X="3.302" Y="6.316" />
+        <Point X="3.302" Y="1.281" />
+        <Point X="6" Y="1.281" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.ImageSource" Collapsed="true">
+    <Position X="1" Y="5.25" Width="1.75" />
+    <InheritanceLine Type="System.Windows.Media.Animation.Animatable" FixedFromPoint="true">
+      <Path>
+        <Point X="1.875" Y="4.941" />
+        <Point X="1.875" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Animation.Animatable" Collapsed="true">
+    <Position X="1" Y="4.25" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Freezable" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.DependencyObject" Collapsed="true">
+    <Position X="1" Y="2.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Threading.DispatcherObject" Collapsed="true">
+    <Position X="1" Y="1.25" Width="1.75" />
+    <InheritanceLine Type="System.Object" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.875" Y="1.062" />
+        <Point X="0.875" Y="1.5" />
+        <Point X="1" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Windows.Media.SolidColorBrush">
+    <Position X="3.5" Y="2" Width="2.5" />
+    <AssociationLine Name="Color" Type="System.Windows.Media.Color" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="4.454" />
+        <Point X="5" Y="5.879" />
+        <Point X="6.5" Y="5.879" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Color" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Windows.Media.Brush" Collapsed="true">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <InheritanceLine Type="System.Windows.Media.Animation.Animatable" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.875" Y="5.441" />
+        <Point X="1.875" Y="5.816" />
+        <Point X="3.125" Y="5.816" />
+        <Point X="3.125" Y="1.125" />
+        <Point X="3.5" Y="1.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Media.Animation.Animatable" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Freezable" Collapsed="true">
+    <Position X="1" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.DependencyObject" Collapsed="true">
+    <Position X="1" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Threading.DispatcherObject" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Struct Name="System.Windows.Media.Color">
+    <Position X="6.5" Y="0.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
