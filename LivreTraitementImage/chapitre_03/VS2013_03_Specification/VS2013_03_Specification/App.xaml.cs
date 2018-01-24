@@ -6,10 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace VS2013_03_Specification {
-  /// <summary>
-  /// Logique d'interaction pour App.xaml
-  /// </summary>
-  public partial class App : Application {
-  }
+namespace VS2013_03_Specification
+{
+    /// <summary>
+    /// Logique d'interaction pour App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
+    }
 }

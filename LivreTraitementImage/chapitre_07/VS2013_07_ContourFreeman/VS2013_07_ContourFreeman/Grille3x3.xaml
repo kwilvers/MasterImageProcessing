@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="VS2013_07_ContourFreeman.Grille3x3"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  mc:Ignorable="d" d:DesignHeight="160" d:DesignWidth="160" Loaded="UserControl_Loaded">
-  <Canvas x:Name="x_cnv_root" Height="160" Width="160">
-    <Canvas.Background>
-      <ImageBrush ImageSource="collection_images/code-freeman.png" Stretch="None" />
-    </Canvas.Background>
-    <Canvas Name="x_cnv_grille" Width="90" Height="90" Background="White" Canvas.Left="35" Canvas.Top="35"></Canvas>
-    <Canvas Name="x_cnv_lignage" Width="90" Height="90" Background="Transparent" Canvas.Left="35" Canvas.Top="35"></Canvas>
-  </Canvas>
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignHeight="160" d:DesignWidth="160" Loaded="UserControl_Loaded">
+    <Canvas x:Name="x_cnv_root" Height="160" Width="160">
+        <Canvas.Background>
+            <ImageBrush ImageSource="collection_images/code-freeman.png" Stretch="None" />
+        </Canvas.Background>
+        <Canvas Name="x_cnv_grille" Width="90" Height="90" Background="White" Canvas.Left="35" Canvas.Top="35" />
+        <Canvas Name="x_cnv_lignage" Width="90" Height="90" Background="Transparent" Canvas.Left="35" Canvas.Top="35" />
+    </Canvas>
 </UserControl>

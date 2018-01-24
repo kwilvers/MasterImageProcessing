@@ -13,13 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VS2013_03_ExpansionDynamique {
-  /// <summary>
-  /// Logique d'interaction pour Page.xaml
-  /// </summary>
-  public partial class Page : UserControl {
-    public Page() {
-      InitializeComponent();
+namespace VS2013_03_ExpansionDynamique
+{
+    /// <summary>
+    /// Logique d'interaction pour Page.xaml
+    /// </summary>
+    public partial class Page : UserControl
+    {
+        public Page()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

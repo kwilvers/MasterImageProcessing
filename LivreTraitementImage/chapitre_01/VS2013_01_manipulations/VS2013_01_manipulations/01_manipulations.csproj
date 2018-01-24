@@ -116,9 +116,9 @@
     <Resource Include="contenu\image\fond_damier.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VS2013_CollectionImages\VS2013_CollectionImages.csproj">
+    <ProjectReference Include="..\VS2013_CollectionImages\CollectionImages.csproj">
       <Project>{a27f85d3-910f-4b89-af19-306120fcb1df}</Project>
-      <Name>VS2013_CollectionImages</Name>
+      <Name>CollectionImages</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -17,17 +17,19 @@ using System.IO;
 using System.Windows.Resources;
 using System.IO.Compression;
 
-namespace VS2013_01_manipulations.diagramme {
-  class DiaImage {
-    BitmapImage bti;
-    BitmapFrame bt2;
-    WriteableBitmap w1;
-    RenderTargetBitmap rt;
-    CachedBitmap cc1;
-    ColorConvertedBitmap cc3;
-    CroppedBitmap cc2;
-    FormatConvertedBitmap ff1;
-    TransformedBitmap tb1;
-    WebClient wc1;
-  }
+namespace VS2013_01_manipulations.diagramme
+{
+    class DiaImage
+    {
+        BitmapImage bti;
+        BitmapFrame bt2;
+        WriteableBitmap w1;
+        RenderTargetBitmap rt;
+        CachedBitmap cc1;
+        ColorConvertedBitmap cc3;
+        CroppedBitmap cc2;
+        FormatConvertedBitmap ff1;
+        TransformedBitmap tb1;
+        WebClient wc1;
+    }
 }

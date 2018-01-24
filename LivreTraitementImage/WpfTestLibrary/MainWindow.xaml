@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfTestLibrary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTestLibrary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        d:DataContext ="{d:DesignInstance {x:Type local:MainViewModel}, IsDesignTimeCreatable=True}">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="Fichier">
+                <MenuItem Header="Isolate Color" Command="{Binding IsolateCommand}"/>
+                <MenuItem Header="Gray" Command="{Binding GrayCommand}"/>
+                <MenuItem Header="Blur" />
+            </MenuItem>  
+        </Menu>
+        
+        <ListBox Grid.Row="1" ItemsSource="{Binding Items}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <WrapPanel IsItemsHost="True"/>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Height="286" Width="361" Stretch="Uniform" Source="{Binding Image}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>

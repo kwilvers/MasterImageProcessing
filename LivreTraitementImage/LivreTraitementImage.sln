@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapitre_1", "Chapitre_1", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_CodageDecodage", "chapitre_01\VS2013_01_CodageDecodage\VS2013_01_CodageDecodage\01_CodageDecodage.csproj", "{BBE587CF-8575-4071-9987-1DD0A2FEB0D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_01_ConvertirNiveauGris", "chapitre_01\VS2013_01_ConvertirNiveauGris\VS2013_01_ConvertirNiveauGris\VS2013_01_ConvertirNiveauGris.csproj", "{3AFCAD3E-F6E1-4468-B670-25953A92F884}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_ConvertirNiveauGris", "chapitre_01\VS2013_01_ConvertirNiveauGris\VS2013_01_ConvertirNiveauGris\01_ConvertirNiveauGris.csproj", "{3AFCAD3E-F6E1-4468-B670-25953A92F884}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_01_IsolerComposante", "chapitre_01\VS2013_01_IsolerComposante\VS2013_01_IsolerComposante\VS2013_01_IsolerComposante.csproj", "{C60FF0EC-11FD-49AA-9734-EF778FFE6DC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_IsolerComposante", "chapitre_01\VS2013_01_IsolerComposante\VS2013_01_IsolerComposante\01_IsolerComposante.csproj", "{C60FF0EC-11FD-49AA-9734-EF778FFE6DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_01_LirePixel", "chapitre_01\VS2013_01_LirePixel\VS2013_01_LirePixel\VS2013_01_LirePixel.csproj", "{9184E0CA-8B19-417F-9A01-942581C0DE62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_LirePixel", "chapitre_01\VS2013_01_LirePixel\VS2013_01_LirePixel\01_LirePixel.csproj", "{9184E0CA-8B19-417F-9A01-942581C0DE62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_01_manipulations", "chapitre_01\VS2013_01_manipulations\VS2013_01_manipulations\VS2013_01_manipulations.csproj", "{82DE0B31-4E96-4CEC-8ABD-7040D3E8344C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_manipulations", "chapitre_01\VS2013_01_manipulations\VS2013_01_manipulations\01_manipulations.csproj", "{82DE0B31-4E96-4CEC-8ABD-7040D3E8344C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_CollectionImages", "chapitre_01\VS2013_01_manipulations\VS2013_CollectionImages\VS2013_CollectionImages.csproj", "{A27F85D3-910F-4B89-AF19-306120FCB1DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionImages", "chapitre_01\VS2013_01_manipulations\VS2013_CollectionImages\CollectionImages.csproj", "{A27F85D3-910F-4B89-AF19-306120FCB1DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapitre_2", "Chapitre_2", "{886104E6-AFCB-4626-B928-B4E14E6BAA3E}"
 EndProject
@@ -102,6 +102,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_07_SeuillageTronque", "chapitre_07\VS2013_07_SeuillageTronque\VS2013_07_SeuillageTronque\VS2013_07_SeuillageTronque.csproj", "{4F33F467-0437-4573-9931-8DBC925DC4D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2013_07_SeuillageZero", "chapitre_07\VS2013_07_SeuillageZero\VS2013_07_SeuillageZero\VS2013_07_SeuillageZero.csproj", "{6FA34F79-17A1-4D8D-91C2-B7EA135572EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyTest", "MyTest", "{08C284E7-D4FB-48A5-9324-0E65012CAB29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageManipulation", "ImageManipulation\ImageManipulation.csproj", "{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageManipulationTests", "ImageManipulationTests\ImageManipulationTests.csproj", "{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{39D3C17C-8E3B-4D0B-A692-A9505DB2DA41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTestLibrary", "WpfTestLibrary\WpfTestLibrary.csproj", "{6202FCBE-0E88-45F5-B433-546D0064252C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -281,6 +291,18 @@ Global
 		{6FA34F79-17A1-4D8D-91C2-B7EA135572EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA34F79-17A1-4D8D-91C2-B7EA135572EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA34F79-17A1-4D8D-91C2-B7EA135572EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6202FCBE-0E88-45F5-B433-546D0064252C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6202FCBE-0E88-45F5-B433-546D0064252C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6202FCBE-0E88-45F5-B433-546D0064252C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6202FCBE-0E88-45F5-B433-546D0064252C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,6 +351,9 @@ Global
 		{E6038919-48D5-436C-9D64-68E429E2F8BB} = {0EEA0A73-FF69-44A1-AEF3-23767A92FB55}
 		{4F33F467-0437-4573-9931-8DBC925DC4D8} = {0EEA0A73-FF69-44A1-AEF3-23767A92FB55}
 		{6FA34F79-17A1-4D8D-91C2-B7EA135572EE} = {0EEA0A73-FF69-44A1-AEF3-23767A92FB55}
+		{D5C6ADA8-5547-44BC-BC6A-DC0A1E74B736} = {08C284E7-D4FB-48A5-9324-0E65012CAB29}
+		{9E6D8A14-3EAF-4E28-8C77-CC0E5C93E213} = {39D3C17C-8E3B-4D0B-A692-A9505DB2DA41}
+		{6202FCBE-0E88-45F5-B433-546D0064252C} = {08C284E7-D4FB-48A5-9324-0E65012CAB29}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BF614E5-61CF-4D30-A7FE-7C3E60D51FA7}

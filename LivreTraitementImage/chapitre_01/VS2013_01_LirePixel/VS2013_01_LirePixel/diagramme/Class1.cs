@@ -13,9 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VS2013_01_LirePixel.diagramme {
-  class Class1 {
-    WriteableBitmap wb;
-    PixelFormats pp;
-  }
+namespace VS2013_01_LirePixel.diagramme
+{
+    class Class1
+    {
+        WriteableBitmap wb;
+        //PixelFormats pp;
+    }
 }
