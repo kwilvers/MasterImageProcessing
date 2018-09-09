@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
         private void apply()
         {
             //let fileName = "C:\Users\karl\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG"
-            var fileName = @"C:\Users\kwilvers\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG";
+            var fileName = @"C:\Dev\Memoire\images\Echantillon.PNG";
 
             var image = Cv2.ImRead(fileName, ImreadModes.GrayScale);
             var output = InputOutputArray.Create(image.Clone());
@@ -72,7 +72,7 @@ namespace WindowsFormsApp1
         private void applyBlob()
         {
             //let fileName = "C:\Users\karl\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG"
-            var fileName = @"C:\Users\kwilvers\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG";
+            var fileName = @"C:\Dev\Memoire\images\Echantillon.PNG";
 
             var image = Cv2.ImRead(fileName, ImreadModes.GrayScale);
 
