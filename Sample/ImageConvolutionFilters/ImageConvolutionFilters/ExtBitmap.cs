@@ -35,11 +35,9 @@ namespace ImageConvolutionFilters
                 graphicsResult.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                 graphicsResult.DrawImage(sourceBitmap,
-                    new Rectangle(0, 0,
-                        bitmapResult.Width, bitmapResult.Height),
-                    new Rectangle(0, 0,
-                        sourceBitmap.Width, sourceBitmap.Height),
-                    GraphicsUnit.Pixel);
+                                        new Rectangle(0, 0, bitmapResult.Width, bitmapResult.Height),
+                                        new Rectangle(0, 0, sourceBitmap.Width, sourceBitmap.Height),
+                                        GraphicsUnit.Pixel);
                 graphicsResult.Flush();
             }
 
@@ -49,9 +47,8 @@ namespace ImageConvolutionFilters
         public static Bitmap ConvolutionFilter<T>(this Bitmap sourceBitmap, T filter)
             where T : ConvolutionFilterBase
         {
-            BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
-                    sourceBitmap.Width, sourceBitmap.Height),
-                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0, sourceBitmap.Width, sourceBitmap.Height),
+                                                          ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
             byte[] pixelBuffer = new byte[sourceData.Stride * sourceData.Height];
             byte[] resultBuffer = new byte[sourceData.Stride * sourceData.Height];
@@ -64,15 +61,13 @@ namespace ImageConvolutionFilters
             double green = 0.0;
             double red = 0.0;
 
-            //int filterWidth = filter.FilterMatrix.GetLength(1);
-            //int filterHeight = filter.FilterMatrix.GetLength(0);
             int filterSize = filter.FilterMatrix.GetLength(1);
 
             int filterOffset = (filterSize - 1) / 2;
 
             for (int offsetY = filterOffset; offsetY < sourceBitmap.Height - filterOffset; offsetY++)
             {
-                for (int offsetX = filterOffset; offsetX < sourceBitmap.Width - filterOffset;offsetX++)
+                for (int offsetX = filterOffset; offsetX < sourceBitmap.Width - filterOffset; offsetX++)
                 {
                     blue = 0;
                     green = 0;
@@ -110,33 +105,6 @@ namespace ImageConvolutionFilters
                     green = green > 255 ? 255 : (green < 0 ? 0 : green);
                     red = red > 255 ? 255 : (red < 0 ? 0 : red);
 
-                    /*if (blue > 255)
-                    {
-                        blue = 255;
-                    }
-                    else if (blue < 0)
-                    {
-                        blue = 0;
-                    }
-
-                    if (green > 255)
-                    {
-                        green = 255;
-                    }
-                    else if (green < 0)
-                    {
-                        green = 0;
-                    }
-
-                    if (red > 255)
-                    {
-                        red = 255;
-                    }
-                    else if (red < 0)
-                    {
-                        red = 0;
-                    }*/
-
                     resultBuffer[byteOffset] = (byte) (blue);
                     resultBuffer[byteOffset + 1] = (byte) (green);
                     resultBuffer[byteOffset + 2] = (byte) (red);
@@ -146,8 +114,7 @@ namespace ImageConvolutionFilters
 
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
 
-            BitmapData resultData = resultBitmap.LockBits(new Rectangle(0, 0,
-                                                          resultBitmap.Width, resultBitmap.Height),
+            BitmapData resultData = resultBitmap.LockBits(new Rectangle(0, 0, resultBitmap.Width, resultBitmap.Height),
                                                           ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
 
             Marshal.Copy(resultBuffer, 0, resultData.Scan0, resultBuffer.Length);

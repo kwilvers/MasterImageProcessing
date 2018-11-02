@@ -68,6 +68,7 @@ namespace ImageBlurFilter
 
                 previewBitmap = originalBitmap.CopyToSquareCanvas(picPreview.Width);
                 picPreview.Image = previewBitmap;
+                picOriginal.Image = originalBitmap;
 
                 ApplyFilter(true);
             }
@@ -151,6 +152,11 @@ namespace ImageBlurFilter
         private void FilterValueChangedEventHandler(object sender, EventArgs e)
         {
             ApplyFilter(true);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

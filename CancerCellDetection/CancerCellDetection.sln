@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CancerCellDetection", "CancerCellDetection\CancerCellDetection.csproj", "{1E61B5D7-338D-4F91-84FA-4662156F581B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing", "ImageProcessing\ImageProcessing.csproj", "{5D53A689-640F-4268-83C1-3044445CFDCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E61B5D7-338D-4F91-84FA-4662156F581B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E61B5D7-338D-4F91-84FA-4662156F581B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E61B5D7-338D-4F91-84FA-4662156F581B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E61B5D7-338D-4F91-84FA-4662156F581B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D53A689-640F-4268-83C1-3044445CFDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D53A689-640F-4268-83C1-3044445CFDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D53A689-640F-4268-83C1-3044445CFDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D53A689-640F-4268-83C1-3044445CFDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C2D332D-F810-4355-84E7-5D933F78F723}
+	EndGlobalSection
+EndGlobal
