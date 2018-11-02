@@ -45,7 +45,9 @@
     <Compile Include="ConvolutionBase.cs" />
     <Compile Include="ConvolutionFilterBase.cs" />
     <Compile Include="ConvolutionFilterBaseOld.cs" />
+    <Compile Include="GammaCorrection.cs" />
     <Compile Include="GrayScaleConverter.cs" />
+    <Compile Include="InverterFilter.cs" />
     <Compile Include="KernelItem.cs" />
     <Compile Include="KernelOrientation.cs" />
     <Compile Include="Math2.cs" />
