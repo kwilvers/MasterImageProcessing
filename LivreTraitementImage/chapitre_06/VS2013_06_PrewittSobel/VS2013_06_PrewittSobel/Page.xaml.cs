@@ -165,7 +165,7 @@ namespace VS2013_06_PrewittSobel
                 if (x_cbx_filtre.SelectedIndex == 3)
                 {
                     Uri uri = new Uri(
-                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/motif_test_8bit_800x852_96dpi.png",
+                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/echantillon.png",
                         UriKind.Absolute);
                     BitmapImage bti = new BitmapImage();
                     bti.BeginInit();
@@ -217,7 +217,7 @@ namespace VS2013_06_PrewittSobel
                 if (x_cbx_filtre.SelectedIndex == 4)
                 {
                     Uri uri = new Uri(
-                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/motif_test_8bit_800x852_96dpi.png",
+                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/echantillon.png",
                         UriKind.Absolute);
                     BitmapImage bti = new BitmapImage();
                     bti.BeginInit();
@@ -269,7 +269,7 @@ namespace VS2013_06_PrewittSobel
                 if (x_cbx_filtre.SelectedIndex == 5)
                 {
                     Uri uri = new Uri(
-                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/louis_de_funes_site_8bit_800x428_96dpi.jpg",
+                        "pack://application:,,,/VS2013_06_PrewittSobel;component/collection_images/echantillon.png",
                         UriKind.Absolute);
                     BitmapImage bti = new BitmapImage();
                     bti.BeginInit();
@@ -313,7 +313,7 @@ namespace VS2013_06_PrewittSobel
                             byte module = (byte) Math.Sqrt(
                                 Math.Pow(tab_pixels_res_h1[lig, col], 2) +
                                 Math.Pow(tab_pixels_res_h2[lig, col], 2) +
-                                Math.Pow(tab_pixels_res_v1[lig, col], 2) +
+                                Math.Pow(tab_pixels_res_v1[lig, col], 2) //+
                                 Math.Pow(tab_pixels_res_v2[lig, col], 2)
                             );
                             tab_pixel_img_filtree_LH[lig, col] = InverserNiveau(module);
@@ -433,7 +433,7 @@ namespace VS2013_06_PrewittSobel
                     voisins[8] = tab_pixels_LH[lig + 1, col + 1];
                     byte niveau_filtre = filtre.PixelFiltre(voisins);
                     BornerNiveau(niveau_filtre);
-                    InverserNiveau(niveau_filtre);
+                    //InverserNiveau(niveau_filtre);
                     tab_pixels_res_LH[lig, col] = niveau_filtre;
                 }
             }

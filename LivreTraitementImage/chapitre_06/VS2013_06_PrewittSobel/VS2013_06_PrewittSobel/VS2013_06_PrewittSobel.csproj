@@ -137,6 +137,10 @@
   <ItemGroup>
     <Resource Include="collection_images\louis_de_funes_site_8bit_800x428_96dpi.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="collection_images\Echantillon.PNG" />
+    <Resource Include="collection_images\Echantillon2.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

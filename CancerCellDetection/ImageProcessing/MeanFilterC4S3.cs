@@ -9,9 +9,7 @@ namespace ImageProcessing
 	*/
     public class MeanFilterC4S3 : ConvolutionFilterBase
     {
-        /** Défini comment les objets sont représentés
-		* La relation entre C : la rep (variable d’instance) et A : le commentaire de l’overview
-		*/
+
         public override string Name => "Mean Filter - Conexity 4 - Size 3x3";
         
         /**

@@ -9,9 +9,7 @@ namespace ImageProcessing
 	*/
     public class MeanFilterC24S5 : ConvolutionFilterBase
     {
-        /** Défini comment les objets sont représentés
-		* La relation entre C : la rep (variable d’instance) et A : le commentaire de l’overview
-		*/
+
         public override string Name => "Mean Filter - Conexity 24 - Size 5x5";
 
         /**

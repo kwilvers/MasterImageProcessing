@@ -42,20 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvolutionBase.cs" />
+    <Compile Include="Convolution.cs" />
     <Compile Include="ConvolutionFilterBase.cs" />
-    <Compile Include="ConvolutionFilterBaseOld.cs" />
     <Compile Include="GammaCorrection.cs" />
+    <Compile Include="GaussianFilter300S5.cs" />
     <Compile Include="GrayScaleConverter.cs" />
+    <Compile Include="GaussianFilter140S7.cs" />
+    <Compile Include="PrewittFilter4O.cs" />
+    <Compile Include="PrewittFilter.cs" />
+    <Compile Include="SobelFilter4O.cs" />
+    <Compile Include="SobelFilter.cs" />
+    <Compile Include="RobertsFilter.cs" />
     <Compile Include="InverterFilter.cs" />
     <Compile Include="KernelItem.cs" />
     <Compile Include="KernelOrientation.cs" />
     <Compile Include="Math2.cs" />
+    <Compile Include="HorizontalFilter.cs" />
+    <Compile Include="VerticalFilter.cs" />
     <Compile Include="MeanFilterC24S5.cs" />
     <Compile Include="MeanFilterC8S3.cs" />
     <Compile Include="MeanFilterC4S3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RgbConvolution.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

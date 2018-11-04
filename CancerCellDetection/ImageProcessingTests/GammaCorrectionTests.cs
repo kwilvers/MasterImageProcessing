@@ -29,21 +29,21 @@ namespace ImageProcessing.Tests
         }
 
         [TestMethod()]
-        public void GammaCorrectionGrey03Tests()
+        public void GammaCorrectionGray03Tests()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resInv = GammaCorrection.Correct(res, 0.3);
-            resInv.Save(@".\GammaCorrectionGrey03Tests.png");
+            resInv.Save(@".\GammaCorrectionGray03Tests.png");
         }
 
         [TestMethod()]
-        public void GammaCorrectionGrey24Tests()
+        public void GammaCorrectionGray24Tests()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resInv = GammaCorrection.Correct(res, 2.4);
-            resInv.Save(@".\GammaCorrectionGrey24Tests.png");
+            resInv.Save(@".\GammaCorrectionGray24Tests.png");
         }
     }
 }

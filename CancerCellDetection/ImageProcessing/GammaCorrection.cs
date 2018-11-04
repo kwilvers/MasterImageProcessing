@@ -48,5 +48,6 @@ namespace ImageProcessing
             
             return (byte) (d > 255 ? 255 : d);
         }
+
     }
 }
