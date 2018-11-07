@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace ImageProcessing
+﻿namespace ImageProcessing.Detection
 {
     /**
 	* @overview Filtre de détection verticale

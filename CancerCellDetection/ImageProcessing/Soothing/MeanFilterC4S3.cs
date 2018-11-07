@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace ImageProcessing
+﻿namespace ImageProcessing.Soothing
 {
     /**
 	* @overview Filtre moyenneur de connexité 4 et de taille 3x3

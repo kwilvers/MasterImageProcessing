@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MeanGaussianFilterTest.cs" />
     <Compile Include="SobelPrewittTest.cs" />
+    <Compile Include="Thresholding\ThresholdingFilterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

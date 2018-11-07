@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ImageProcessing.Tests
