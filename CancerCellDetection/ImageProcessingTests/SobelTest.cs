@@ -1,13 +1,12 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using ImageProcessing;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessing.Tests
+namespace ImageProcessingTests
 {
     [TestClass]
-    public class SobelCannyTest
+    public class SobelTest
     {
         [TestMethod()]
         public void ConvolveGraySobelFilterTest()
@@ -46,6 +45,16 @@ namespace ImageProcessing.Tests
             var resConv = Convolution.Convolve(res, new SobelFilter4O());
             var resInv = InverterFilter.Invert(resConv);
             resInv.Save(@".\GraySobelO4FilterInvertedTest.png");
+        }
+
+        [TestMethod()]
+        public void ConvolveColorSobelO4FilterInvertedTest()
+        {
+            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
+            var resConv = Convolution.Convolve(v, new SobelFilter4O());
+            var resInv = InverterFilter.Invert(resConv);
+            resInv.Save(@".\ColorSobelO4FilterInvertedTest.png");
         }
 
         [TestMethod()]

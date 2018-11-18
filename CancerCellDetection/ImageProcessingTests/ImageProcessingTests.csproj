@@ -57,15 +57,23 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="GaussianTest.cs" />
+    <Compile Include="MedianTest.cs" />
+    <Compile Include="PrattTest.cs" />
+    <Compile Include="RobinsonTest.cs" />
+    <Compile Include="ScharrTests.cs" />
     <Compile Include="RobertsTests.cs" />
     <Compile Include="HorizontalVerticalTests.cs" />
     <Compile Include="GammaCorrectionTests.cs" />
     <Compile Include="GrayScaleConverterTests.cs" />
     <Compile Include="InverterFilterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MeanGaussianFilterTest.cs" />
-    <Compile Include="SobelPrewittTest.cs" />
+    <Compile Include="MeanTest.cs" />
+    <Compile Include="SobelTest.cs" />
     <Compile Include="Thresholding\ThresholdingFilterTests.cs" />
+    <Compile Include="PrewittTest.cs" />
+    <Compile Include="KirschTest.cs" />
+    <Compile Include="LaplacianTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

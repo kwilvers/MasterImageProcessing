@@ -1,4 +1,4 @@
-﻿namespace ImageProcessing.Soothing
+﻿namespace ImageProcessing.Smoothing
 {
     /**
 	* @overview Filtre moyenneur de connexité 8 et de taille 3x3

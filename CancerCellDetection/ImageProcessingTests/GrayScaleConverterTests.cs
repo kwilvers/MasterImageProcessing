@@ -1,14 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ImageProcessing;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ImageProcessing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessing.Tests
+namespace ImageProcessingTests
 {
     [TestClass()]
     public class GrayScaleConverterTests

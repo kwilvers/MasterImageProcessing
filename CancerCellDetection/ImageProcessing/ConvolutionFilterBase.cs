@@ -36,8 +36,14 @@ namespace ImageProcessing
 
         public int Padding => (this.Size - 1) / 2;
 
+        public bool ForceAbsoluteValue { get; set; }
+
+        public byte Offset { get; set; }
+
         protected ConvolutionFilterBase()
         {
+            ForceAbsoluteValue = true;
+            Offset = 0;
             this.kernels = new List<KernelItem>();
             InitKernels();
             RepOk();
