@@ -58,6 +58,7 @@
     <Compile Include="Detection\ScharrLightFilter.cs" />
     <Compile Include="Detection\ScharrS5Filter.cs" />
     <Compile Include="Detection\ScharrFilter.cs" />
+    <Compile Include="ContrastCorrection.cs" />
     <Compile Include="GammaCorrection.cs" />
     <Compile Include="ConvolutionMedian.cs" />
     <Compile Include="Smoothing\GaussianFilter52S5.cs" />

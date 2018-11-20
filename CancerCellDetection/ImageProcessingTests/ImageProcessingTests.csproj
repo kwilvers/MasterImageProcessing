@@ -70,10 +70,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MeanTest.cs" />
     <Compile Include="SobelTest.cs" />
-    <Compile Include="Thresholding\ThresholdingFilterTests.cs" />
+    <Compile Include="ThresholdingFilterTests.cs" />
     <Compile Include="PrewittTest.cs" />
     <Compile Include="KirschTest.cs" />
     <Compile Include="LaplacianTest.cs" />
+    <Compile Include="ContrastTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,6 +89,7 @@
     <Content Include="Ech.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Echantillon large.PNG" />
     <Content Include="Echantillon.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

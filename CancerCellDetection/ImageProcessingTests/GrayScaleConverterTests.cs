@@ -28,7 +28,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
-            res.Save(@".\Bt709.png");
+            res.Save(@".\Bt709Test.png");
         }
 
         [TestMethod()]
@@ -36,7 +36,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromRed);
-            res.Save(@".\FromRed.png");
+            res.Save(@".\FromRedTest.png");
         }
 
         [TestMethod()]
