@@ -2,19 +2,18 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace ImageProcessing
+namespace ImageProcessing.Correction
 {
     /**
-    * @overview Méthode d'abstraction de correction gamma de l'image 
-    */
-    public class GammaCorrection
+	* @overview Méthode d'abstraction de conversion d'une image en filtre inverse
+	*/
+    public static class InverterFilter
     {
         /// <requires>source != null</requires>
-        /// <effects>Correction gamma de l'image source</effects>
-        /// <returns>Une bitmap corrigé en fonction du facteru gammaFactor</returns>
-        public static Bitmap Correct(Bitmap source, double gammaFactor)
+        /// <effects>Invertion de l'image source</effects>
+        /// <returns>Une bitmap inversée</returns>
+        public static Bitmap Invert(Bitmap source)
         {
             Bitmap output = new Bitmap(source);
             BitmapData data = output.LockBits(new Rectangle(0, 0, output.Width, output.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
@@ -30,9 +29,9 @@ namespace ImageProcessing
 
             for (int i = 0; i < rgb.Length; i += 3)
             {
-                rgb[i] = ApplyFactor(rgb[i], gammaFactor);
-                rgb[i + 1] = ApplyFactor(rgb[i + 1], gammaFactor);
-                rgb[i + 2] = ApplyFactor(rgb[i + 2], gammaFactor);
+                rgb[i] = (byte)(255 - rgb[i]);
+                rgb[i + 1] = (byte) (255 - rgb[i + 1]);
+                rgb[i + 2] = (byte)(255 - rgb[i + 2]);
             }
 
             //Copy changed RGB values back to bitmap
@@ -40,13 +39,6 @@ namespace ImageProcessing
 
             output.UnlockBits(data);
             return output;
-        }
-
-        private static byte ApplyFactor(byte pixel, double gamma)
-        {
-            double d = 255 * Math.Pow((double)pixel / 255, gamma);
-            
-            return (byte) (d > 255 ? 255 : d);
         }
 
     }

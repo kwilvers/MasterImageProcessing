@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace ImageProcessing
 {
@@ -29,15 +28,16 @@ namespace ImageProcessing
             Auto
         }
 
-        public static Bitmap Convolve<T>(Bitmap sourceBitmap, T filter, ConvolutionColorSpace space=ConvolutionColorSpace.Auto)
-                                 where T : ConvolutionFilterBase
+
+        public static ConvolutionResult Convolve<T>(Bitmap sourceBitmap, T filter, bool computeDirection=false, ConvolutionColorSpace space = ConvolutionColorSpace.Auto)
+            where T : ConvolutionFilterBase
         {
             if (space == ConvolutionColorSpace.Auto)
                 space = TryToDetermineSpace(sourceBitmap);
 
-            return space == ConvolutionColorSpace.RGB 
-                        ? ConvolveRGB(sourceBitmap, filter) 
-                        : ConvolveGrayScale(sourceBitmap, filter);
+            return space == ConvolutionColorSpace.RGB
+                ? ConvolveRGB(sourceBitmap, filter, computeDirection)
+                : ConvolveGrayScale(sourceBitmap, filter, computeDirection);
         }
 
         public static ConvolutionColorSpace TryToDetermineSpace(Bitmap source)
@@ -72,7 +72,7 @@ namespace ImageProcessing
         }
 
 
-        public static Bitmap ConvolveRGB<T>(Bitmap sourceBitmap, T filter)
+        public static ConvolutionResult ConvolveRGB<T>(Bitmap sourceBitmap, T filter, bool computeDirection)
                          where T : ConvolutionFilterBase
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
@@ -92,6 +92,9 @@ namespace ImageProcessing
             double[] green = new double[filter.Kernels.Count()];
             double[] red = new double[filter.Kernels.Count()];
 
+            var res = new ConvolutionResult();
+            if (computeDirection)
+                res.Directions = new byte[sourceData.Stride * sourceData.Height];
 
 
             int padding = filter.Padding;
@@ -158,12 +161,22 @@ namespace ImageProcessing
 
                     if (filter.Kernels.Count() == 2)
                     {
-                        resultBuffer[byteOffset] = (byte)(Math.Sqrt(Math.Pow(blue[0], 2) + Math.Pow(blue[0], 2)) + filter.Offset);
-                        resultBuffer[byteOffset + 1] = (byte)(Math.Sqrt(Math.Pow(green[0], 2) + Math.Pow(green[0], 2)) + filter.Offset);
-                        resultBuffer[byteOffset + 2] = (byte)(Math.Sqrt(Math.Pow(red[0], 2) + Math.Pow(red[0], 2)) + filter.Offset);
+                        if (computeDirection)
+                        {
+                            var x = (red[0] + green[0] + blue[0]) / 3;
+                            var y = (red[1] + green[1] + blue[1]) / 3;
+                            res.Directions[byteOffset] = ToDirection(x, y);
+                        }
+
+                        resultBuffer[byteOffset] = (byte)(Math.Sqrt(Math.Pow(blue[0], 2) + Math.Pow(blue[1], 2)) + filter.Offset);
+                        resultBuffer[byteOffset + 1] = (byte)(Math.Sqrt(Math.Pow(green[0], 2) + Math.Pow(green[1], 2)) + filter.Offset);
+                        resultBuffer[byteOffset + 2] = (byte)(Math.Sqrt(Math.Pow(red[0], 2) + Math.Pow(red[1], 2)) + filter.Offset);
                     }
                     else
                     {
+                        if (computeDirection)
+                            res.Directions[byteOffset] = ToDirection(red, green, blue);
+
                         resultBuffer[byteOffset] = (byte)(blue.Max(v => Math.Abs(v)) + filter.Offset);
                         resultBuffer[byteOffset + 1] = (byte) (green.Max(v => Math.Abs(v)) + filter.Offset);
                         resultBuffer[byteOffset + 2] = (byte) (red.Max(v => Math.Abs(v)) + filter.Offset);
@@ -183,11 +196,12 @@ namespace ImageProcessing
             Marshal.Copy(resultBuffer, 0, resultData.Scan0, resultBuffer.Length);
             resultBitmap.UnlockBits(resultData);
 
-
-            return resultBitmap;
+            res.Output = resultBitmap;
+            return res;
         }
 
-        public static Bitmap ConvolveGrayScale<T>(Bitmap sourceBitmap, T filter)
+
+        public static ConvolutionResult ConvolveGrayScale<T>(Bitmap sourceBitmap, T filter, bool computeDirection)
                          where T : ConvolutionFilterBase
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
@@ -197,6 +211,10 @@ namespace ImageProcessing
 
             byte[] pixelBuffer = new byte[sourceData.Stride * sourceData.Height];
             byte[] resultBuffer = new byte[sourceData.Stride * sourceData.Height];
+
+            var res = new ConvolutionResult();
+            if (computeDirection)
+                res.Directions = new byte[sourceData.Stride * sourceData.Height] ;
 
             Marshal.Copy(sourceData.Scan0, pixelBuffer, 0, pixelBuffer.Length);
 
@@ -252,19 +270,24 @@ namespace ImageProcessing
 
                     if (filter.Kernels.Count() == 2)
                     {
-                        resultBuffer[byteOffset] = (byte)Math.Sqrt(Math.Pow(gray[0], 2) + Math.Pow(gray[0], 2));
+                        if (computeDirection)
+                            res.Directions[byteOffset] = ToDirection(gray[0], gray[1]);
+
+                        resultBuffer[byteOffset] = (byte)Math.Sqrt(Math.Pow(gray[0], 2) + Math.Pow(gray[1], 2));
                         resultBuffer[byteOffset + 1] = resultBuffer[byteOffset];
                         resultBuffer[byteOffset + 2] = resultBuffer[byteOffset];
                     }
                     else
                     {
+                        if (computeDirection)
+                            res.Directions[byteOffset] = ToDirection(gray);
+
                         resultBuffer[byteOffset] = (byte)gray.Max(v => Math.Abs(v));
                         resultBuffer[byteOffset + 1] = resultBuffer[byteOffset];
                         resultBuffer[byteOffset + 2] = resultBuffer[byteOffset];
                     }
                 }
             }
-
 
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
 
@@ -277,9 +300,46 @@ namespace ImageProcessing
             Marshal.Copy(resultBuffer, 0, resultData.Scan0, resultBuffer.Length);
             resultBitmap.UnlockBits(resultData);
 
-
-            return resultBitmap;
+            res.Output = resultBitmap;
+            return res;
         }
 
+
+        private static byte ToDirection(double x, double y)
+        {
+            var dir = (byte) Math.Atan(Math.Abs(y) / Math.Abs(x));
+
+            if (Math2.Between(dir, 22.5, 67.5) || Math2.Between(dir, 202.5, 247.5))
+                return 45;
+
+            if (Math2.Between(dir, 67.5, 112.5) || Math2.Between(dir, 247.5, 297.5))
+                return 90;
+
+            if (Math2.Between(dir, 112.5, 157.5) || Math2.Between(dir, 297.5, 337.5))
+                return 135;
+
+            return 0;
+        }
+
+
+        private static byte ToDirection(double[] gray)
+        {
+            var index = gray.ToList().IndexOf(gray.Max());
+            var x = index % 2 == 0 ? index : index - 1;
+            var y = x + 1;
+            return ToDirection(gray[x], gray[y]);
+        }
+
+        private static byte ToDirection(double[] red, double[] green, double[] blue)
+        {
+            var dir = new double[red.Length];
+            for (int i = 0; i < red.Length; i++)
+                dir[i] = (red[i] + green[i] + blue[i]) / 3;
+
+            var index = dir.ToList().IndexOf(dir.Max());
+            var x = index % 2 == 0 ? index : index - 1;
+            var y = x + 1;
+            return ToDirection(dir[x], dir[y]);
+        }
     }
 }

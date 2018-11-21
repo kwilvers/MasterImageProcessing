@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Convolution.cs" />
     <Compile Include="ConvolutionFilterBase.cs" />
+    <Compile Include="Correction\NonMaximumSuppression.cs" />
+    <Compile Include="ConvolutionResult.cs" />
     <Compile Include="Detection\LaplacianOfGaussianFilter.cs" />
     <Compile Include="Detection\LaplacianS4C4Filter.cs" />
     <Compile Include="Detection\LaplacianS3C8Filter.cs" />
@@ -58,8 +60,8 @@
     <Compile Include="Detection\ScharrLightFilter.cs" />
     <Compile Include="Detection\ScharrS5Filter.cs" />
     <Compile Include="Detection\ScharrFilter.cs" />
-    <Compile Include="ContrastCorrection.cs" />
-    <Compile Include="GammaCorrection.cs" />
+    <Compile Include="Correction\ContrastCorrection.cs" />
+    <Compile Include="Correction\GammaCorrection.cs" />
     <Compile Include="ConvolutionMedian.cs" />
     <Compile Include="Smoothing\GaussianFilter52S5.cs" />
     <Compile Include="Smoothing\GaussianFilter98S5.cs" />
@@ -72,7 +74,7 @@
     <Compile Include="Smoothing\MedianFilterS5.cs" />
     <Compile Include="Thresholding\OtsuThresholding.cs" />
     <Compile Include="Smoothing\GaussianFilter300S5.cs" />
-    <Compile Include="GrayScaleConverter.cs" />
+    <Compile Include="Correction\GrayScaleConverter.cs" />
     <Compile Include="Smoothing\GaussianFilter140S7.cs" />
     <Compile Include="Thresholding\TruncatedThresholdingFilter - Copy.cs" />
     <Compile Include="Thresholding\ZeroThresholdingFilter.cs" />
@@ -83,7 +85,7 @@
     <Compile Include="Detection\SobelFilter4O.cs" />
     <Compile Include="Detection\SobelFilter.cs" />
     <Compile Include="Detection\Pratt51Filter.cs" />
-    <Compile Include="InverterFilter.cs" />
+    <Compile Include="Correction\InverterFilter.cs" />
     <Compile Include="KernelItem.cs" />
     <Compile Include="KernelOrientation.cs" />
     <Compile Include="Math2.cs" />

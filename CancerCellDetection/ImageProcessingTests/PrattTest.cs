@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +15,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new Pratt51Filter());
-            resConv.Save(@".\Pratt51FilterInvertedTest.png");
+            resConv.Output.Save(@".\Pratt51FilterInvertedTest.png");
         }
 
         [TestMethod()]
@@ -22,7 +23,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new Pratt52Filter());
-            resConv.Save(@".\Pratt52FilterInvertedTest.png");
+            resConv.Output.Save(@".\Pratt52FilterInvertedTest.png");
         }
 
         [TestMethod()]
@@ -30,7 +31,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new Pratt91Filter());
-            resConv.Save(@".\Pratt91FilterInvertedTest.png");
+            resConv.Output.Save(@".\Pratt91FilterInvertedTest.png");
         }
 
         [TestMethod()]
@@ -38,7 +39,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new Pratt93Filter());
-            resConv.Save(@".\Pratt93FilterInvertedTest.png");
+            resConv.Output.Save(@".\Pratt93FilterInvertedTest.png");
         }
 
         [TestMethod()]
@@ -46,7 +47,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new Pratt274Filter());
-            resConv.Save(@".\Pratt274FilterInvertedTest.png");
+            resConv.Output.Save(@".\Pratt274FilterInvertedTest.png");
         }
 
 
@@ -56,8 +57,8 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new Pratt51Filter());
-            resConv.Save(@".\GrayPratt51FilterTest.png");
-            var resInv = InverterFilter.Invert(resConv);
+            resConv.Output.Save(@".\GrayPratt51FilterTest.png");
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt51FilterInvertedTest.png");
         }
 
@@ -67,7 +68,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new Pratt52Filter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt52FilterInvertedTest.png");
         }
 
@@ -77,7 +78,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new Pratt91Filter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt91FilterInvertedTest.png");
         }
 
@@ -87,7 +88,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new Pratt93Filter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt93FilterInvertedTest.png");
         }
 
@@ -95,10 +96,10 @@ namespace ImageProcessingTests
         public void ConvolveGrayPratt274FilterInvertedTest()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
             var resConv = Convolution.Convolve(res, new Pratt274Filter());
-            resConv.Save(@".\GrayPratt274FilterTest.png");
-            var resInv = InverterFilter.Invert(resConv);
+            resConv.Output.Save(@".\GrayPratt274FilterTest.png");
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt274FilterInvertedTest.png");
         }
     }

@@ -18,56 +18,56 @@
                 { 1, 2, -1 },
                 { 1, 1, -1 }
             };
-            this.AddKernel(k1, (double)1 / 5, KernelOrientation.West);
+            this.AddKernel(k1, (double)1 / 4, KernelOrientation.West);
 
             var k2 = new double[,]{
                 { 1,  1,  1 },
                 { 1,  2, -1 },
                 { 1, -1, -1 }
             };
-            this.AddKernel(k2, (double)1 / 5, KernelOrientation.WesternNorth);
+            this.AddKernel(k2, (double)1 / 4, KernelOrientation.WesternNorth);
 
             var k3 = new double[,]{
                 {  1,  1,  1 },
                 {  1,  2,  1 },
                 { -1, -1, -1 }
             };
-            this.AddKernel(k3, (double)1 / 5, KernelOrientation.North);
+            this.AddKernel(k3, (double)1 / 4, KernelOrientation.North);
 
             var k4 = new double[,]{
                 {  1,  1, 1 },
                 { -1,  2, 1 },
                 { -1, -1, 1 }
             };
-            this.AddKernel(k4, (double)1 / 5, KernelOrientation.EasternNorth);
+            this.AddKernel(k4, (double)1 / 4, KernelOrientation.EasternNorth);
 
             var k5 = new double[,]{
                 { -1, 1, 1 },
                 { -1, 2, 1 },
                 { -1, 1, 1 }
             };
-            this.AddKernel(k5, (double)1 / 5, KernelOrientation.East);
+            this.AddKernel(k5, (double)1 / 4, KernelOrientation.East);
 
             var k6 = new double[,]{
                 { -1, -1, 1 },
                 { -1,  2, 1 },
                 {  1,  1, 1 }
             };
-            this.AddKernel(k6, (double)1 / 5, KernelOrientation.EasternSouth);
+            this.AddKernel(k6, (double)1 / 4, KernelOrientation.EasternSouth);
 
             var k7 = new double[,]{
                 { -1, -1, -1 },
                 {  1,  2,  1 },
                 {  1,  1,  1 }
             };
-            this.AddKernel(k7, (double)1 / 5, KernelOrientation.South);
+            this.AddKernel(k7, (double)1 / 4, KernelOrientation.South);
 
             var k8 = new double[,]{
                 {  1, -1, -1 },
                 {  1,  2, -1 },
                 {  1,  1,  1 }
             };
-            this.AddKernel(k8, (double)1 / 5, KernelOrientation.WesternSouth);
+            this.AddKernel(k8, (double)1 / 4, KernelOrientation.WesternSouth);
 
         }
     }

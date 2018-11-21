@@ -2,14 +2,13 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace ImageProcessing
+namespace ImageProcessing.Correction
 {
     /**
     * @overview Méthode d'abstraction de correction gamma de l'image 
     */
-    public class ContrastCorrection
+    public static class ContrastCorrection
     {
         /// <requires>source != null</requires>
         /// <effects>Correction gamma de l'image source</effects>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

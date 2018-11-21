@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,7 +14,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = Convolution.Convolve(v, new VerticalFilter());
-            res.Save(@".\VerticalFilter.png");
+            res.Output.Save(@".\VerticalFilter.png");
         }
 
         [TestMethod()]
@@ -22,7 +23,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new VerticalFilter());
-            resConv.Save(@".\GrayVerticalFilter.png");
+            resConv.Output.Save(@".\GrayVerticalFilter.png");
         }
 
         [TestMethod()]
@@ -31,7 +32,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new VerticalFilter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayVerticalFilterInverted.png");
         }
 
@@ -41,7 +42,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = Convolution.Convolve(v, new HorizontalFilter());
-            res.Save(@".\HorizontalFilter.png");
+            res.Output.Save(@".\HorizontalFilter.png");
         }
 
         [TestMethod()]
@@ -50,7 +51,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new HorizontalFilter());
-            resConv.Save(@".\GrayHorizontalFilter.png");
+            resConv.Output.Save(@".\GrayHorizontalFilter.png");
         }
 
         [TestMethod()]
@@ -59,7 +60,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new HorizontalFilter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayHorizontalFilterInverted.png");
         }
     }

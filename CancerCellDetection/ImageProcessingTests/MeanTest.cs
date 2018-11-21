@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,7 +14,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new MeanFilterC4S3());
-            resConv.Save(@".\MeanFilterC4S3Test.png");
+            resConv.Output.Save(@".\MeanFilterC4S3Test.png");
         }
 
         [TestMethod()]
@@ -21,7 +22,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new MeanFilterC8S3());
-            resConv.Save(@".\MeanFilterC8S3Test.png");
+            resConv.Output.Save(@".\MeanFilterC8S3Test.png");
         }
 
         [TestMethod()]
@@ -29,7 +30,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new MeanFilterC24S5());
-            resConv.Save(@".\MeanFilterC24S5Test.png");
+            resConv.Output.Save(@".\MeanFilterC24S5Test.png");
         }
 
         [TestMethod()]
@@ -37,7 +38,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new MeanFilterC48S7());
-            resConv.Save(@".\MeanFilterC48S7Test.png");
+            resConv.Output.Save(@".\MeanFilterC48S7Test.png");
         }
 
         [TestMethod()]
@@ -46,7 +47,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new MeanFilterC4S3());
-            resConv.Save(@".\GrayMeanFilterC4S3Test.png");
+            resConv.Output.Save(@".\GrayMeanFilterC4S3Test.png");
         }
 
         [TestMethod()]
@@ -55,7 +56,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new MeanFilterC8S3());
-            resConv.Save(@".\GrayMeanFilterC8S3Test.png");
+            resConv.Output.Save(@".\GrayMeanFilterC8S3Test.png");
         }
 
         [TestMethod()]
@@ -64,7 +65,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new MeanFilterC24S5());
-            resConv.Save(@".\GrayMeanFilterC24S5Test.png");
+            resConv.Output.Save(@".\GrayMeanFilterC24S5Test.png");
         }
 
         [TestMethod()]
@@ -73,7 +74,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new MeanFilterC48S7());
-            resConv.Save(@".\GrayMeanFilterC48S7Test.png");
+            resConv.Output.Save(@".\GrayMeanFilterC48S7Test.png");
         }
     }
 }

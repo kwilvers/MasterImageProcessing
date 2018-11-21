@@ -2,9 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace ImageProcessing
+namespace ImageProcessing.Correction
 {
     /**
 	* @overview Méthode d'abstraction de conversion d'une image en niveau de gris

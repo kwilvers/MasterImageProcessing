@@ -79,5 +79,13 @@ namespace ImageProcessing
 
             return a / b;
         }
+
+
+        public static bool Between(double num, double lower, double upper, bool inclusive = false)
+        {
+            return inclusive
+                ? lower <= num && num <= upper
+                : lower < num && num < upper;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +15,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new SobelFilter());
-            resConv.Save(@".\GraySobelFilterTest.png");
+            resConv.Output.Save(@".\GraySobelFilterTest.png");
         }
 
         [TestMethod()]
@@ -23,7 +24,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new SobelFilter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GraySobelFilterInvertedTest.png");
         }
 
@@ -33,7 +34,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\ech.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new SobelFilter());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GraySobelFilterInvertedShapeTest.png");
         }
 
@@ -43,7 +44,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new SobelFilter4O());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GraySobelO4FilterInvertedTest.png");
         }
 
@@ -53,7 +54,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             //var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(v, new SobelFilter4O());
-            var resInv = InverterFilter.Invert(resConv);
+            var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\ColorSobelO4FilterInvertedTest.png");
         }
     }

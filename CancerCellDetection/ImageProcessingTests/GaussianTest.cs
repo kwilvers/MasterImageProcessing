@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using ImageProcessing;
+using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,7 +16,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new GaussianFilter140S7());
-            resConv.Save(@".\GaussianFilter140S7Test.png");
+            resConv.Output.Save(@".\GaussianFilter140S7Test.png");
         }
 
         [TestMethod()]
@@ -23,7 +24,7 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new GaussianFilter300S5());
-            resConv.Save(@".\GaussianFilter300S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter300S5Test.png");
         }
 
         [TestMethod()]
@@ -31,10 +32,10 @@ namespace ImageProcessingTests
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = Convolution.Convolve(v, new GaussianFilter300S5());
-            var resConv2 = Convolution.Convolve(resConv, new GaussianFilter140S7());
-            var resConv3 = Convolution.Convolve(resConv2, new GaussianFilter140S7());
-            var resConv4 = Convolution.Convolve(resConv3, new GaussianFilter140S7());
-            resConv4.Save(@".\MultiGaussianFilterTest.png");
+            var resConv2 = Convolution.Convolve(resConv.Output, new GaussianFilter140S7());
+            var resConv3 = Convolution.Convolve(resConv2.Output, new GaussianFilter140S7());
+            var resConv4 = Convolution.Convolve(resConv3.Output, new GaussianFilter140S7());
+            resConv4.Output.Save(@".\MultiGaussianFilterTest.png");
         }
 
         [TestMethod()]
@@ -43,7 +44,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter140S7());
-            resConv.Save(@".\GaussianFilter140S7Test.png");
+            resConv.Output.Save(@".\GaussianFilter140S7Test.png");
         }
 
         [TestMethod()]
@@ -52,7 +53,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter159S5());
-            resConv.Save(@".\GaussianFilter159S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter159S5Test.png");
         }
 
         [TestMethod()]
@@ -61,7 +62,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter16S3());
-            resConv.Save(@".\GaussianFilter16S3Test.png");
+            resConv.Output.Save(@".\GaussianFilter16S3Test.png");
         }
 
         [TestMethod()]
@@ -70,7 +71,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter273S5());
-            resConv.Save(@".\GaussianFilter273S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter273S5Test.png");
         }
 
         [TestMethod()]
@@ -79,7 +80,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter300S5());
-            resConv.Save(@".\GaussianFilter300S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter300S5Test.png");
         }
 
         [TestMethod()]
@@ -88,7 +89,7 @@ namespace ImageProcessingTests
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             var resConv = Convolution.Convolve(res, new GaussianFilter52S5());
-            resConv.Save(@".\GaussianFilter52S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter52S5Test.png");
         }
 
         [TestMethod()]
@@ -98,7 +99,7 @@ namespace ImageProcessingTests
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             res.Save(@".\echantillonGray.png");
             var resConv = Convolution.Convolve(res, new GaussianFilter98S5());
-            resConv.Save(@".\GaussianFilter98S5Test.png");
+            resConv.Output.Save(@".\GaussianFilter98S5Test.png");
         }
 
     }

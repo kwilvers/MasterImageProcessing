@@ -75,6 +75,7 @@
     <Compile Include="KirschTest.cs" />
     <Compile Include="LaplacianTest.cs" />
     <Compile Include="ContrastTest.cs" />
+    <Compile Include="NonMaximumSuppressionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

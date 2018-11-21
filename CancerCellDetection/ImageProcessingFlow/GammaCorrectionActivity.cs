@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageProcessing;
+using ImageProcessing.Correction;
 
 namespace ImageProcessingFlow
 {
