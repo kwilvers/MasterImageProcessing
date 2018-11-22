@@ -63,6 +63,7 @@
     <Compile Include="Correction\ContrastCorrection.cs" />
     <Compile Include="Correction\GammaCorrection.cs" />
     <Compile Include="ConvolutionMedian.cs" />
+    <Compile Include="Morphology\Erosion.cs" />
     <Compile Include="Smoothing\GaussianFilter52S5.cs" />
     <Compile Include="Smoothing\GaussianFilter98S5.cs" />
     <Compile Include="Smoothing\GaussianFilter16S3.cs" />

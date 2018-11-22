@@ -76,6 +76,7 @@
     <Compile Include="LaplacianTest.cs" />
     <Compile Include="ContrastTest.cs" />
     <Compile Include="NonMaximumSuppressionTest.cs" />
+    <Compile Include="MorphoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

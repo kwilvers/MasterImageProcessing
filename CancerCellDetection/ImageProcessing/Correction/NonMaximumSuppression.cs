@@ -13,7 +13,7 @@ namespace ImageProcessing.Correction
 	*/
     public static class NonMaximumSuppression
     {
-        public static Bitmap Apply(Bitmap sourceBitmap, byte[] directions, int size=3)
+        public static Bitmap Apply(Bitmap sourceBitmap, byte[] directions)
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
                                         sourceBitmap.Width, sourceBitmap.Height),
@@ -28,7 +28,7 @@ namespace ImageProcessing.Correction
             sourceBitmap.UnlockBits(sourceData);
 
 
-            int padding = size/2+1;
+            int padding = 1;
 
 
             //Foreach rows
