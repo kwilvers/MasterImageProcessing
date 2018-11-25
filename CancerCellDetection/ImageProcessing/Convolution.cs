@@ -235,6 +235,7 @@ namespace ImageProcessing
                 //foreach lines
                 for (int lineIndex = padding; lineIndex < sourceBitmap.Width - padding; lineIndex++)
                 {
+                    //Compute the current pixel byte offset
                     byteOffset = rowIndex * sourceData.Stride + lineIndex * 3;
 
                     //foreach kernel
