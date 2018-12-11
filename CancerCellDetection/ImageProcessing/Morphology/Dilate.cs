@@ -40,11 +40,10 @@ namespace ImageProcessing.Morphology
                     var byteOffset = rowIndex * sourceData.Stride + lineIndex * 3;
 
                     //Si le pixel est un contour ne rien faire
-                    if (pixelBuffer[byteOffset] == 0)
+                    if (pixelBuffer[byteOffset] == 255)
                         continue;
-
-                    var ai = 1 + 1;
-
+                    
+                    //sinon c'est le pixel de fond
                     //foreach kernel
                     for (int i = 0; i < filter.Kernels.Count(); i++)
                     {
@@ -69,7 +68,7 @@ namespace ImageProcessing.Morphology
                                                  (filterRowIndex * sourceData.Stride);
                                 
                                 //Si le pixel voisin est un contour
-                                if (pixelBuffer[calcOffset] == 0)
+                                if (pixelBuffer[calcOffset] == 255)
                                 {
                                     hasNeighbour = true;
                                     //break; //optimization
@@ -80,9 +79,9 @@ namespace ImageProcessing.Morphology
                         //Si au moins un des voisins est un contour le pixel de fond est dilaté
                         if (hasNeighbour)
                         {
-                            resultBuffer[byteOffset] = 0;
-                            resultBuffer[byteOffset + 1] = 0;
-                            resultBuffer[byteOffset + 2] = 0;
+                            resultBuffer[byteOffset] = 255;
+                            resultBuffer[byteOffset + 1] = 255;
+                            resultBuffer[byteOffset + 2] = 255;
                         }
                     }
                 }

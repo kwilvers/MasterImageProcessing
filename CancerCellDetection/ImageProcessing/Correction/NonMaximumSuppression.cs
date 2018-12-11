@@ -59,12 +59,14 @@ namespace ImageProcessing.Correction
                             previous = (rowIndex - 1) * sourceData.Stride + (cellIndex - 1) * 3;
                             next = (rowIndex + 1) * sourceData.Stride + (cellIndex + 1) * 3;
                             break;
+                        case 255:
+                            break;
                         default:
                             throw new ArgumentException("Not a normalized angle (0, 45, 90, 135)");
                     }
 
-                    if (resultBuffer[byteOffset] < resultBuffer[previous] ||
-                        resultBuffer[byteOffset] < resultBuffer[next])
+                    if (pixelBuffer[byteOffset] < pixelBuffer[previous] ||
+                        pixelBuffer[byteOffset] < pixelBuffer[next])
                     {
                         resultBuffer[byteOffset] = 0;
                         resultBuffer[byteOffset + 1] = 0;

@@ -36,9 +36,9 @@ namespace ImageProcessing
 
         public KernelItem(KernelOrientation orientation, double factor, double[,] kernel)
         {
-            Orientation = orientation;
-            Factor = factor;
-            Kernel = kernel;
+            this.Orientation = orientation;
+            this.Factor = factor;
+            this.Kernel = kernel;
         }
 
         /** Défini comment les objets sont représentés
@@ -48,18 +48,18 @@ namespace ImageProcessing
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(Orientation);
+            sb.Append(this.Orientation);
             sb.Append(":");
-            sb.Append(Factor);
+            sb.Append(this.Factor);
             sb.Append(":[");
-            for (var i = 0; i < Size; i++)
+            for (var i = 0; i < this.Size; i++)
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("[");
-                for (var j = 0; j < Size; j++)
+                for (var j = 0; j < this.Size; j++)
                 {
-                    sb.Append(Kernel[i, j]);
-                    if (j < Size - 1)
+                    sb.Append(this.Kernel[i, j]);
+                    if (j < this.Size - 1)
                         sb.Append(",");
                 }
                 sb.Append("]");
@@ -73,9 +73,9 @@ namespace ImageProcessing
 		*/
         public bool RepOk()
         {
-            if (Factor <= 0) return false;
-            if (Kernel == null) return false;
-            if (Kernel.GetLength(0) != Kernel.GetLength(1)) return false;
+            if (this.Factor <= 0) return false;
+            if (this.Kernel == null) return false;
+            if (this.Kernel.GetLength(0) != this.Kernel.GetLength(1)) return false;
             return true;
         }
     }

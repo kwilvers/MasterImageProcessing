@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -280,8 +281,10 @@ namespace ImageProcessing
                     }
                     else
                     {
+                        //if (computeDirection)
+                        //    res.Directions[byteOffset] = ToDirection(gray);
                         if (computeDirection)
-                            res.Directions[byteOffset] = ToDirection(gray);
+                            res.Directions[byteOffset] = ToDirection(filter.Kernels, gray);
 
                         resultBuffer[byteOffset] = (byte)gray.Max(v => Math.Abs(v));
                         resultBuffer[byteOffset + 1] = resultBuffer[byteOffset];
@@ -305,7 +308,6 @@ namespace ImageProcessing
             return res;
         }
 
-
         private static byte ToDirection(double x, double y)
         {
             var dir = (byte) Math.Atan(Math.Abs(y) / Math.Abs(x));
@@ -323,13 +325,23 @@ namespace ImageProcessing
         }
 
 
-        private static byte ToDirection(double[] gray)
+        private static byte ToDirection(IEnumerable<KernelItem> kernels, double[] gray)
         {
-            var index = gray.ToList().IndexOf(gray.Max());
-            var x = index % 2 == 0 ? index : index - 1;
-            var y = x + 1;
-            return ToDirection(gray[x], gray[y]);
+            byte b=255;
+            double maxima=0;
+            var kernelItems = kernels as KernelItem[] ?? kernels.ToArray();
+            for (int i = 0; i < kernelItems.Count(); i++ )
+            {
+                if (gray[i] > maxima)
+                {
+                    maxima = gray[i];
+                    b = kernelItems[i].Orientation.ToValue();
+                }
+            }
+
+            return b;
         }
+
 
         private static byte ToDirection(double[] red, double[] green, double[] blue)
         {

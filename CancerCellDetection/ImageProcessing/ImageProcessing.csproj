@@ -78,6 +78,7 @@
     <Compile Include="Smoothing\MeanFilterC8S3.cs" />
     <Compile Include="Smoothing\MedianFilterS7.cs" />
     <Compile Include="Smoothing\MedianFilterS5.cs" />
+    <Compile Include="Thresholding\BandThresholdingFilter.cs" />
     <Compile Include="Thresholding\OtsuThresholding.cs" />
     <Compile Include="Smoothing\GaussianFilter300S5.cs" />
     <Compile Include="Correction\GrayScaleConverter.cs" />

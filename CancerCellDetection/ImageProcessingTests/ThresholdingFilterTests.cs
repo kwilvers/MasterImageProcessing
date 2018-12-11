@@ -2,6 +2,7 @@
 using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Detection;
+using ImageProcessing.Morphology;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -88,5 +89,47 @@ namespace ImageProcessingTests
             resInv.Save(@".\OtsuThresholdingFilter"+th+".png");
         }
 
+        [TestMethod]
+        public void BandThresholdingTest()
+        {
+            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            var res = GammaCorrection.Correct(v, 0.3);
+
+            //Color c = Color.FromArgb(155, 110, 226);
+            //Color c = Color.FromArgb(178, 125, 223);
+            //Color c = Color.FromArgb(135, 98, 206);
+            Color c = Color.FromArgb(200, 147, 233);
+            var resThr = BandThresholdingFilter.Apply(res, c, 100, 60);
+            //var resInv = InverterFilter.Invert(resThr);
+            resThr.Save(@".\BandThresholdingFilterTest.png");
+        }
+
+        [TestMethod]
+        public void BandThresholdingOpenTest()
+        {
+            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            var res = GammaCorrection.Correct(v, 0.3);
+
+            //Color c = Color.FromArgb(155, 110, 226);
+            //Color c = Color.FromArgb(178, 125, 223);
+            //Color c = Color.FromArgb(135, 98, 206);
+            Color c = Color.FromArgb(200, 147, 233);
+            var resThr = BandThresholdingFilter.Apply(res, c, 100, 60);
+            resThr.Save(@".\10BandThresholdingOpenTest.png");
+            var ero = Erode.Apply(resThr, new RoundStructuredElement(), 128);
+            ero.Save(@".\20BandThresholdingOpenTest.png");
+            ero = Erode.Apply(ero, new RoundStructuredElement(), 128);
+            ero.Save(@".\31BandThresholdingOpenTest.png");
+            //ero = Erode.Apply(ero, new RoundStructuredElement(), 128);
+            //ero.Save(@".\32BandThresholdingOpenTest.png");
+            var dil = Dilate.Apply(ero, new RoundStructuredElement(), 128);
+            dil.Save(@".\40BandThresholdingOpenTest.png");
+            dil = Dilate.Apply(dil, new RoundStructuredElement(), 128);
+            dil.Save(@".\51BandThresholdingOpenTest.png");
+            dil = Dilate.Apply(dil, new RoundStructuredElement(), 128);
+            dil.Save(@".\52BandThresholdingOpenTest.png");
+            var sub = Morpho.Intersec(v, dil);
+            sub.Save(@".\60BandThresholdingOpenSubTest.png");
+        }
     }
 }
