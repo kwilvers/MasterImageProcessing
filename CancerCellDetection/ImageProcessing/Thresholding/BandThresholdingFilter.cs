@@ -13,7 +13,8 @@ namespace ImageProcessing.Thresholding
     public class BandThresholdingFilter
     {
         /// <requires>source != null</requires>
-        /// <effects>Seuillage des valeurs de l'image, les valeurs inférieures au seuil sont forcée à 0 sinon à 255</effects>
+        /// <effects>Seuillage des valeurs de l'image, les valeurs inférieures au seuil sont forcées à 0
+        /// les valeurs supérieures au seuil sont forcées a 0</effects>
         /// <returns>Une bitmap dont les valeurs sont limitée a un seuil</returns>
         public static Bitmap Apply(Bitmap source, Color mid, int tolerance, int tolerance2)
         {
@@ -31,6 +32,7 @@ namespace ImageProcessing.Thresholding
 
             for (int i = 0; i < rgb.Length; i += 3)
             {
+                //Si le pixel est hors tolérance sur une des composante on force à 0
                 if (!Math2.Between(rgb[i], mid.B - tolerance, mid.B + tolerance)
                     || !Math2.Between(rgb[i + 1], mid.G - tolerance, mid.G + tolerance)
                     || !Math2.Between(rgb[i + 2], mid.R - tolerance, mid.R + tolerance))

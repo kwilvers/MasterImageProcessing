@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorHSB.cs" />
     <Compile Include="Convolution.cs" />
     <Compile Include="ConvolutionFilterBase.cs" />
     <Compile Include="Correction\NonMaximumSuppression.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="Morphology\SquareStructuredElement.cs" />
     <Compile Include="Morphology\Dilate.cs" />
     <Compile Include="Morphology\CrossStructuredElement.cs" />
+    <Compile Include="Segmentation\PixelCount.cs" />
+    <Compile Include="Smoothing\GaussianFilter.cs" />
     <Compile Include="Smoothing\GaussianFilter52S5.cs" />
     <Compile Include="Smoothing\GaussianFilter98S5.cs" />
     <Compile Include="Smoothing\GaussianFilter16S3.cs" />
@@ -83,7 +86,7 @@
     <Compile Include="Smoothing\GaussianFilter300S5.cs" />
     <Compile Include="Correction\GrayScaleConverter.cs" />
     <Compile Include="Smoothing\GaussianFilter140S7.cs" />
-    <Compile Include="Thresholding\TruncatedThresholdingFilter - Copy.cs" />
+    <Compile Include="Thresholding\TruncatedThresholdingFilter.cs" />
     <Compile Include="Thresholding\ZeroThresholdingFilter.cs" />
     <Compile Include="Thresholding\HysteresisThresholdingFilter.cs" />
     <Compile Include="Thresholding\BinaryThresholdingFilter.cs" />

@@ -1,9 +1,8 @@
 ﻿using System.Drawing;
-using ImageProcessing;
 using ImageProcessing.Correction;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessingTests
+namespace ImageProcessingTests.Correction
 {
     [TestClass()]
     public class GammaCorrectionTests

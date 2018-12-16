@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
             //let fileName = "C:\Users\karl\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG"
             var fileName = @"C:\Dev\Memoire\images\Echantillon.PNG";
 
-            var image = Cv2.ImRead(fileName, ImreadModes.GrayScale);
+            var image = Cv2.ImRead(fileName, ImreadModes.Grayscale);
             var output = InputOutputArray.Create(image.Clone());
             //let gray = Cv2.CvtColor(image, output, ColorConversionCodes.BGR2GRAY)
             var input = InputArray.Create(image);
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
             //let fileName = "C:\Users\karl\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG"
             var fileName = @"C:\Dev\Memoire\images\Echantillon.PNG";
 
-            var image = Cv2.ImRead(fileName, ImreadModes.GrayScale);
+            var image = Cv2.ImRead(fileName, ImreadModes.Grayscale);
 
 
             //# Setup SimpleBlobDetector parameters.

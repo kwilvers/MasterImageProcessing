@@ -102,7 +102,7 @@ namespace WpfApp1
         {
             //var fileName = @"..\..\..\..\images\Ech.PNG";
 
-            var image = Cv2.ImRead(FileName, ImreadModes.GrayScale);
+            var image = Cv2.ImRead(FileName, ImreadModes.Grayscale);
 
             var detector = SimpleBlobDetector.Create(BlobParam.Param);
             var keypoints = detector.Detect(image);

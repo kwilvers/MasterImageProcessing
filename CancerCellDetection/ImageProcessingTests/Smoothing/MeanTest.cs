@@ -13,7 +13,7 @@ namespace ImageProcessingTests
         public void ConvolveMeanFilterC4S3Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var resConv = Convolution.Convolve(v, new MeanFilterC4S3());
+            var resConv = Convolution.Convolve(v, new MeanFilterC4S3());//Connexité 4 taille 3
             resConv.Output.Save(@".\MeanFilterC4S3Test.png");
         }
 
@@ -21,7 +21,7 @@ namespace ImageProcessingTests
         public void ConvolveMeanFilterC8S3Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var resConv = Convolution.Convolve(v, new MeanFilterC8S3());
+            var resConv = Convolution.Convolve(v, new MeanFilterC8S3()); //Connexité 8 taille 3
             resConv.Output.Save(@".\MeanFilterC8S3Test.png");
         }
 

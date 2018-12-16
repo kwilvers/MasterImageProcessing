@@ -62,6 +62,11 @@ namespace ImageProcessing
             this.kernels.Add(k);
         }
 
+        protected void ClearKernel()
+        {
+            this.kernels.Clear();
+        }
+
         /** Défini comment les objets sont représentés
 		* La relation entre C : la rep (variable d’instance) et A : le commentaire de l’overview
 		*/

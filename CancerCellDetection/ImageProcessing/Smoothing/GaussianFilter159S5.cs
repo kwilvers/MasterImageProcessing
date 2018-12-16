@@ -7,7 +7,7 @@
     public class GaussianFilter159S5 : ConvolutionFilterBase
     {
 
-        public override string Name => "Mean Filter - 159 - Size 5x5";
+        public override string Name => "Gaussian Filter - 159 - Size 5x5";
 
         /**
         * @see base.InitKernels();

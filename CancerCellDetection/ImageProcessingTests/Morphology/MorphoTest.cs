@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Detection;
@@ -8,7 +7,7 @@ using ImageProcessing.Smoothing;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessingTests
+namespace ImageProcessingTests.Morphology
 {
     [TestClass]
     public class MorphoTest

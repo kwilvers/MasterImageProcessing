@@ -13,7 +13,7 @@ let main argv =
     //let fileName = "C:\Users\karl\OneDrive\ALL\UNIF\2eme - Mémoire\Echantillon.PNG"
     let fileName = "C:\Users\kwilvers\OneDrive\ALL\UNIF\2eme - Mémoire\Ech.PNG"
 
-    let image = Cv2.ImRead(fileName, ImreadModes.GrayScale)
+    let image = Cv2.ImRead(fileName, ImreadModes.Grayscale)
     let output = InputOutputArray.Create(image.Clone())
     //let gray = Cv2.CvtColor(image, output, ColorConversionCodes.BGR2GRAY)
     let input = InputArray.Create(image)

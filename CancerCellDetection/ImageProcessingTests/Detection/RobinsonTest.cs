@@ -1,12 +1,11 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessingTests
+namespace ImageProcessingTests.Detection
 {
     [TestClass]
     public class RobinsonTest

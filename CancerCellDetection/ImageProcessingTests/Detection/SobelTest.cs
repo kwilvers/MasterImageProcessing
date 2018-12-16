@@ -4,7 +4,7 @@ using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessingTests
+namespace ImageProcessingTests.Detection
 {
     [TestClass]
     public class SobelTest

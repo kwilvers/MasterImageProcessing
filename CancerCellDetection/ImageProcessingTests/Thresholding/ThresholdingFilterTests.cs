@@ -6,7 +6,7 @@ using ImageProcessing.Morphology;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImageProcessingTests
+namespace ImageProcessingTests.Thresholding
 {
     [TestClass()]
     public class ThresholdingFilterTests
@@ -126,7 +126,7 @@ namespace ImageProcessingTests
             dil.Save(@".\40BandThresholdingOpenTest.png");
             dil = Dilate.Apply(dil, new RoundStructuredElement(), 128);
             dil.Save(@".\51BandThresholdingOpenTest.png");
-            dil = Dilate.Apply(dil, new RoundStructuredElement(), 128);
+            dil = Dilate.Apply(dil, new CrossStructuredElement(), 128);
             dil.Save(@".\52BandThresholdingOpenTest.png");
             var sub = Morpho.Intersec(v, dil);
             sub.Save(@".\60BandThresholdingOpenSubTest.png");
