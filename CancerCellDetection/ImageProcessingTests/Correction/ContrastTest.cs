@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using ImageProcessing.Correction;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
+using Size = OpenCvSharp.Size;
 
 namespace ImageProcessingTests.Correction
 {
@@ -11,6 +13,7 @@ namespace ImageProcessingTests.Correction
         public void ContrastCorrection50Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Correction de contraste de +50%
             var res = ContrastCorrection.Correct(v, 50);
             res.Save(@".\ContrastCorrection50Test.png");
         }
@@ -41,5 +44,36 @@ namespace ImageProcessingTests.Correction
             res.Save(@".\ContrastCorrectionminus50GrayTest.png");
         }
 
+        [TestMethod]
+        public void CvContrastCorrection()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+
+            //Augmente le contraste de 10%
+            v.ConvertTo(output, v.Depth(), 1.1, 0);
+            //Diminue le contraste de 50%
+            v.ConvertTo(output, v.Depth(), 0.5, 0);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvContrastCorrection.png", output);
+        }
+
+        [TestMethod]
+        public void CvContrast2Correction()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.ReducedColor8);
+            Mat output = new Mat();
+
+            var clahe = Cv2.CreateCLAHE(0.5, new Size(8, 8));
+            clahe.Apply(v, output);
+            //Cv2.EqualizeHist(v, output);
+            
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvContrast2Correction.png", output);
+        }
     }
 }

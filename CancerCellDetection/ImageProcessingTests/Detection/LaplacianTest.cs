@@ -3,6 +3,7 @@ using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
 
 namespace ImageProcessingTests.Detection
 {
@@ -14,6 +15,7 @@ namespace ImageProcessingTests.Detection
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
+            //Filtre laplacien
             var resConv = Convolution.Convolve(res, new LaplacianS3C4Filter());
             //resConv.Save(@".\GrayLaplacianS3C4FilterInvertedTest.png");
             var resInv = InverterFilter.Invert(resConv.Output);
@@ -51,6 +53,39 @@ namespace ImageProcessingTests.Detection
             //resConv.Save(@".\GrayLaplacianS3C4FilterInvertedTest.png");
             var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayLaplacianOfGaussianFilterInvertedTest.png");
+        }
+
+        [TestMethod]
+        public void CvLaplacianFilter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.Grayscale);
+
+            //Matrice de gradient X et Y
+            Mat output = new Mat();
+
+            //Convolution par kernel
+            Cv2.Laplacian(v, output, v.Depth(), 3, 5);
+
+            Cv2.ImWrite(@".\CvLaplacianFilter.png", output);
+        }
+
+        [TestMethod]
+        public void CvLaplacianOfGaussianFilter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.Grayscale);
+
+            //Matrice de gradient X et Y
+            Mat blur = new Mat();
+            Mat output = new Mat();
+
+            //Gaussian blur
+            Cv2.GaussianBlur(v, blur, new OpenCvSharp.Size(7, 7), 5, 5, BorderTypes.Default);
+            //Convolution par kernel
+            Cv2.Laplacian(blur, output, v.Depth(), 3, 5);
+
+            Cv2.ImWrite(@".\CvLaplacianOfGaussianFilter.png", output);
         }
     }
 }

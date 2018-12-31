@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using ImageProcessing.Correction;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 namespace ImageProcessingTests.Correction
 {
@@ -16,6 +19,7 @@ namespace ImageProcessingTests.Correction
             var sw = Stopwatch.StartNew();
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             Console.WriteLine(sw.Elapsed);
+            //Convertion en niveau de gris selon la moyenne
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
             Console.WriteLine(sw.Elapsed);
             res.Save(@".\ColorAverageTest.png");
@@ -27,6 +31,7 @@ namespace ImageProcessingTests.Correction
         public void Bt709Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Convertion en niveau de gris selon la norme BT709
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
             res.Save(@".\Bt709Test.png");
         }
@@ -35,6 +40,7 @@ namespace ImageProcessingTests.Correction
         public void FromRedTest()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Convertion en niveau de gris selon une composante
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromRed);
             res.Save(@".\FromRedTest.png");
         }
@@ -84,6 +90,7 @@ namespace ImageProcessingTests.Correction
         public void FromBrightnessTest()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Convertion en niveau de gris selon la luminance
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromBrightness);
             res.Save(@".\FromBrightness.png");
         }
@@ -103,5 +110,19 @@ namespace ImageProcessingTests.Correction
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromVChrominance);
             res.Save(@".\FromVChrominance.png");
         }
+
+
+        [TestMethod]
+        public void CvGrayRec601ConversionFilter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+            //Convertion en niveau de gris Rec601
+            Cv2.CvtColor(v, output, ColorConversionCodes.RGB2GRAY);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvGrayRec601ConversionFilter.png", output);
+        }
+
     }
 }

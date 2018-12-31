@@ -3,6 +3,9 @@ using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 namespace ImageProcessingTests.Smoothing
 {
@@ -58,6 +61,18 @@ namespace ImageProcessingTests.Smoothing
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS7());
             resConv.Save(@".\MedianFilterS7Test.png");
+        }
+
+        [TestMethod]
+        public void CvMedianS9Filter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+            //Filtre median 5x5
+            Cv2.MedianBlur(v, output, 5);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvMedianS9Filter.png", output);
         }
     }
 }

@@ -3,6 +3,7 @@ using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Detection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
 
 namespace ImageProcessingTests.Detection
 {
@@ -13,6 +14,7 @@ namespace ImageProcessingTests.Detection
         public void ConvolvePratt51FilterInvertedTest()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Filtre de Pratt
             var resConv = Convolution.Convolve(v, new Pratt51Filter());
             resConv.Output.Save(@".\Pratt51FilterInvertedTest.png");
         }
@@ -101,5 +103,35 @@ namespace ImageProcessingTests.Detection
             var resInv = InverterFilter.Invert(resConv.Output);
             resInv.Save(@".\GrayPratt274FilterInvertedTest.png");
         }
+
+
+        [TestMethod]
+        public void CvPrattFilter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+
+            //Matrice de gradient X et Y
+            Mat abs1 = new Mat(); 
+            Mat output = new Mat();
+
+            //Creation des kernels
+            //var kernel1 = new float[,] {{-1, -4, -1}, {-4, 27, -4}, {-1, -4, -1}};
+            //var kernel1 = new float[,] {{0, -3, 0}, {-3, 12, -3}, {0, -3, 0}};
+            //var kernel1 = new float[,]{{  0, -3,  0 },{ -3,  14, -3 },{  0, -3,  0 }};
+            //var kernel1 = new float[,]{{  0, -1,  0 },{ -1,  9, -1 },{  0, -1,  0 }};
+
+            //Création du kernel
+            var kernel1 = new float[,] {{0, -1, 0}, {-1, 5, -1}, {0, -1, 0}};
+            var k1 = new Mat(3, 3, MatType.CV_32F, kernel1);
+            //Convolution par kernel
+            Cv2.Filter2D(v, output, -1, k1);
+            
+            //Conversion en valeurs absolue 8 bits
+            //Cv2.ConvertScaleAbs(output, abs1);
+            
+            Cv2.ImWrite(@".\CvPrattFilter.png", output);
+        }
+
     }
 }

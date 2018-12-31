@@ -19,7 +19,7 @@
             var k1 = new double[,]{
                 { -1, 0, 1 },
                 { -2, 0, 2 },
-                { -1, 0, 2 }
+                { -1, 0, 1 }
             };
             this.AddKernel(k1, factor, KernelOrientation.East);
 

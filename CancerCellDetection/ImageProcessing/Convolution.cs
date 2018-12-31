@@ -310,7 +310,7 @@ namespace ImageProcessing
 
         private static byte ToDirection(double x, double y)
         {
-            var dir = (byte) Math.Atan(Math.Abs(y) / Math.Abs(x));
+            var dir = Math.Atan(Math.Abs(y) / Math.Abs(x))*100;
 
             if (Math2.Between(dir, 22.5, 67.5) || Math2.Between(dir, 202.5, 247.5))
                 return 45;
@@ -321,6 +321,8 @@ namespace ImageProcessing
             if (Math2.Between(dir, 112.5, 157.5) || Math2.Between(dir, 297.5, 337.5))
                 return 135;
 
+            if (dir == 0)
+                return 255;
             return 0;
         }
 

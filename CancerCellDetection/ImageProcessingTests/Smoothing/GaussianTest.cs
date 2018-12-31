@@ -3,6 +3,9 @@ using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 namespace ImageProcessingTests.Smoothing
 {
@@ -159,8 +162,33 @@ namespace ImageProcessingTests.Smoothing
             gray.Save(@".\echantillonGray.png");
             var res = ContrastCorrection.Correct(gray, 50);
             res.Save(@".\GrayContrastFilterTest.png");
+            //Filtre gaussien 11x11 Sigma 5
             var resConv = Convolution.Convolve(res, new GaussianFilter(11, 5));
             resConv.Output.Save(@".\GrayContrastGaussianFilterCalculatedS11W5Test.png");
+        }
+
+        [TestMethod]
+        public void CvGaussianS9Filter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+            //Filtre gaussien 9x9
+            Cv2.GaussianBlur(v, output, new OpenCvSharp.Size(9, 9), 0, 0, BorderTypes.Default);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvGaussianS9Filter.png", output);
+        }
+
+        [TestMethod]
+        public void CvGaussianS11O5Filter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+            //Filtre gaussien 9x9 Sigma 5
+            Cv2.GaussianBlur(v, output, new OpenCvSharp.Size(9, 9), 5, 5, BorderTypes.Default);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvGaussianS11O5Filter.png", output);
         }
     }
 }
