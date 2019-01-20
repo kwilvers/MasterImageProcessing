@@ -113,11 +113,11 @@ namespace ImageProcessingTests.Detection
             Mat contraste = new Mat();
             //Augmente le contraste de 10%
             v.ConvertTo(contraste, v.Depth(), 1.1, 0);
-            Cv2.ImWrite(@".\10CvRobinsonFilter.png", contraste);
+            Cv2.ImWrite(@".\10CvSobel4Filter.png", contraste);
             Mat gaus = new Mat();
             //Filtre gaussien 9x9
             Cv2.GaussianBlur(contraste, gaus, new Size(9, 9), 0, 0, BorderTypes.Default);
-            Cv2.ImWrite(@".\20CvRobinsonFilter.png", contraste);
+            Cv2.ImWrite(@".\20CvSobel4Filter.png", contraste);
 
             //Matrice de gradient X et Y
             Mat output1 = new MatOfDouble(); Mat output2 = new MatOfDouble();
@@ -138,14 +138,14 @@ namespace ImageProcessingTests.Detection
             var k4 = new Mat(3, 3, MatType.CV_32F, kernel4);
 
             //Convolution par quatres kernels
-            Cv2.Filter2D(v, output1, -1, k1);
-            Cv2.ImWrite(@".\31CvRobinsonFilter.png", output1);
-            Cv2.Filter2D(v, output2, -1, k2);
-            Cv2.ImWrite(@".\32CvRobinsonFilter.png", output2);
-            Cv2.Filter2D(v, output3, -1, k3);
-            Cv2.ImWrite(@".\33CvRobinsonFilter.png", output3);
-            Cv2.Filter2D(v, output4, -1, k4);
-            Cv2.ImWrite(@".\34CvRobinsonFilter.png", output4);
+            Cv2.Filter2D(gaus, output1, -1, k1);
+            Cv2.ImWrite(@".\31CvSobel4Filter.png", output1);
+            Cv2.Filter2D(gaus, output2, -1, k2);
+            Cv2.ImWrite(@".\32CvSobel4Filter.png", output2);
+            Cv2.Filter2D(gaus, output3, -1, k3);
+            Cv2.ImWrite(@".\33CvSobel4Filter.png", output3);
+            Cv2.Filter2D(gaus, output4, -1, k4);
+            Cv2.ImWrite(@".\34CvSobel4Filter.png", output4);
             ////Conversion en valeurs absolue 8 bits
             //Cv2.ConvertScaleAbs(output1, abs1);
             //Cv2.ConvertScaleAbs(output2, abs2);
@@ -162,9 +162,9 @@ namespace ImageProcessingTests.Detection
             Cv2.Max(output12, output34, output);
 
 
-            Cv2.ImWrite(@".\CvRobinsonFilter12.png", output12);
-            Cv2.ImWrite(@".\CvRobinsonFilter34.png", output34);
-            Cv2.ImWrite(@".\CvRobinsonFilter.png", output);
+            Cv2.ImWrite(@".\41CvSobel4Filter.png", output12);
+            Cv2.ImWrite(@".\42CvSobel4Filter.png", output34);
+            Cv2.ImWrite(@".\40CvSobel4Filter.png", output);
         }
 
 

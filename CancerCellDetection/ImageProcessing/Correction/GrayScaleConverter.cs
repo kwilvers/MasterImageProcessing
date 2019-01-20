@@ -47,7 +47,8 @@ namespace ImageProcessing.Correction
             // Copy the RGB values into the array.
             Marshal.Copy(ptr, rgb, 0, bytes);
 
-            for (int i = 0; i < rgb.Length; i += 3)
+            var bidon = data.Stride - data.Width * 3;
+            for (int i = 0; i < rgb.Length-bidon; i += 3)
             {
                 var g = ToGray(rgb[i+2], rgb[i+1], rgb[i], method);
                 rgb[i + 2] = rgb[i + 1] = rgb[i] = g;

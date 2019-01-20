@@ -59,7 +59,8 @@ namespace ImageProcessing
             int gray = 0;
 
             //if 10% of the image has pixel with the same valued component we suppose it's a gray scale image
-            for (int i = 0; i < rgb.Length; i += 3)
+            var bidon = data.Stride - data.Width * 3;
+            for (int i = 0; i < rgb.Length-bidon; i += 3)
             {
                 if (rgb[i] == rgb[i + 1] && rgb[i + 1] == rgb[i + 2])
                     gray += 3;
@@ -67,7 +68,7 @@ namespace ImageProcessing
 
             source.UnlockBits(data);
 
-            return rgb.Length == gray 
+            return rgb.Length - bidon == gray 
                     ? ConvolutionColorSpace.GrayScale 
                     : ConvolutionColorSpace.RGB;
         }
@@ -101,20 +102,28 @@ namespace ImageProcessing
             int padding = filter.Padding;
             int calcOffset = 0;
             int byteOffset = 0;
+            int stride = sourceData.Stride;
 
+            int height = sourceBitmap.Height;
+            int width = sourceBitmap.Width;
+            bool twoKernel = filter.Kernels.Count()==2;
+            var kernelCount = filter.Kernels.Count();
+            var kernels = filter.Kernels;
 
             //Foreach rows
-            for (int rowIndex = padding; rowIndex < sourceBitmap.Height - padding; rowIndex++)
+            for (int rowIndex = padding; rowIndex < height - padding; rowIndex++)
             {
                 //foreach lines
-                for (int lineIndex = padding; lineIndex < sourceBitmap.Width - padding; lineIndex++)
+                for (int lineIndex = padding; lineIndex < width - padding; lineIndex++)
                 {
-                    byteOffset = rowIndex * sourceData.Stride + lineIndex * 3;
+                    byteOffset = rowIndex * stride + lineIndex * 3;
 
                     //foreach kernel
-                    for (int i = 0; i < filter.Kernels.Count(); i++)
+                    for (int i = 0; i < kernelCount; i++)
                     {
-                        var kernel = filter.Kernels.ElementAt(i);
+                        var kernel = kernels[i];
+                        var k = kernel.Kernel;
+                        var factor = kernel.Factor;
                         blue[i] = red[i] = green[i] = 0;
 
                         //foreach row in kernel
@@ -123,11 +132,9 @@ namespace ImageProcessing
                             //foreach line in kernel
                             for (int filterLineIndex = -padding; filterLineIndex <= padding; filterLineIndex++)
                             {
-
-                                var k = kernel.Kernel;
                                 calcOffset = byteOffset +
                                              (filterLineIndex * 3) +
-                                             (filterRowIndex * sourceData.Stride);
+                                             (filterRowIndex * stride);
 
 
                                 blue[i] += (double)(pixelBuffer[calcOffset]) *
@@ -145,22 +152,22 @@ namespace ImageProcessing
 
 
                         blue[i] = filter.ForceAbsoluteValue
-                            ? Math.Abs(kernel.Factor * blue[i])
-                            : kernel.Factor * blue[i];
+                            ? Math.Abs(factor * blue[i])
+                            : factor * blue[i];
                         blue[i] = blue[i] > 255 ? 255 : blue[i] < 0 ? 0 : blue[i];
 
                         green[i] = filter.ForceAbsoluteValue
-                            ? Math.Abs(kernel.Factor * green[i])
-                            : kernel.Factor * green[i];
+                            ? Math.Abs(factor * green[i])
+                            : factor * green[i];
                         green[i] = green[i] > 255 ? 255 : green[i] < 0 ? 0 : green[i];
 
                         red[i] = filter.ForceAbsoluteValue
-                            ? Math.Abs(kernel.Factor * red[i])
-                            : kernel.Factor * red[i];
+                            ? Math.Abs(factor * red[i])
+                            : factor * red[i];
                         red[i] = red[i] > 255 ? 255 : red[i] < 0 ? 0 : red[i];
                     }
 
-                    if (filter.Kernels.Count() == 2)
+                    if (twoKernel)
                     {
                         if (computeDirection)
                         {
@@ -178,9 +185,12 @@ namespace ImageProcessing
                         if (computeDirection)
                             res.Directions[byteOffset] = ToDirection(red, green, blue);
 
-                        resultBuffer[byteOffset] = (byte)(blue.Max(v => Math.Abs(v)) + filter.Offset);
-                        resultBuffer[byteOffset + 1] = (byte) (green.Max(v => Math.Abs(v)) + filter.Offset);
-                        resultBuffer[byteOffset + 2] = (byte) (red.Max(v => Math.Abs(v)) + filter.Offset);
+                        resultBuffer[byteOffset] = (byte)(Max(blue) + filter.Offset);
+                        resultBuffer[byteOffset+1] = (byte)(Max(green) + filter.Offset);
+                        resultBuffer[byteOffset+2] = (byte)(Max(red) + filter.Offset);
+                        //resultBuffer[byteOffset] = (byte)(blue.Max(v => Math.Abs(v)) + filter.Offset);
+                        //resultBuffer[byteOffset + 1] = (byte) (green.Max(v => Math.Abs(v)) + filter.Offset);
+                        //resultBuffer[byteOffset + 2] = (byte) (red.Max(v => Math.Abs(v)) + filter.Offset);
                     }
                 }
             }
@@ -199,6 +209,20 @@ namespace ImageProcessing
 
             res.Output = resultBitmap;
             return res;
+        }
+
+        private static double Max(double[] blue)
+        {
+            //(byte)(blue.Max(v => Math.Abs(v))
+            var l = blue.Length;
+            double d = 0;
+            for (int i = 0; i < l; i++)
+            {
+                if (d < blue[i])
+                    d = blue[i];
+            }
+
+            return d >= 0 ? d : d * -1;
         }
 
 
@@ -228,21 +252,29 @@ namespace ImageProcessing
             int padding = filter.Padding;
             int calcOffset = 0;
             int byteOffset = 0;
+            int stride = sourceData.Stride;
 
+            int height = sourceBitmap.Height;
+            int width = sourceBitmap.Width;
+            bool twoKernel = filter.Kernels.Count() == 2;
+            var kernelCount = filter.Kernels.Count();
+            var kernels = filter.Kernels;
 
             //Foreach rows
-            for (int rowIndex = padding; rowIndex < sourceBitmap.Height - padding; rowIndex++)
+            for (int rowIndex = padding; rowIndex < height - padding; rowIndex++)
             {
                 //foreach lines
-                for (int lineIndex = padding; lineIndex < sourceBitmap.Width - padding; lineIndex++)
+                for (int lineIndex = padding; lineIndex < width - padding; lineIndex++)
                 {
                     //Compute the current pixel byte offset
-                    byteOffset = rowIndex * sourceData.Stride + lineIndex * 3;
+                    byteOffset = rowIndex * stride + lineIndex * 3;
 
                     //foreach kernel
-                    for (int i = 0; i < filter.Kernels.Count(); i++)
+                    for (int i = 0; i < kernelCount; i++)
                     {
-                        var kernel = filter.Kernels.ElementAt(i);
+                        var kernel = kernels[i];
+                        var k = kernel.Kernel;
+                        var factor = kernel.Factor;
                         gray[i] = 0;
 
                         //foreach row in kernel
@@ -252,10 +284,9 @@ namespace ImageProcessing
                             for (int filterLineIndex = -padding; filterLineIndex <= padding; filterLineIndex++)
                             {
 
-                                var k = kernel.Kernel;
                                 calcOffset = byteOffset +
                                              (filterLineIndex * 3) +
-                                             (filterRowIndex * sourceData.Stride);
+                                             (filterRowIndex * stride);
 
 
                                 gray[i] += (double)(pixelBuffer[calcOffset]) *
@@ -265,12 +296,12 @@ namespace ImageProcessing
                         }
 
                         gray[i] = filter.ForceAbsoluteValue
-                            ? Math.Abs(kernel.Factor * gray[i])
-                            : kernel.Factor * gray[i];
+                            ? Math.Abs(factor * gray[i])
+                            : factor * gray[i];
                         gray[i] = gray[i] > 255 ? 255 : gray[i] < 0 ? 0 : gray[i];
                     }
 
-                    if (filter.Kernels.Count() == 2)
+                    if (twoKernel)
                     {
                         if (computeDirection)
                             res.Directions[byteOffset] = ToDirection(gray[0], gray[1]);
@@ -286,7 +317,8 @@ namespace ImageProcessing
                         if (computeDirection)
                             res.Directions[byteOffset] = ToDirection(filter.Kernels, gray);
 
-                        resultBuffer[byteOffset] = (byte)gray.Max(v => Math.Abs(v));
+                        resultBuffer[byteOffset] = (byte)Max(gray);
+                        //resultBuffer[byteOffset] = (byte)gray.Max(v => Math.Abs(v));
                         resultBuffer[byteOffset + 1] = resultBuffer[byteOffset];
                         resultBuffer[byteOffset + 2] = resultBuffer[byteOffset];
                     }

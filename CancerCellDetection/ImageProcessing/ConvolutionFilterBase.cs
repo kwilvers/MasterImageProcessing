@@ -29,8 +29,10 @@ namespace ImageProcessing
 
         public abstract string Name { get; }
 
+//        private readonly List<KernelItem> kernels;
         private readonly List<KernelItem> kernels;
-        public IEnumerable<KernelItem> Kernels => kernels;
+        //public IEnumerable<KernelItem> Kernels => kernels;
+        public KernelItem[] Kernels => kernels.ToArray();
 
         public int Size => Kernels.First().Size;
 
