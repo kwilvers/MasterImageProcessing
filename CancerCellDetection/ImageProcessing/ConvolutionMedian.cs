@@ -16,19 +16,19 @@ namespace ImageProcessing
 	*/
     public class ConvolutionMedian 
     {
-        public static Bitmap Convolve<T>(Bitmap sourceBitmap, T filter, Convolution.ConvolutionColorSpace space=Convolution.ConvolutionColorSpace.Auto)
+        public static Bitmap Convolve<T>(Bitmap sourceBitmap, T filter, bool weighted, Convolution.ConvolutionColorSpace space=Convolution.ConvolutionColorSpace.Auto)
                                  where T : ConvolutionFilterBase
         {
             if (space == Convolution.ConvolutionColorSpace.Auto)
                 space = Convolution.TryToDetermineSpace(sourceBitmap);
 
             return space == Convolution.ConvolutionColorSpace.RGB 
-                        ? ConvolveRGB(sourceBitmap, filter) 
-                        : ConvolveGrayScale(sourceBitmap, filter);
+                        ? ConvolveRGB(sourceBitmap, filter, weighted) 
+                        : ConvolveGrayScale(sourceBitmap, filter, weighted);
         }
 
 
-        public static Bitmap ConvolveRGB<T>(Bitmap sourceBitmap, T filter)
+        public static Bitmap ConvolveRGB<T>(Bitmap sourceBitmap, T filter, bool weighted)
                          where T : ConvolutionFilterBase
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
@@ -81,13 +81,18 @@ namespace ImageProcessing
                                 calcOffset = byteOffset +
                                              (filterLineIndex * 4) +
                                              (filterRowIndex * sourceData.Stride);
-                                
-                                neighbourPixels.Add(BitConverter.ToInt32(pixelBuffer, calcOffset));
+
+                                var weight = k[filterRowIndex + padding, filterLineIndex + padding];
+                                if ( weighted )
+                                    for(int w=0; w < weight; w++)
+                                        neighbourPixels.Add(BitConverter.ToInt32(pixelBuffer, calcOffset));
+                                else
+                                    neighbourPixels.Add(BitConverter.ToInt32(pixelBuffer, calcOffset));
                             }
                         }
                         neighbourPixels.Sort();
 
-                        middlePixel = BitConverter.GetBytes(neighbourPixels[padding+1]);
+                        middlePixel = BitConverter.GetBytes(neighbourPixels[neighbourPixels.Count/2]);
 
                         resultBuffer[byteOffset] = middlePixel[0];
                         resultBuffer[byteOffset + 1] = middlePixel[1];
@@ -113,7 +118,7 @@ namespace ImageProcessing
             return resultBitmap;
         }
 
-        public static Bitmap ConvolveGrayScale<T>(Bitmap sourceBitmap, T filter)
+        public static Bitmap ConvolveGrayScale<T>(Bitmap sourceBitmap, T filter, bool weighted)
                          where T : ConvolutionFilterBase
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
@@ -159,17 +164,23 @@ namespace ImageProcessing
                             //foreach line in kernel
                             for (int filterLineIndex = -padding; filterLineIndex <= padding; filterLineIndex++)
                             {
+                                var k = kernel.Kernel;
                                 calcOffset = byteOffset +
                                              (filterLineIndex * 3) +
                                              (filterRowIndex * sourceData.Stride);
                                 
-                                neighbourPixels.Add(pixelBuffer[calcOffset]);
+                                var weight = k[filterRowIndex + padding, filterLineIndex + padding];
+                                if (weighted)
+                                    for (int w = 0; w < weight; w++)
+                                        neighbourPixels.Add(pixelBuffer[calcOffset]);
+                                else
+                                    neighbourPixels.Add(pixelBuffer[calcOffset]);
                             }
                         }
 
                         neighbourPixels.Sort();
 
-                        byte middlePixel = neighbourPixels[padding+1];
+                        byte middlePixel = neighbourPixels[neighbourPixels.Count / 2];
                         resultBuffer[byteOffset] = middlePixel;
                         resultBuffer[byteOffset + 1] = middlePixel;
                         resultBuffer[byteOffset + 2] = middlePixel;

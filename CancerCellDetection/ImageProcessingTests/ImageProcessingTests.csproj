@@ -90,6 +90,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ColorHSBTests.cs" />
+    <Compile Include="Correction\ColorIsolationTests.cs" />
     <Compile Include="Detection\CannyTest.cs" />
     <Compile Include="Smoothing\GaussianTest.cs" />
     <Compile Include="Smoothing\MedianTest.cs" />

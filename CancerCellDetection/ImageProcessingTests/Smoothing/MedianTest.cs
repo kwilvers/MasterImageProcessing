@@ -13,54 +13,64 @@ namespace ImageProcessingTests.Smoothing
     public class MedianTest
     {
         [TestMethod()]
-        public void ConvolveGrayMedianFilterS3Test()
+        public void GrayMedianFilterS3Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
-            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS3());
+            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS3(), false);
             resConv.Save(@".\GrayMedianFilterS3Test.png");
         }
 
         [TestMethod()]
-        public void ConvolveGrayMedianFilterS5Test()
+        public void GrayMedianFilterS5Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
-            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS5());
+            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS5(), false);
             resConv.Save(@".\GrayMedianFilterS5Test.png");
         }
 
         [TestMethod()]
-        public void ConvolveGrayMedianFilterS7Test()
+        public void GrayMedianFilterS7Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
-            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS7());
+            var resConv = ConvolutionMedian.Convolve(res, new MedianFilterS7(), false);
             resConv.Save(@".\GrayMedianFilterS7Test.png");
         }
 
         [TestMethod()]
-        public void ConvolveMedianFilterS3Test()
+        public void MedianFilterS3Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS3());
+            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS3(), false);
             resConv.Save(@".\MedianFilterS3Test.png");
         }
 
         [TestMethod()]
-        public void ConvolveMedianFilterS5Test()
+        public void MedianFilterS5Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS5());
+            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS5(), false);
             resConv.Save(@".\MedianFilterS5Test.png");
         }
 
         [TestMethod()]
-        public void ConvolveMedianFilterS7Test()
+        public void MedianFilterS7Test()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
-            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS7());
+            var resConv = ConvolutionMedian.Convolve(v, new MedianFilterS7(), false);
             resConv.Save(@".\MedianFilterS7Test.png");
+        }
+
+
+
+        [TestMethod()]
+        public void MedianWeightedFilterS5Test()
+        {
+            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            var resConv = ConvolutionMedian.Convolve(v, new MedianWeightedFilterS5(), true);
+            resConv.Save(@".\MedianWeightedFilterS5Test.png");
         }
 
         [TestMethod]
