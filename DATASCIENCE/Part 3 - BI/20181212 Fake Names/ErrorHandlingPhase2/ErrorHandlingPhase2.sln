@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ErrorHandlingPhase2", "ErrorHandlingPhase2\ErrorHandlingPhase2.dtproj", "{E4AA3EA1-0334-4D7F-AE96-7C97B88A89EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4AA3EA1-0334-4D7F-AE96-7C97B88A89EE}.Development|Default.ActiveCfg = Development
+		{E4AA3EA1-0334-4D7F-AE96-7C97B88A89EE}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93C000F6-0DAB-4AE2-80AB-5A899C136E6B}
+	EndGlobalSection
+EndGlobal

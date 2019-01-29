@@ -1,0 +1,691 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/12/2018 4:05:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LT-1803-03"
+  DTS:CreatorName="BELSIMSA\karl"
+  DTS:DTSID="{FE7EAD7E-81A3-4E11-AFCD-239F9253972E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{0AEB9AB3-F86A-4B0F-AA5D-CDEC609721B7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Bank-Customers-Demo.csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{36B8C261-C192-432D-8F0F-371797FBF443}"
+      DTS:ObjectName="Bank-Customers-Demo.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\karl\OneDrive\ALL\UNIF\DATASCIENCE\20181212 Bank demo\3 Uploaded Data\Bank-Customers-Demo.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Customer ID"
+              DTS:DTSID="{98418023-B9E5-4A55-BD3E-41C880594853}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Name"
+              DTS:DTSID="{0862E78A-3900-4116-8A58-E156BDE6D83F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Surname"
+              DTS:DTSID="{F6F6FB2C-A0E1-4C0E-9DFD-BFA5A140DB1F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Gender"
+              DTS:DTSID="{26E19587-BD7D-40C6-A0C5-55C3475A7876}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Age"
+              DTS:DTSID="{E3AC751E-50D4-4EA4-9E82-3EF1BBA46DBF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date Joined"
+              DTS:DTSID="{8B25609C-F0DE-4C5C-9246-C51FAC67D57A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Balance"
+              DTS:DTSID="{6D53EC35-A62D-494F-9362-A4EC7DE6500D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C6C70B5E-2CA0-4555-A4DA-0F0E05CBF0A6}"
+      DTS:ObjectName="LT-1803-03.DSBankDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LT-1803-03;Initial Catalog=DSBankDemo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\BankCustomersDemo csv"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:Disabled="True"
+      DTS:DTSID="{0DE50C19-D004-408E-9EEB-D28BCD00E631}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="BankCustomersDemo csv"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\BankCustomersDemo csv\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[RAW_BankCustomerDemo]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\BankCustomersDemo csv\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Customer ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Customer ID"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Customer ID]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Customer ID]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Name]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Surname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Surname"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Surname]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Surname]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Gender]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Age]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Age"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Age]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Date Joined]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date Joined"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Date Joined]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date Joined]" />
+                    <inputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Balance]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Balance"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Balance]"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Balance]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[RowNumber]"
+                      dataType="i4"
+                      name="RowNumber" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Customer ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Customer ID" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Surname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Surname" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Date Joined]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Date Joined" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Balance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Balance" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\BankCustomersDemo csv\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\BankCustomersDemo csv\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\BankCustomersDemo csv\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\BankCustomersDemo csv\Source du fichier plat"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source du fichier plat"
+              localeId="1033"
+              name="Source du fichier plat"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\BankCustomersDemo csv\Source du fichier plat.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Bank-Customers-Demo.csv]"
+                  connectionManagerRefId="Package.ConnectionManagers[Bank-Customers-Demo.csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat]"
+                  name="Sortie de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Customer ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Customer ID]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Customer ID]"
+                      name="Customer ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Surname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Surname]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Surname]"
+                      name="Surname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Gender]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Age]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Age]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Age]"
+                      name="Age"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date Joined]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date Joined]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date Joined]"
+                      name="Date Joined"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Balance]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Balance]"
+                      length="50"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Balance]"
+                      name="Balance"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Customer ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Customer ID" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Surname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Surname" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Age]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date Joined]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Date Joined" />
+                    <externalMetadataColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Balance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Balance" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Colonne de sortie d'erreur de source de fichier plat"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      name="Colonne de sortie d'erreur de source de fichier plat" />
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\BankCustomersDemo csv.Paths[Sortie de source de fichier plat]"
+              endId="Package\BankCustomersDemo csv\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source de fichier plat"
+              startId="Package\BankCustomersDemo csv\Source du fichier plat.Outputs[Sortie de source de fichier plat]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\BankCustomersDemo csv"
+          TopLeft="143,80" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\BankCustomersDemo csv">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\BankCustomersDemo csv\Source du fichier plat"
+          TopLeft="174,88" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\BankCustomersDemo csv\Destination OLE DB"
+          TopLeft="193,226" />
+        <EdgeLayout
+          Id="Package\BankCustomersDemo csv.Paths[Sortie de source de fichier plat]"
+          TopLeft="263.5,130">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15,96"
+              Start="0,0"
+              End="15,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="4,48" />
+                  <mssgle:LineSegment
+                    End="11,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11,48"
+                    Point2="15,48"
+                    Point3="15,52" />
+                  <mssgle:LineSegment
+                    End="15,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\BankCustomersDemo csv\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

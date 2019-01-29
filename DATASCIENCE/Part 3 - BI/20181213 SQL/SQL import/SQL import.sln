@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SQL import", "SQL import\SQL import.dtproj", "{7CCF1F77-3CC8-4D6D-82C2-4762EADDA335}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CCF1F77-3CC8-4D6D-82C2-4762EADDA335}.Development|Default.ActiveCfg = Development
+		{7CCF1F77-3CC8-4D6D-82C2-4762EADDA335}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E433867-D603-4994-92EF-EBEF93449943}
+	EndGlobalSection
+EndGlobal
