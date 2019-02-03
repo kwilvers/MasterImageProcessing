@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using ImageProcessing;
 using ImageProcessing.Correction;
 using ImageProcessing.Smoothing;
@@ -152,6 +153,18 @@ namespace ImageProcessingTests.Smoothing
             res.Save(@".\echantillonGray.png");
             var resConv = Convolution.Convolve(res, new GaussianFilter(11, 5));
             resConv.Output.Save(@".\GrayGaussianFilterCalculatedS11W5Test.png");
+        }
+
+        [TestMethod()]
+        public void GrayGaussianFilterCalculatedS25W25Test()
+        {
+            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
+            res.Save(@".\echantillonGray.png");
+            var f = new GaussianFilter(25, 5);
+            Console.WriteLine(f.Kernels[0].ToString());
+            //var resConv = Convolution.Convolve(res, f);
+            //resConv.Output.Save(@".\GrayGaussianFilterCalculatedS11W5Test.png");
         }
 
         [TestMethod()]

@@ -92,6 +92,8 @@
     <Compile Include="ColorHSBTests.cs" />
     <Compile Include="Correction\ColorIsolationTests.cs" />
     <Compile Include="Detection\CannyTest.cs" />
+    <Compile Include="Segmentation\InPaintTest.cs" />
+    <Compile Include="Smoothing\BilateralFilterTest.cs" />
     <Compile Include="Smoothing\GaussianTest.cs" />
     <Compile Include="Smoothing\MedianTest.cs" />
     <Compile Include="Detection\PrattTest.cs" />
@@ -134,6 +136,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="large.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mask_inpaint.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="medium.jpg">
