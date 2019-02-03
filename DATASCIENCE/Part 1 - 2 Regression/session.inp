@@ -1,0 +1,34 @@
+# Log started 2018-12-12 10:23
+# Record of session commands.  Please note that this will
+# likely require editing if it is to be run as a script.
+open C:\Users\karl\OneDrive\ALL\UNIF\DATASCIENCE\Churn-Modelling-final.csv
+dummify Geography
+dummify Gender
+rename 15 France
+rename 16 Spain
+rename 17 Germany
+rename 18 Female
+rename 19 Male
+logs Balance
+setinfo l_Balance --description="= log of Balance+1"
+setinfo l_Balance --description="log10(Balance+1)"
+setinfo l_Balance --description="log10(Baldance+1)"
+boxplot l_Balance
+delete l_Balance
+summary Balance
+series log_balance = NA
+setinfo log_balance --description="log10(Balance+1)"
+delete log_balance
+Log_Balalance=log10(Balance+1)
+# model 1
+logit Exited 0 CreditScore Age Tenure NumOfProducts IsActiveMember Female \
+  Germany Log_Balalance
+fcast 10001 11000 --static
+fcast 10001 11000 --static
+# model 1
+fcast 10001 11000 P_Hat_Exited_Test
+# store "C:\Users\karl\OneDrive\ALL\UNIF\DATASCIENCE\exited_forecast.csv" \
+   RowNumber P_Hat_Exited_Test --csv
+# model 2
+logit Exited 0 CreditScore Age Tenure NumOfProducts IsActiveMember Female \
+  Germany Log_Balalance

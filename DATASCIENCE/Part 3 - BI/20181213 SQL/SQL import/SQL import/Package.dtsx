@@ -1,0 +1,1213 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/13/2018 12:19:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LT-1803-03"
+  DTS:CreatorName="BELSIMSA\karl"
+  DTS:DTSID="{1FB304FD-3CB3-495A-B9CE-3688CDF7DEDE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{38546630-CCB2-44E0-AD12-52DD9BF68497}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ListOfOrders.csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9ED936D4-E11B-4205-8FD8-D8DF3197F467}"
+      DTS:ObjectName="ListOfOrders.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\karl\OneDrive\ALL\UNIF\DATASCIENCE\Part 3 - BI\20181213 SQL\3 Uploaded Data\ListOfOrders.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Order ID"
+              DTS:DTSID="{DCAFAC36-A60A-42E5-9C2D-70EE513F0B3D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Order Date"
+              DTS:DTSID="{5698EAB7-0786-4BE8-8CBE-D9AE9C04AA06}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Customer Name"
+              DTS:DTSID="{806E0315-0650-4533-AD2B-A64E8E41410C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Country"
+              DTS:DTSID="{3234D98B-8B58-44F1-BC55-B896159961C8}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0E674332-EE6C-4D34-9E92-7023FA5F9C3A}"
+      DTS:ObjectName="LT-1803-03.DSBankDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LT-1803-03;Initial Catalog=DSBankDemo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OrderBreakdown.csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{890AD969-813A-49F7-837D-AF0714B17DAE}"
+      DTS:ObjectName="OrderBreakdown.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\karl\OneDrive\ALL\UNIF\DATASCIENCE\Part 3 - BI\20181213 SQL\3 Uploaded Data\OrderBreakdown.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Order ID"
+              DTS:DTSID="{BF6AC89C-888A-4C70-9BB1-DFAD52917AB0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product Name"
+              DTS:DTSID="{C60DBF10-F44A-4BD1-9CF5-82DEC429FA33}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Discount"
+              DTS:DTSID="{F93BD196-2002-4918-A11C-4EA056B3EA4E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sales"
+              DTS:DTSID="{D5106E61-61AD-4697-BE94-CC68EF2CAA26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Quantity"
+              DTS:DTSID="{0EAF9B16-2E86-4BBC-93CB-CBCEF10D2B69}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Category"
+              DTS:DTSID="{ED8D071D-19BD-4494-9E60-4C53F04A65A5}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import order"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{58AABAD9-47D1-4CFA-ACE2-790C7D7E9DC1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import order"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import order\ListOfOrders csv"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source du fichier plat"
+              localeId="1033"
+              name="ListOfOrders csv"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import order\ListOfOrders csv.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ListOfOrders.csv]"
+                  connectionManagerRefId="Package.ConnectionManagers[ListOfOrders.csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat]"
+                  name="Sortie de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order ID]"
+                      length="100"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]"
+                      name="Order ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order Date]"
+                      length="100"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order Date]"
+                      name="Order Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Customer Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Customer Name]"
+                      length="100"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Customer Name]"
+                      name="Customer Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Country]"
+                      length="100"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Customer Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Customer Name" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Colonne de sortie d'erreur de source de fichier plat"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      name="Colonne de sortie d'erreur de source de fichier plat" />
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import order\RAW_ORDER"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="RAW_ORDER"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[RAW_ORDER]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import order\RAW_ORDER.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].Columns[Order ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Order ID"
+                      externalMetadataColumnId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Order ID]"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]" />
+                    <inputColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].Columns[Order Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Order Date"
+                      externalMetadataColumnId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Order Date]"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Order Date]" />
+                    <inputColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].Columns[Customer Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Customer Name"
+                      externalMetadataColumnId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Customer Name]"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Customer Name]" />
+                    <inputColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].Columns[Country]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Country]"
+                      lineageId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Order Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Customer Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Customer Name" />
+                    <externalMetadataColumn
+                      refId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import order\RAW_ORDER.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order\RAW_ORDER.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import order\RAW_ORDER.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import order\RAW_ORDER.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import order\RAW_ORDER.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import order.Paths[Sortie de source de fichier plat]"
+              endId="Package\Import order\RAW_ORDER.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source de fichier plat"
+              startId="Package\Import order\ListOfOrders csv.Outputs[Sortie de source de fichier plat]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import order breakdown"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{BA7B0634-46A6-4BA7-B5CF-0B57CDB47306}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import order breakdown"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import order breakdown\OrderBreakdown csv"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source du fichier plat"
+              localeId="1033"
+              name="OrderBreakdown csv"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import order breakdown\OrderBreakdown csv.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OrderBreakdown.csv]"
+                  connectionManagerRefId="Package.ConnectionManagers[OrderBreakdown.csv]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat]"
+                  name="Sortie de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order ID]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]"
+                      name="Order ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Product Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Product Name]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Product Name]"
+                      name="Product Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Discount]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Sales]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Sales]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Sales]"
+                      name="Sales"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Quantity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantity]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Category]"
+                      length="100"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Category]"
+                      name="Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Product Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Product Name" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Sales]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Sales" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].ExternalColumns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Category" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Colonne de sortie d'erreur de source de fichier plat"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      name="Colonne de sortie d'erreur de source de fichier plat" />
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import order breakdown\RawOrderBreakdown"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="RawOrderBreakdown"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[RAW_OrderBreakdown]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import order breakdown\RawOrderBreakdown.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[LT-1803-03.DSBankDemo]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Order ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Order ID"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Order ID]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Order ID]" />
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Product Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Product Name"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Product Name]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Product Name]" />
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Discount]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Discount]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Sales]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Sales"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Sales]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Sales]" />
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Quantity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Quantity]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].Columns[Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Category"
+                      externalMetadataColumnId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Category]"
+                      lineageId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat].Columns[Category]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Order ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Order ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Product Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Product Name" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Discount]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Sales]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Sales" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Quantity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB].ExternalColumns[Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Category" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import order breakdown\RawOrderBreakdown.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import order breakdown\RawOrderBreakdown.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import order breakdown\RawOrderBreakdown.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import order breakdown\RawOrderBreakdown.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import order breakdown.Paths[Sortie de source de fichier plat]"
+              endId="Package\Import order breakdown\RawOrderBreakdown.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source de fichier plat"
+              startId="Package\Import order breakdown\OrderBreakdown csv.Outputs[Sortie de source de fichier plat]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tâche d'exécution de requêtes SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{D4F95748-DD3A-4BA5-B6B7-FDC246CB873B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tâche d'exécution de requêtes SQL"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0E674332-EE6C-4D34-9E92-7023FA5F9C3A}"
+          SQLTask:SqlStatementSource="IF EXISTS (SELECT        *&#xA;                        FROM            dbo.sysobjects&#xA;                        WHERE        id = object_id(N'[dbo].[RAW_ORDER]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1) &#xA;TRUNCATE TABLE RAW_ORDER&#xA;&#xA;IF EXISTS (SELECT        *&#xA;                        FROM            dbo.sysobjects&#xA;                        WHERE        id = object_id(N'[dbo].[RAW_ORDER_BREAKDOWN]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1) &#xA;TRUNCATE TABLE RAW_ORDER_BREAKDOWN" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A001043A-F591-422A-AC71-A91AB195F0F6}"
+      DTS:From="Package\Tâche d'exécution de requêtes SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import order" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8BF21440-F9DD-4A48-9DA6-D895D2813EBF}"
+      DTS:From="Package\Import order"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Import order breakdown" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Tâche d'exécution de requêtes SQL"
+          TopLeft="174,88" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Import order"
+          TopLeft="196,200" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="296.5,130">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31,70"
+              Start="0,0"
+              End="-31,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31"
+                    Point2="0,35"
+                    Point3="-4,35" />
+                  <mssgle:LineSegment
+                    End="-27,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27,35"
+                    Point2="-31,35"
+                    Point3="-31,39" />
+                  <mssgle:LineSegment
+                    End="-31,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Import order breakdown"
+          TopLeft="175,308" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="269,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import order">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Import order\ListOfOrders csv"
+          TopLeft="244,41" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Import order\RAW_ORDER"
+          TopLeft="227,146" />
+        <EdgeLayout
+          Id="Package\Import order.Paths[Sortie de source de fichier plat]"
+          TopLeft="322,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.5,63"
+              Start="0,0"
+              End="-24.5,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="-4,31.5" />
+                  <mssgle:LineSegment
+                    End="-20.5,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.5,31.5"
+                    Point2="-24.5,31.5"
+                    Point3="-24.5,35.5" />
+                  <mssgle:LineSegment
+                    End="-24.5,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Import order breakdown">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Import order breakdown\OrderBreakdown csv"
+          TopLeft="251,79" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Import order breakdown\RawOrderBreakdown"
+          TopLeft="261,220" />
+        <EdgeLayout
+          Id="Package\Import order breakdown.Paths[Sortie de source de fichier plat]"
+          TopLeft="339,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,99"
+              Start="0,0"
+              End="11,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.5"
+                    Point2="0,49.5"
+                    Point3="4,49.5" />
+                  <mssgle:LineSegment
+                    End="7,49.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,49.5"
+                    Point2="11,49.5"
+                    Point3="11,53.5" />
+                  <mssgle:LineSegment
+                    End="11,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import order\RAW_ORDER">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import order breakdown\RawOrderBreakdown">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
