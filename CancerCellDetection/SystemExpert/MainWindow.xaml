@@ -45,13 +45,29 @@
                 <StackPanel Orientation="Vertical">
                     <Label>DP</Label>
                     <xctk:SingleUpDown Value="{Binding CircleParam.Dp, Delay=200}" Increment="0.1"/>
-                    <Label>Distance minimum</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Distance minimum</Label>
+                        <Label Content="{Binding CircleParam.MinDist}"/>
+                    </StackPanel> 
                     <Slider Value="{Binding CircleParam.MinDist, Delay=200}" Maximum="200"/>
-                    <Label>Paramètre 1</Label>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Paramètre 1</Label>
+                        <Label Content="{Binding CircleParam.Param1}"/>
+                    </StackPanel>
                     <Slider Value="{Binding CircleParam.Param1, Delay=200}" Maximum="200"/>
-                    <Label>Paramètre 2</Label>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Paramètre 2</Label>
+                        <Label Content="{Binding CircleParam.Param2}"/>
+                    </StackPanel>                    
                     <Slider Value="{Binding CircleParam.Param2, Delay=200}" Maximum="300"/>
-                    <Label>Rayon</Label>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Rayon</Label>
+                        <Label Content="{Binding CircleParam.MinRadius}"/>
+                        <Label Content="{Binding CircleParam.MaxRadius}"/>
+                    </StackPanel>                    
                     <xctk:RangeSlider Minimum="1" Maximum="200" LowerValue="{Binding CircleParam.MinRadius, Delay=200}" HigherValue="{Binding CircleParam.MaxRadius, Delay=200}"/>
                 </StackPanel>
             </TabItem>

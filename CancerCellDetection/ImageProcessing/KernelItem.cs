@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 
 namespace ImageProcessing
@@ -47,6 +48,9 @@ namespace ImageProcessing
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberDecimalSeparator = ".";
+            
 
             sb.Append(this.Orientation);
             sb.Append(":");
@@ -58,9 +62,9 @@ namespace ImageProcessing
                 sb.Append("[");
                 for (var j = 0; j < this.Size; j++)
                 {
-                    sb.Append(this.Kernel[i, j]);
+                    sb.Append(this.Kernel[i, j].ToString(nfi));
                     if (j < this.Size - 1)
-                        sb.Append(",");
+                        sb.Append(";");
                 }
                 sb.Append("]");
             }

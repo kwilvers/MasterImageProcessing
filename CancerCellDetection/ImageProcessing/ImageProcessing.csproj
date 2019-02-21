@@ -107,6 +107,7 @@
     <Compile Include="Morphology\Dilate.cs" />
     <Compile Include="Morphology\CrossStructuredElement.cs" />
     <Compile Include="Segmentation\PixelCount.cs" />
+    <Compile Include="Smoothing\BilateralFilter.cs" />
     <Compile Include="Smoothing\GaussianFilter.cs" />
     <Compile Include="Smoothing\GaussianFilter52S5.cs" />
     <Compile Include="Smoothing\GaussianFilter98S5.cs" />
