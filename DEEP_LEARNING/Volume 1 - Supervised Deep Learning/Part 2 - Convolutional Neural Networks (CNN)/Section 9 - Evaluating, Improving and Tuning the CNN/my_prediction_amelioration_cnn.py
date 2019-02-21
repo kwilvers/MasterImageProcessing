@@ -7,7 +7,7 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
-
+from keras.layers import Dropout
 
 #---------------------------
 #  CREATION DU CNN
@@ -23,7 +23,8 @@ classifier = Sequential()
 #strides=1      : la foulée un pixel 
 #input_shape=(128, 128, 3)  : RGB = 3 , GRAY = 1, 64x64 taille de l'image que l'on veut traiter
 #activation="relu" : fonction redresseur
-conv = Conv2D(filters=32, kernel_size=3, strides=1, input_shape=(64, 64, 3), activation="relu")
+''' Utilise des images plus grande '''
+conv = Conv2D(filters=32, kernel_size=3, strides=1, input_shape=(200, 200, 3), activation="relu")
 classifier.add(conv)
 
 
@@ -31,21 +32,26 @@ classifier.add(conv)
 #pool_size=(2,2)  : la taille de la matrice 
 maxpool = MaxPooling2D(pool_size=(2,2))
 classifier.add(maxpool)
+dropout = Dropout(0.25)
+classifier.add(dropout)
 
-'''Ajout d une couche de convolution pour améliorerla reconnaissance et diminuer le sur-apprentissage
-Les paramètres sontidentique à la première sauf la taille des images qui sont déja connue dans le
-le reseau de neuronne'''
+
+'''Ajout d une deuxieme couche de convolution '''
 conv = Conv2D(filters=32, kernel_size=3, strides=1, activation="relu")
 classifier.add(conv)
-'''Une couche de pooling va toujours avec une couche de convolution'''
-maxpool = MaxPooling2D(pool_size=(2,2))
-classifier.add(maxpool)
-''' 
-D'autre améliorations possible : 
-    Ajouter une couche cachée
-    Agrandir la taille des images de 64x64 à 128x128 (plus de détail)
-    
-'''
+classifier.add(MaxPooling2D(pool_size=(2,2)))
+classifier.add(Dropout(0.25))
+'''Ajout d une troisieme couche de convolution '''
+conv = Conv2D(filters=64, kernel_size=3, strides=1, activation="relu")
+classifier.add(conv)
+classifier.add(MaxPooling2D(pool_size=(2,2)))
+classifier.add(Dropout(0.25))
+'''Ajout d une quatrieme couche de convolution '''
+conv = Conv2D(filters=64, kernel_size=3, strides=1, activation="relu")
+classifier.add(conv)
+classifier.add(MaxPooling2D(pool_size=(2,2)))
+classifier.add(Dropout(0.25))
+
 
 
 #Etape 3 : Flatening - mise a plat des matrice en vecteur
@@ -59,6 +65,16 @@ classifier.add(Flatten())
 from keras import backend as K
 dense = Dense(units=128, activation=K.relu)
 classifier.add(dense)
+dropout = Dropout(0.3)
+classifier.add(dropout)
+
+''' Ajoute une deuxieme couche '''
+classifier.add(Dense(units=128, activation=K.relu))
+classifier.add(Dropout(0.5))
+
+''' Ajoute une troisieme couche '''
+classifier.add(Dense(units=128, activation=K.relu))
+classifier.add(Dropout(0.3))
 
 
 #Etape 5 : Ajout de la couche de sortie
@@ -74,7 +90,7 @@ classifier.add(dense)
 #loss="binary_crossentropy"  : fonction de cout, ici catégorisation binaire 
 #                              plus de deux categorie : categorical_crossentropy
 #metrics=["accuracy"] :  Calcul des estimation  par la précission
-from keras import losses, optimizers
+from keras import losses
 classifier.compile(optimizer="adam", loss=losses.binary_crossentropy, metrics=["accuracy"])
 
 
@@ -103,7 +119,7 @@ test_datagen = ImageDataGenerator(rescale = 1./255)
 #training_set = 'dataset/training_set'
 training_path = 'C:/Users/karl/Pictures/Convolutional_Neural_Networks/Convolutional_Neural_Networks/dataset/training_set'
 training_set = train_datagen.flow_from_directory(training_path,
-                                                 target_size = (64, 64),
+                                                 target_size = (200, 200),
                                                  batch_size = 32,
                                                  class_mode = 'binary')
 
@@ -111,7 +127,7 @@ training_set = train_datagen.flow_from_directory(training_path,
 #Utilise le générator sur les dossiers image
 test_path = 'C:/Users/karl/Pictures/Convolutional_Neural_Networks/Convolutional_Neural_Networks/dataset/test_set'
 test_set = test_datagen.flow_from_directory(test_path,
-                                            target_size = (64, 64),
+                                            target_size = (200, 200),
                                             batch_size = 32,
                                             class_mode = 'binary')
 
@@ -120,36 +136,51 @@ test_set = test_datagen.flow_from_directory(test_path,
 #epochs = 25
 #validation_data = test_set,
 #validation_steps = 63   : 2000/32
-classifier.fit_generator(training_set,
+'''classifier.fit_generator(training_set,
                          steps_per_epoch = 250,
-                         epochs = 25,
+                         epochs = 2,
                          validation_data = test_set,
                          validation_steps = 63)
+'''
+classifier.load_weights('my_weight.h5')
+classifier.weights
 
-#loss: 0.2174 - acc: 0.9120 - val_loss: 0.5447 - val_acc: 0.7965
+#loss: 0.4208 - acc: 0.8074 - val_loss: 0.4181 - val_acc: 0.8120
+import numpy as np
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
-predict_path = "C:/Users/karl/Pictures/Convolutional_Neural_Networks/Convolutional_Neural_Networks/dataset/single_prediction/cat_or_dog_1.jpg"
-im = load_img(predict_path, target_size=(64, 64))
+
+
+#DOG
+predict_path = "C:/Users/karl/Pictures/Convolutional_Neural_Networks/Convolutional_Neural_Networks/dataset/single_prediction/cat_or_dog_4.jpg"
+im = load_img(predict_path, target_size=(200, 200))
+#convertir l'image en array
 im = img_to_array(im)
-im = im.reshape((1, im.shape[0], im.shape[1], im.shape[2]))
-res = classifier.predict_classes(x=im)
+#Ajoute une dimension pour que le format de données soit correcte
+im = np.expand_dims(im, axis=0)
+#effectue la prédiction
+res = classifier.predict(im)
 print(res)
-#[[0]] = Chat
 
-predict_path = "C:/Users/karl/Pictures/Convolutional_Neural_Networks/Convolutional_Neural_Networks/dataset/single_prediction/cat_or_dog_1.jpg"
-im = load_img(predict_path, target_size=(64, 64))
-im = img_to_array(im)
-im = im.reshape((1, im.shape[0], im.shape[1], im.shape[2]))
-res = classifier.predict_classes(x=im)
+#Affiche les classes {'cats': 0, 'dogs': 1}
+training_set.class_indices
+
+if res[0][0] == 1:
+    print("chien")
+else:
+    print("chat")
+
+
+classifier.save_weights('my_weight.h5')
+classifier.weights
+
+classifier.weights.clear
+classifier.weights
+classifier.load_weights('my_weight.h5')
+classifier.weights
+#effectue la prédiction
+res = classifier.predict(im)
 print(res)
-#[[1]] = Chien
-
-
-
-
-
-
 
 
 
