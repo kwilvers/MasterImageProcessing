@@ -106,6 +106,7 @@
     <Compile Include="Morphology\SquareStructuredElement.cs" />
     <Compile Include="Morphology\Dilate.cs" />
     <Compile Include="Morphology\CrossStructuredElement.cs" />
+    <Compile Include="Segmentation\KMeans.cs" />
     <Compile Include="Segmentation\PixelCount.cs" />
     <Compile Include="Smoothing\BilateralFilter.cs" />
     <Compile Include="Smoothing\GaussianFilter.cs" />

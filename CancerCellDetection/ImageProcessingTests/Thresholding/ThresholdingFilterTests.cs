@@ -7,6 +7,7 @@ using ImageProcessing.Morphology;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenCvSharp;
+using Size = OpenCvSharp.Size;
 
 namespace ImageProcessingTests.Thresholding
 {
@@ -115,26 +116,25 @@ namespace ImageProcessingTests.Thresholding
         public void BandThresholdingOpenTest()
         {
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            //Correction gamma pour amélioration
             var res = GammaCorrection.Correct(v, 0.3);
-
-            //Color c = Color.FromArgb(155, 110, 226);
-            //Color c = Color.FromArgb(178, 125, 223);
-            //Color c = Color.FromArgb(135, 98, 206);
+            //Seuillage par bande de couleur RGB
             Color c = Color.FromArgb(200, 147, 233);
             var resThr = BandThresholdingFilter.Apply(res, c, 100, 60);
+            //Erosions du masque
             resThr.Save(@".\10BandThresholdingOpenTest.png");
             var ero = Erode.Apply(resThr, new RoundStructuredElement(), 128);
             ero.Save(@".\20BandThresholdingOpenTest.png");
             ero = Erode.Apply(ero, new RoundStructuredElement(), 128);
             ero.Save(@".\31BandThresholdingOpenTest.png");
-            //ero = Erode.Apply(ero, new RoundStructuredElement(), 128);
-            //ero.Save(@".\32BandThresholdingOpenTest.png");
+            //Dilatations du masque
             var dil = Dilate.Apply(ero, new RoundStructuredElement(), 128);
             dil.Save(@".\40BandThresholdingOpenTest.png");
             dil = Dilate.Apply(dil, new RoundStructuredElement(), 128);
             dil.Save(@".\51BandThresholdingOpenTest.png");
             dil = Dilate.Apply(dil, new CrossStructuredElement(), 128);
             dil.Save(@".\52BandThresholdingOpenTest.png");
+            //Intersection du masque et de l'image originale
             var sub = Morpho.Intersec(v, dil);
             sub.Save(@".\60BandThresholdingOpenSubTest.png");
         }
@@ -203,19 +203,37 @@ namespace ImageProcessingTests.Thresholding
             Mat v = Cv2.ImRead(@".\echantillon.png");
             Mat hsv = new Mat();
 
+            //Convertion RGB vers HSB
             Cv2.CvtColor(v, hsv, ColorConversionCodes.BGR2HSV);
             Cv2.ImWrite(@".\CvColorBandHsvTest.png", hsv);
 
             Mat mask = new Mat();
-            //var lowher_color = new Scalar(235, 50, 50);
-            //var higher_color = new Scalar(276, 255, 255);
-            var lowher_color = new Scalar(120, 0, 0);
-            var higher_color = new Scalar(280, 255, 255);
+            //Déclaration des seuil de couleurs HSB
+            var lowher_color = new Scalar(60, 10,10);
+            var higher_color = new Scalar(280, 255, 220);
+            //var lch = ColorHSB.FromRGB(122, 190, 114);
+            //var lch = ColorHSB.FromRGB(60, 50, 50);
+            //var lowher_color = new Scalar(lch.H, lch.S * 2.55, lch.B * 2.55);
+            ////var hch = ColorHSB.FromRGB(41, 249, 121);
+            //var hch = ColorHSB.FromRGB(50, 255,255);
+            //var higher_color = new Scalar(hch.H, hch.S * 2.55, hch.B * 2.55);
+
+            //Seuillage par bande de couleur
             Cv2.InRange(hsv, lowher_color, higher_color, mask);
             Cv2.ImWrite(@".\CvColorBandMaskTest.png", mask);
 
+            //Erosion
+            var erode = mask.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(13, 13)));
+            //erode = erode.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
+            //Dilatation
+            var morpho = erode.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(17, 17)));
+            //morpho = morpho.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
+            //morpho = morpho.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
+            Cv2.ImWrite(@".\CvColorBandMorphoTest.png", morpho);
+
             Mat output = new Mat();
-            Cv2.BitwiseAnd(v, v, output, mask );
+            //Intersection du masque et de l'image originale
+            Cv2.BitwiseAnd(v, v, output, morpho );
 
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\CvColorBandTest.png", output);
@@ -242,15 +260,19 @@ namespace ImageProcessingTests.Thresholding
 
             Cv2.NamedWindow(windowName, WindowMode.AutoSize);
             CvTrackbarCallback2 onChange = OnChange;
-            Cv2.CreateTrackbar("Low H", windowName, ref lowH, 360, onChange, new IntPtr(1));
-            Cv2.CreateTrackbar("High H", windowName, ref highH, 360, onChange, new IntPtr(2));
-            Cv2.CreateTrackbar("Low S", windowName, ref lowS, 255, onChange, new IntPtr(3));
-            Cv2.CreateTrackbar("High S", windowName, ref highS, 255, onChange, new IntPtr(4));
-            Cv2.CreateTrackbar("Low V", windowName, ref lowV, 255, onChange, new IntPtr(5));
+            Cv2.CreateTrackbar("Low H", windowName, ref lowH, 360, OnChange2, new IntPtr(1));
+            Cv2.CreateTrackbar("High H", windowName, ref highH, 360, OnChange2, new IntPtr(2));
+            Cv2.CreateTrackbar("Low S", windowName, ref lowS, 255, OnChange2, new IntPtr(3));
+            Cv2.CreateTrackbar("High S", windowName, ref highS, 255, OnChange2, new IntPtr(4));
+            Cv2.CreateTrackbar("Low V", windowName, ref lowV, 255, OnChange2, new IntPtr(5));
             Cv2.CreateTrackbar("High V", windowName, ref highV, 255, onChange, new IntPtr(6));
             OnChange(0, 0);
             
             Cv2.WaitKey();
+        }
+
+        private void OnChange2(int pos, object userdata)
+        {
         }
 
         private void OnChange(int pos, object userdata)
