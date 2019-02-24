@@ -93,11 +93,11 @@ namespace ImageProcessing.Segmentation.Tests
             Cv2.BitwiseAnd(output2, output2, o, morpho);
 
             //Enregistrement de l'image de sortie
-            Cv2.ImWrite(@".\70cvKmean4BandTest.png", output);
+            Cv2.ImWrite(@".\70cvKmean4BandTest.png", o);
 
 
 
-            Kmeans(output, output2, 4);
+            Kmeans(o, output2, 4);
 
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\80cvKmean4Processed.png", output2);
