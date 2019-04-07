@@ -24,7 +24,8 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_New"/>
                     <MenuItem Header="_Open" Command="{Binding OpenFileCommand}"/>
-                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Copy" Command="{Binding CopyCommand}"/>
+
                     <Separator />
                     <MenuItem Header="_Exit" />
                 </MenuItem>
@@ -73,32 +74,82 @@
             </TabItem>
 
             <TabItem Header="Blob">
-                <StackPanel Orientation="Vertical">
-                    <CheckBox IsChecked="{Binding BlobParam.FilterByColor, Delay=200}" Content="Par couleur"/>
-                    <Slider Minimum="0" Maximum="255" Value="{Binding BlobParam.BlobColor, Delay=200}"/>
-                    <CheckBox IsChecked="{Binding BlobParam.FilterByInertia, Delay=200}" Content="Par inertie"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox IsChecked="{Binding BlobParam.FilterByColor, Delay=200}" Content="Par couleur" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                    <TextBlock  Text="{Binding BlobParam.BlobColor}"  Grid.Column="2" Grid.Row="0" />
+                    <Slider Minimum="0" Maximum="255" Value="{Binding BlobParam.BlobColor, Delay=200}"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+                    <CheckBox IsChecked="{Binding BlobParam.FilterByInertia, Delay=200}" Content="Par inertie" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                    <TextBlock  Text="{Binding BlobParam.MinInertiaRatio}"  Grid.Column="1" Grid.Row="2" />
+                    <TextBlock  Text="{Binding BlobParam.MaxInertiaRatio}"  Grid.Column="2" Grid.Row="2" />
                     <xctk:RangeSlider  Minimum="0" Maximum="1" LowerValue="{Binding BlobParam.MinInertiaRatio, Delay=200}"
-                                       HigherValue="{Binding BlobParam.MaxInertiaRatio, Delay=200}" Step="0.01"/>
-                    <CheckBox IsChecked="{Binding BlobParam.FilterByCircularity, Delay=200}" Content="Par circularité"/>
+                                       HigherValue="{Binding BlobParam.MaxInertiaRatio, Delay=200}" Step="0.01" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+
+                    <CheckBox IsChecked="{Binding BlobParam.FilterByCircularity, Delay=200}" Content="Par circularité" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1"/>
+                    <TextBlock  Text="{Binding BlobParam.MinCircularity}"  Grid.Column="1" Grid.Row="4" />
+                    <TextBlock  Text="{Binding BlobParam.MaxCircularity}"  Grid.Column="2" Grid.Row="4" />
                     <xctk:RangeSlider  Minimum="0" Maximum="1" LowerValue="{Binding BlobParam.MinCircularity, Delay=200}"
-                                       HigherValue="{Binding BlobParam.MaxCircularity, Delay=200}" Step="0.1"/>
-                    <CheckBox IsChecked="{Binding BlobParam.FilterByConvexity, Delay=200}" Content="Par convexité"/>
+                                       HigherValue="{Binding BlobParam.MaxCircularity, Delay=200}" Step="0.1" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+
+                    <CheckBox IsChecked="{Binding BlobParam.FilterByConvexity, Delay=200}" Content="Par convexité" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1"/>
+                    <TextBlock  Text="{Binding BlobParam.MinConvexity}"  Grid.Column="1" Grid.Row="6" />
+                    <TextBlock  Text="{Binding BlobParam.MaxConvexity}"  Grid.Column="2" Grid.Row="6" />
                     <xctk:RangeSlider  Minimum="0" Maximum="1" LowerValue="{Binding BlobParam.MinConvexity, Delay=200}"
-                                       HigherValue="{Binding BlobParam.MaxConvexity, Delay=200}" Step="0.1"/>
-                    <CheckBox IsChecked="{Binding BlobParam.FilterByArea, Delay=200}" Content="Par région"/>
-                    <Label>Taille de la région</Label>
+                                       HigherValue="{Binding BlobParam.MaxConvexity, Delay=200}" Step="0.1"  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"/>
+
+                    <CheckBox IsChecked="{Binding BlobParam.FilterByArea, Delay=200}" Content="Par région" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"/>
+                    <Label  Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="1">Taille</Label>
+                    <TextBlock  Text="{Binding BlobParam.MinArea}"  Grid.Column="1" Grid.Row="9" />
+                    <TextBlock  Text="{Binding BlobParam.MaxArea}"  Grid.Column="2" Grid.Row="9" />
                     <xctk:RangeSlider  Minimum="0" Maximum="3000" LowerValue="{Binding BlobParam.MinArea, Delay=200}"
-                                       HigherValue="{Binding BlobParam.MaxArea, Delay=200}" Step="50"/>
-                    <Label>Threshold step</Label>
-                    <Slider Minimum="0" Maximum="255" Value="{Binding BlobParam.ThresholdStep, Delay=200}"/>
-                    <Label>Threshold min. max.</Label>
-                    <xctk:RangeSlider  Minimum="0" Maximum="300" LowerValue="{Binding BlobParam.MinThreshold, Delay=200}"
-                                       HigherValue="{Binding BlobParam.MaxThreshold, Delay=200}" Step="50"/>
-                    <Label>Min. distance entre blob</Label>
-                    <Slider Minimum="0" Maximum="255" Value="{Binding BlobParam.MinDistBetweenBlobs, Delay=200}"/>
-                    <Label>MinRepeatability??</Label>
-                    <Slider Minimum="0" Maximum="255" Value="{Binding BlobParam.MinRepeatability, Delay=200}"/>
-                </StackPanel>
+                                       HigherValue="{Binding BlobParam.MaxArea, Delay=200}" Step="50" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2">Threshold step</Label>
+                    <TextBlock  Text="{Binding BlobParam.ThresholdStep}"  Grid.Column="2" Grid.Row="11" />
+                    <Slider Minimum="1" Maximum="255" Value="{Binding BlobParam.ThresholdStep, Delay=200}" Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="3"/>
+
+                    <Label  Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="1">Threshold min. max.</Label>
+                    <TextBlock  Text="{Binding BlobParam.MinThreshold}"  Grid.Column="1" Grid.Row="13" />
+                    <TextBlock  Text="{Binding BlobParam.MaxThreshold}"  Grid.Column="2" Grid.Row="13" />
+                    <xctk:RangeSlider  Minimum="1" Maximum="300" LowerValue="{Binding BlobParam.MinThreshold, Delay=200}"
+                                       HigherValue="{Binding BlobParam.MaxThreshold, Delay=200}" Step="50" Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2">Min. distance entre blob</Label>
+                    <TextBlock  Text="{Binding BlobParam.MinDistBetweenBlobs}"  Grid.Column="2" Grid.Row="15" />
+                    <Slider Minimum="1" Maximum="255" Value="{Binding BlobParam.MinDistBetweenBlobs, Delay=200}" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="2">MinRepeatability??</Label>
+                    <TextBlock  Text="{Binding BlobParam.MinRepeatability}"  Grid.Column="2" Grid.Row="17" />
+                    <Slider Minimum="1" Maximum="255" Value="{Binding BlobParam.MinRepeatability, Delay=200}" Grid.Column="0" Grid.Row="18" Grid.ColumnSpan="3"/>
+                </Grid>
             </TabItem>
         </TabControl>
 

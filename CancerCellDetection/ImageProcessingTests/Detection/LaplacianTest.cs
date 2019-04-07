@@ -66,8 +66,41 @@ namespace ImageProcessingTests.Detection
 
             //Convolution par kernel
             Cv2.Laplacian(v, output, v.Depth(), 3, 5);
+            output = 255 - output;
 
             Cv2.ImWrite(@".\CvLaplacianFilter.png", output);
+        }
+
+        [TestMethod]
+        public void CvLaplacian55Filter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.Grayscale);
+
+            //Matrice de gradient X et Y
+            Mat output = new Mat();
+
+            //Convolution par kernel
+            Cv2.Laplacian(v, output, v.Depth(), 5, 5);
+            output = 255 - output;
+
+            Cv2.ImWrite(@".\CvLaplacian55Filter.png", output);
+        }
+
+        [TestMethod]
+        public void CvLaplacian39Filter()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.Grayscale);
+
+            //Matrice de gradient X et Y
+            Mat output = new Mat();
+
+            //Convolution par kernel
+            Cv2.Laplacian(v, output, v.Depth(), 3, 9);
+            output = 255 - output;
+
+            Cv2.ImWrite(@".\CvLaplacian39Filter.png", output);
         }
 
         [TestMethod]
@@ -84,8 +117,10 @@ namespace ImageProcessingTests.Detection
             Cv2.GaussianBlur(v, blur, new OpenCvSharp.Size(7, 7), 5, 5, BorderTypes.Default);
             //Convolution par kernel
             Cv2.Laplacian(blur, output, v.Depth(), 3, 5);
+            output = 255 - output;
 
             Cv2.ImWrite(@".\CvLaplacianOfGaussianFilter.png", output);
+
         }
     }
 }

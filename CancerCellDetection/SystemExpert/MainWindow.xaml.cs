@@ -34,6 +34,7 @@ namespace WpfApp1
         public DelegateCommand<String> ChangeFileCommand { get; set; }
         public DelegateCommand OpenFileCommand { get; set; }
 
+        public DelegateCommand CopyCommand { get; set; }
 
         public String FileName { get; set; }
 
@@ -43,6 +44,7 @@ namespace WpfApp1
             BlobParam = new BlobDetectorParams();
             ChangeFileCommand = new DelegateCommand<string>(ChangeFileName);
             OpenFileCommand = new DelegateCommand(OpenFile);
+            CopyCommand = new DelegateCommand(CopyToClipboard);
 
             FileName = @"..\..\..\..\images\Ech.PNG";
 
@@ -52,6 +54,12 @@ namespace WpfApp1
             BlobParam.PropertyChanged += BlobParam_PropertyChanged;
 
             //apply();
+        }
+
+        private void CopyToClipboard()
+        {
+            Clipboard.SetImage((BitmapSource) MyImage.Source);
+            bool b = Clipboard.ContainsImage();
         }
 
         private void OpenFile()
@@ -123,17 +131,28 @@ namespace WpfApp1
         //https://www.learnopencv.com/blob-detection-using-opencv-python-c/
         private void applyBlob()
         {
-            //var fileName = @"..\..\..\..\images\Ech.PNG";
+            var image = Cv2.ImRead(FileName, ImreadModes.Color);
 
-            var image = Cv2.ImRead(FileName, ImreadModes.Grayscale);
+            Mat gray = new Mat();
+            Cv2.CvtColor(image, gray, ColorConversionCodes.BGR2GRAY);
 
+            //Créer les paramètres de détection de blob
             var detector = SimpleBlobDetector.Create(BlobParam.Param);
-            var keypoints = detector.Detect(image);
+            //Détection des blobs
+            var keypoints = detector.Detect(gray);
             Mat im_with_keypoints = new Mat();
-            Cv2.DrawKeypoints(image, keypoints, im_with_keypoints, new Scalar(0, 0, 255), DrawMatchesFlags.DrawRichKeypoints);
+            //Dessine les cercles représentant les blobs
+            
+            Cv2.DrawKeypoints(image, keypoints, im_with_keypoints, new Scalar(0, 0, 0), DrawMatchesFlags.DrawRichKeypoints);
+
+            foreach (var point in keypoints)
+            {
+                Cv2.Circle(im_with_keypoints, (int)point.Pt.X, (int)point.Pt.Y, (int)point.Size / 2, new Scalar(0, 255, 0), 2);
+            }
 
             var v = im_with_keypoints.ToBitmapSource();
             MyImage.Source = v;
+
         }
 
     }

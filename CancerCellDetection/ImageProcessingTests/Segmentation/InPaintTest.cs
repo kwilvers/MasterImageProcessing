@@ -25,7 +25,7 @@ namespace ImageProcessingTests.Segmentation
         }
 
         [TestMethod]
-        public void cvInpaintDetectCircleTest()
+        public void cvInpaintDetectCircleTeleaTest()
         {
             Mat v = Cv2.ImRead(@".\echantillon.png");
             Mat output = new Mat();
@@ -50,8 +50,36 @@ namespace ImageProcessingTests.Segmentation
             Cv2.Inpaint(v, mask, output, 25, InpaintMethod.Telea);
 
             //Enregistrement de l'image de sortie
-            Cv2.ImWrite(@".\cvInpaintDetectCircleTest.png", output);
+            Cv2.ImWrite(@".\cvInpaintDetectCircleTeleaTest.png", output);
         }
 
+        [TestMethod]
+        public void cvInpaintDetectCircleNavierStokesTest()
+        {
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+            Mat gray = new Mat();
+
+            //Convert in gray
+            Cv2.CvtColor(v, gray, ColorConversionCodes.BGR2GRAY);
+
+            //Get circles from the gray image
+            var circles = Cv2.HoughCircles(gray, HoughMethods.Gradient, 1, 14.5, 200, 10, 13, 15);
+
+            //Create matrice for the mask
+            Mat mask = new Mat(v.Size(), MatType.CV_8U);
+
+            //Draw the circle in the mask
+            foreach (var circle in circles)
+                Cv2.Circle(mask, (int)circle.Center.X, (int)circle.Center.Y, (int)circle.Radius + 5, new Scalar(255), -1);
+
+            Cv2.ImWrite(@".\cvInpaintDetectCircleMaskTest.png", mask);
+
+            //Taille de kernel 
+            Cv2.Inpaint(v, mask, output, 25, InpaintMethod.NS);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvInpaintDetectCircleNavierStokesTest.png", output);
+        }
     }
 }

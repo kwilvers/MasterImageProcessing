@@ -17,8 +17,9 @@ namespace ImageProcessingTests.Detection
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
             //Filtre de Scharr
             var resConv = Convolution.Convolve(res, new ScharrFilter());
+            resConv.Output.Save(@".\GrayScharrFilter.png");
             var resInv = InverterFilter.Invert(resConv.Output);
-            resInv.Save(@".\GrayScharrFilterInvertedTest.png");
+            resInv.Save(@".\GrayScharrFilterInverted.png");
         }
 
         [TestMethod()]
@@ -27,8 +28,9 @@ namespace ImageProcessingTests.Detection
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
             var resConv = Convolution.Convolve(res, new ScharrS5Filter());
+            resConv.Output.Save(@".\GrayScharrS5Filter.png");
             var resInv = InverterFilter.Invert(resConv.Output);
-            resInv.Save(@".\GrayScharrS5FilterInvertedTest.png");
+            resInv.Save(@".\GrayScharrS5FilterInverted.png");
         }
 
         [TestMethod()]
@@ -37,8 +39,9 @@ namespace ImageProcessingTests.Detection
             Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
             var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
             var resConv = Convolution.Convolve(res, new ScharrLightFilter());
+            resConv.Output.Save(@".\GrayScharrLightFilter.png");
             var resInv = InverterFilter.Invert(resConv.Output);
-            resInv.Save(@".\GrayScharrLightFilterInvertedTest.png");
+            resInv.Save(@".\GrayScharrLightFilterInverted.png");
         }
 
         [TestMethod]

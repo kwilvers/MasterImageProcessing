@@ -12,11 +12,6 @@ namespace ImageProcessing.Segmentation.Tests
     [TestClass()]
     public class KMeansTests
     {
-        [TestMethod()]
-        public void ClusterizeTest()
-        {
-            Assert.Fail();
-        }
 
         [TestMethod]
         public void cvKmean4()
@@ -30,6 +25,23 @@ namespace ImageProcessing.Segmentation.Tests
             Cv2.ImWrite(@".\cvKmean4.png", output);
 
         }
+
+        [TestMethod]
+        public void cvKmeanKarl()
+        {
+            var lst = new List<string>() { "DSC_7643.JPG", "DSC_7644.JPG", "DSC_7663.JPG", "DSC_7669.JPG" };
+            lst.ForEach(s=>
+            {
+                Mat v = Cv2.ImRead(@".\"+s);
+                Mat output = new Mat();
+
+                Kmeans(v, output, 8);
+
+                //Enregistrement de l'image de sortie
+                Cv2.ImWrite(@".\new_"+s, output);
+            });
+        }
+
 
         [TestMethod]
         public void cvKmean4Processed()
@@ -103,8 +115,6 @@ namespace ImageProcessing.Segmentation.Tests
             Cv2.ImWrite(@".\80cvKmean4Processed.png", output2);
         }
 
-
-
         public static void Kmeans(Mat input, Mat result, int k)
         {
             using (Mat points = new Mat())
@@ -136,9 +146,11 @@ namespace ImageProcessing.Segmentation.Tests
                             }
                         }
 
+                        //Calcul du kmean
                         Cv2.Kmeans(points, k, labels, new TermCriteria(CriteriaType.Eps | CriteriaType.MaxIter, 10, 1.0), 3, KMeansFlags.PpCenters, centers);
 
                         i = 0;
+                        //Application des couleurs des centroïdes
                         for (int y = 0; y < height; y++)
                         {
                             for (int x = 0; x < width; x++, i++)
@@ -146,7 +158,6 @@ namespace ImageProcessing.Segmentation.Tests
                                 int idx = labels.Get<int>(i);
 
                                 Vec3b vec3b = new Vec3b();
-
 
                                 int tmp = Convert.ToInt32(Math.Round(centers.At<Vec3f>(idx).Item0));
                                 tmp = tmp > 255 ? 255 : tmp < 0 ? 0 : tmp;

@@ -94,6 +94,9 @@
     <Compile Include="Detection\CannyTest.cs" />
     <Compile Include="Segmentation\InPaintTest.cs" />
     <Compile Include="Segmentation\KMeansTests.cs" />
+    <Compile Include="Segmentation\HistogramTest.cs" />
+    <Compile Include="Segmentation\CircleTest.cs" />
+    <Compile Include="Segmentation\ContourTest.cs" />
     <Compile Include="Smoothing\BilateralFilterTest.cs" />
     <Compile Include="Smoothing\GaussianTest.cs" />
     <Compile Include="Smoothing\MedianTest.cs" />
