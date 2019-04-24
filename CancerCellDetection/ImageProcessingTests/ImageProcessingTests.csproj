@@ -92,6 +92,7 @@
     <Compile Include="ColorHSBTests.cs" />
     <Compile Include="Correction\ColorIsolationTests.cs" />
     <Compile Include="Detection\CannyTest.cs" />
+    <Compile Include="MachineLearning\CellCountAndIdentify.cs" />
     <Compile Include="Segmentation\InPaintTest.cs" />
     <Compile Include="Segmentation\KMeansTests.cs" />
     <Compile Include="Segmentation\HistogramTest.cs" />
@@ -148,8 +149,12 @@
     <Content Include="medium.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="metadata.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MachineLearning\export_multipointset.ijm" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
