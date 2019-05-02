@@ -6,6 +6,7 @@ using ImageProcessing.Segmentation;
 using ImageProcessing.Smoothing;
 using ImageProcessing.Thresholding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenCvSharp;
 
 namespace ImageProcessingTests.Segmentation
 {
@@ -46,6 +47,15 @@ namespace ImageProcessingTests.Segmentation
 
             double bp = black / count * 100;
             double rp = rest / count * 100;
+        }
+
+        [TestMethod]
+        public void PixelCountCV()
+        {
+            Mat v = Cv2.ImRead(@".\bw.png");
+
+            var cnt = PixelCount.Count(v, Scalar.Black);
+            Assert.AreEqual(100, cnt);
         }
     }
 }

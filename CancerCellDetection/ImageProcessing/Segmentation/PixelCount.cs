@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using OpenCvSharp;
 
 namespace ImageProcessing.Segmentation
 {
@@ -18,8 +19,8 @@ namespace ImageProcessing.Segmentation
             // Declare an array to hold the bytes of the bitmap.
             int bytes = Math.Abs(data.Stride) * source.Height;
             source.UnlockBits(data);
-            
-            return bytes/3;
+
+            return bytes / 3;
         }
 
         public static int Count(Bitmap source, Color mid)
@@ -44,6 +45,28 @@ namespace ImageProcessing.Segmentation
 
             source.UnlockBits(data);
             return cnt;
+        }
+
+
+        public static double Count(Mat input, Scalar backgroundColor)
+        {
+            int width = input.Cols;
+            int height = input.Rows;
+            int count = 0;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var v = input.At<Vec3b>(y, x);
+                    if (v.Item0 != backgroundColor.Val0 
+                        && v.Item1 != backgroundColor.Val1
+                        && v.Item2 != backgroundColor.Val2)
+                        count++;
+                }
+            }
+
+            return count;
         }
 
     }
