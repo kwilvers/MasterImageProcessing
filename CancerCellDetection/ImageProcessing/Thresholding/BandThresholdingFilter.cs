@@ -55,16 +55,9 @@ namespace ImageProcessing.Thresholding
                     continue;
                 }
 
-                //rgb[i] = mid.B;
-                //rgb[i + 1] = mid.G;
-                //rgb[i + 2] = mid.R;
                 rgb[i] = 255;
                 rgb[i + 1] = 255;
                 rgb[i + 2] = 255;
-
-                //rgb[i] = (byte) (rgb[i] < threshold ? 0 : 255);
-                //rgb[i + 1] = (byte)(rgb[i + 1] < threshold ? 0 : 255);
-                //rgb[i + 2] = (byte)(rgb[i + 2] < threshold ? 0 : 255);
             }
 
             //Copy changed RGB values back to bitmap

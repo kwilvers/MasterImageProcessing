@@ -211,12 +211,6 @@ namespace ImageProcessingTests.Thresholding
             //Déclaration des seuil de couleurs HSB
             var lowher_color = new Scalar(60, 10,10);
             var higher_color = new Scalar(280, 255, 220);
-            //var lch = ColorHSB.FromRGB(122, 190, 114);
-            //var lch = ColorHSB.FromRGB(60, 50, 50);
-            //var lowher_color = new Scalar(lch.H, lch.S * 2.55, lch.B * 2.55);
-            ////var hch = ColorHSB.FromRGB(41, 249, 121);
-            //var hch = ColorHSB.FromRGB(50, 255,255);
-            //var higher_color = new Scalar(hch.H, hch.S * 2.55, hch.B * 2.55);
 
             //Seuillage par bande de couleur
             Cv2.InRange(hsv, lowher_color, higher_color, mask);
@@ -224,11 +218,8 @@ namespace ImageProcessingTests.Thresholding
 
             //Erosion
             var erode = mask.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(13, 13)));
-            //erode = erode.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
             //Dilatation
             var morpho = erode.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(17, 17)));
-            //morpho = morpho.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
-            //morpho = morpho.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3)));
             Cv2.ImWrite(@".\CvColorBandMorphoTest.png", morpho);
 
             Mat output = new Mat();
@@ -241,54 +232,5 @@ namespace ImageProcessingTests.Thresholding
 
 
 
-
-        Mat hsv = new Mat();
-        private Mat ori;
-        int lowH = 50, highH = 150;
-        int lowS = 0, highS = 250;
-        int lowV = 0, highV = 250;
-        String windowName = "karl";
-
-        [TestMethod]
-        public void CvColorBandUITest()
-        {
-            //Chargement de l'image
-            ori = Cv2.ImRead(@".\echantillon.png");
-            hsv = new Mat();
-            Cv2.CvtColor(ori, hsv, ColorConversionCodes.RGB2HSV);
-
-
-            Cv2.NamedWindow(windowName, WindowMode.AutoSize);
-            CvTrackbarCallback2 onChange = OnChange;
-            Cv2.CreateTrackbar("Low H", windowName, ref lowH, 360, OnChange2, new IntPtr(1));
-            Cv2.CreateTrackbar("High H", windowName, ref highH, 360, OnChange2, new IntPtr(2));
-            Cv2.CreateTrackbar("Low S", windowName, ref lowS, 255, OnChange2, new IntPtr(3));
-            Cv2.CreateTrackbar("High S", windowName, ref highS, 255, OnChange2, new IntPtr(4));
-            Cv2.CreateTrackbar("Low V", windowName, ref lowV, 255, OnChange2, new IntPtr(5));
-            Cv2.CreateTrackbar("High V", windowName, ref highV, 255, onChange, new IntPtr(6));
-            OnChange(0, 0);
-            
-            Cv2.WaitKey();
-        }
-
-        private void OnChange2(int pos, object userdata)
-        {
-        }
-
-        private void OnChange(int pos, object userdata)
-        {
-            Mat output = new Mat();
-            Mat mask = new Mat();
-
-            //Déclaration des seuils
-            var lowher_color = new Scalar(lowH, lowS, lowV);
-            var higher_color = new Scalar(highH, highS, highV);
-            //Seuillage par couleur et création du masque
-            Cv2.InRange(hsv, lowher_color, higher_color, mask);
-            //Opération de masquage pour ne conserver que les pixels de seuillés
-            Cv2.BitwiseAnd(ori, ori, output, mask);
-
-            Cv2.ImShow(windowName, output);
-        }
     }
 }

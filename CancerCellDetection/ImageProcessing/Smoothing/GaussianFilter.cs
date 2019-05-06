@@ -43,28 +43,20 @@ namespace ImageProcessing.Smoothing
             double distance = 0;
 
 
-            double calculatedEuler = 1.0 /
-                                     (2.0 * Math.PI * Math.Pow(weight, 2));
+            double calculatedEuler = 1.0 / (2.0 * Math.PI * Math.Pow(weight, 2));
 
 
-            for (int filterY = -kernelRadius;
-                filterY <= kernelRadius; filterY++)
+            for (int filterY = -kernelRadius; filterY <= kernelRadius; filterY++)
             {
-                for (int filterX = -kernelRadius;
-                    filterX <= kernelRadius; filterX++)
+                for (int filterX = -kernelRadius; filterX <= kernelRadius; filterX++)
                 {
-                    distance = ((filterX * filterX) +
-                                (filterY * filterY)) /
-                               (2 * (weight * weight));
+                    distance = ((filterX * filterX) + (filterY * filterY)) / (2 * (weight * weight));
 
 
-                    Kernel[filterY + kernelRadius,
-                            filterX + kernelRadius] =
-                        calculatedEuler * Math.Exp(-distance);
+                    Kernel[filterY + kernelRadius, filterX + kernelRadius] = calculatedEuler * Math.Exp(-distance);
 
 
-                    sumTotal += Kernel[filterY + kernelRadius,
-                        filterX + kernelRadius];
+                    sumTotal += Kernel[filterY + kernelRadius, filterX + kernelRadius];
                 }
             }
 
@@ -73,8 +65,7 @@ namespace ImageProcessing.Smoothing
             {
                 for (int x = 0; x < length; x++)
                 {
-                    Kernel[y, x] = Kernel[y, x] *
-                                   (1.0 / sumTotal);
+                    Kernel[y, x] = Kernel[y, x] * (1.0 / sumTotal);
                 }
             }
 

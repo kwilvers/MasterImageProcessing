@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageProcessing.Thresholding;
+using OpenCvSharp;
 
 namespace ImageProcessing.Correction.Tests
 {
@@ -94,6 +95,15 @@ namespace ImageProcessing.Correction.Tests
             var res = ColorIsolation.Isolate(v, true, true, false);
             var th = ZeroThresholdingFilter.Apply(res, 160, true);
             th.Save(@".\IsolateBlueThresoldTest.png");
+        }
+
+        [TestMethod()]
+        public void CVIsolateBlueRedThresoldTest()
+        {
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            var res = ColorIsolation.Isolate(v, false, true, false);
+            res = ZeroThresholdingFilter.Apply(res, 160, true);
+            Cv2.ImWrite(@".\CVIsolateBlueRedTest.png", res);
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using OpenCvSharp;
 
 namespace ImageProcessing.Thresholding
 {
@@ -55,5 +57,81 @@ namespace ImageProcessing.Thresholding
             return output;
         }
 
+
+        public static Mat Apply(Mat input, int threshold, bool maximalPeak)
+        {
+            Mat dest = input.Clone();
+
+            int width = input.Cols;
+            int height = input.Rows;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (!maximalPeak)
+                    {
+                        var v = dest.At<Vec3b>(y, x);
+
+                        v.Item0 = v.Item0 >= threshold ? v.Item0 : (byte)0;
+                        v.Item1 = v.Item1 >= threshold ? v.Item1 : (byte)0;
+                        v.Item2 = v.Item2 >= threshold ? v.Item2 : (byte)0;
+
+                        dest.Set(y, x, v);
+                    }
+                    else
+                    {
+                        var v = dest.At<Vec3b>(y, x);
+
+                        v.Item0 = v.Item0 >= threshold ? (byte)0 : v.Item0;
+                        v.Item1 = v.Item1 >= threshold ? (byte)0 : v.Item1;
+                        v.Item2 = v.Item2 >= threshold ? (byte)0 : v.Item2;
+
+                        dest.Set(y, x, v);
+                    }
+
+                }
+            }
+
+            return dest;
+        }
+
+        public static Mat ParallelApply(Mat input, int threshold, bool maximalPeak)
+        {
+            Mat dest = input.Clone();
+
+            int width = input.Cols;
+            int height = input.Rows;
+
+            Parallel.For(0, height, y =>
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (!maximalPeak)
+                    {
+                        var v = dest.At<Vec3b>(y, x);
+
+                        v.Item0 = v.Item0 >= threshold ? v.Item0 : (byte) 0;
+                        v.Item1 = v.Item1 >= threshold ? v.Item1 : (byte) 0;
+                        v.Item2 = v.Item2 >= threshold ? v.Item2 : (byte) 0;
+
+                        dest.Set(y, x, v);
+                    }
+                    else
+                    {
+                        var v = dest.At<Vec3b>(y, x);
+
+                        v.Item0 = v.Item0 >= threshold ? (byte) 0 : v.Item0;
+                        v.Item1 = v.Item1 >= threshold ? (byte) 0 : v.Item1;
+                        v.Item2 = v.Item2 >= threshold ? (byte) 0 : v.Item2;
+
+                        dest.Set(y, x, v);
+                    }
+
+                }
+            });
+
+            return dest;
+        }
     }
 }

@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using OpenCvSharp;
 
 namespace ImageProcessing.Correction
 {
@@ -39,6 +41,54 @@ namespace ImageProcessing.Correction
 
             output.UnlockBits(data);
             return output;
+        }
+
+        public static Mat Isolate(Mat input, bool removeRed = false, bool removeGreen = false, bool removeBlue = false)
+        {
+            Mat dest = input.Clone();
+
+            int width = input.Cols;
+            int height = input.Rows;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var v = dest.At<Vec3b>(y, x);
+
+                    v.Item0 = removeBlue ? (byte)0 : v.Item0;
+                    v.Item1 = removeGreen ? (byte)0 : v.Item1;
+                    v.Item2 = removeRed ? (byte)0 : v.Item2;
+                    
+                    dest.Set(y, x, v);
+                }
+            }
+
+            return dest;
+        }
+
+        public static Mat ParallelIsolate(Mat input, bool removeRed = false, bool removeGreen = false, bool removeBlue = false)
+        {
+            Mat dest = input.Clone();
+
+            int width = input.Cols;
+            int height = input.Rows;
+
+            Parallel.For(0, height, y =>
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var v = dest.At<Vec3b>(y, x);
+
+                    v.Item0 = removeBlue ? (byte) 0 : v.Item0;
+                    v.Item1 = removeGreen ? (byte) 0 : v.Item1;
+                    v.Item2 = removeRed ? (byte) 0 : v.Item2;
+
+                    dest.Set(y, x, v);
+                }
+            });
+
+            return dest;
         }
     }
 }

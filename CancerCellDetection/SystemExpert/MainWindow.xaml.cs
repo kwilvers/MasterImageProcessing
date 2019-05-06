@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SystemExpert;
 using Microsoft.Win32;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
@@ -27,9 +29,11 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         Mat originalImage;
+        Mat HSVImage;
 
         public HoughCircleParam CircleParam { get; set; }
         public BlobDetectorParams BlobParam { get; set; }
+        public InRangeParam RangeParam { get; set; }
 
         public DelegateCommand<String> ChangeFileCommand { get; set; }
         public DelegateCommand OpenFileCommand { get; set; }
@@ -40,37 +44,41 @@ namespace WpfApp1
 
         public MainWindow()
         {
-            CircleParam = new HoughCircleParam();
-            BlobParam = new BlobDetectorParams();
-            ChangeFileCommand = new DelegateCommand<string>(ChangeFileName);
-            OpenFileCommand = new DelegateCommand(OpenFile);
-            CopyCommand = new DelegateCommand(CopyToClipboard);
+            this.CircleParam = new HoughCircleParam();
+            this.BlobParam = new BlobDetectorParams();
+            this.RangeParam = new InRangeParam();
+            this.ChangeFileCommand = new DelegateCommand<string>(this.ChangeFileName);
+            this.OpenFileCommand = new DelegateCommand(this.OpenFile);
+            this.CopyCommand = new DelegateCommand(this.CopyToClipboard);
 
-            FileName = @"..\..\..\..\images\Ech.PNG";
+            this.FileName = @"..\..\..\..\images\Ech.PNG";
 
-            InitializeComponent();
+            this.InitializeComponent();
 
-            CircleParam.PropertyChanged += CircleParam_PropertyChanged;
-            BlobParam.PropertyChanged += BlobParam_PropertyChanged;
-
-            //apply();
+            this.CircleParam.PropertyChanged += this.CircleParam_PropertyChanged;
+            this.BlobParam.PropertyChanged += this.BlobParam_PropertyChanged;
+            this.RangeParam.Low.PropertyChanged += this.RangeParam_PropertyChanged;
+            this.RangeParam.High.PropertyChanged += this.RangeParam_PropertyChanged;
+            //ApplyCircle();
         }
 
         private void CopyToClipboard()
         {
-            Clipboard.SetImage((BitmapSource) MyImage.Source);
+            Clipboard.SetImage((BitmapSource) this.MyImage.Source);
             bool b = Clipboard.ContainsImage();
         }
 
         private void OpenFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                FileName = openFileDialog.FileName;
+            if (openFileDialog.ShowDialog() == true) this.FileName = openFileDialog.FileName;
 
-            originalImage = Cv2.ImRead(FileName, ImreadModes.Color);
-            BitmapSource v = originalImage.ToBitmapSource();
-            MyImage.Source = v;
+            this.originalImage = Cv2.ImRead(this.FileName, ImreadModes.Color);
+            this.HSVImage = new Mat();
+            Cv2.CvtColor(this.originalImage, this.HSVImage, ColorConversionCodes.RGB2HSV);
+
+            BitmapSource v = this.originalImage.ToBitmapSource();
+            this.MyImage.Source = v;
 
             //var gray = image.CvtColor(ColorConversionCodes.BGR2GRAY);
             //Cv2.GaussianBlur(image, image, new OpenCvSharp.Size(9, 9), 2.0, 2.0);
@@ -78,37 +86,38 @@ namespace WpfApp1
 
         private void ChangeFileName(string file)
         {
-            FileName = file;
-            applyBlob();
+            this.FileName = file;
+            this.ApplyBlob();
         }
 
         private void BlobParam_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            applyBlob();
+            this.ApplyBlob();
         }
 
         private void CircleParam_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            apply();
+            this.ApplyCircle();
         }
 
-        private void apply()
+        private void ApplyCircle()
         {
+            if (this.originalImage == null)
+                return; 
+
             //var fileName = @"..\..\..\..\images\Ech.PNG";
+            double dp = this.CircleParam.Dp;
+            double minDist = this.CircleParam.MinDist;
+            double param1 = this.CircleParam.Param1;
+            double param2 = this.CircleParam.Param2;
+            int minRadius = this.CircleParam.MinRadius;
+            int maxRadius = this.CircleParam.MaxRadius;
 
-
-            double dp = CircleParam.Dp;
-            double minDist = CircleParam.MinDist;
-            double param1 = CircleParam.Param1;
-            double param2 = CircleParam.Param2;
-            int minRadius = CircleParam.MinRadius;
-            int maxRadius = CircleParam.MaxRadius;
-
-            var gray = originalImage.CvtColor(ColorConversionCodes.BGR2GRAY);
+            var gray = this.originalImage.CvtColor(ColorConversionCodes.BGR2GRAY);
             var circles = Cv2.HoughCircles(gray, HoughMethods.Gradient, dp, minDist, param1, param2, minRadius, maxRadius);
             gray = null; 
 
-            Mat image = originalImage.Clone();
+            Mat image = this.originalImage.Clone();
 
             if (circles != null)
             {
@@ -118,26 +127,25 @@ namespace WpfApp1
 
                     Cv2.Circle(image, (int)c.Center.X, (int)c.Center.Y, (int)c.Radius, new Scalar(0, 0, 255), 3, LineTypes.Link8, 0);
                 }
-
             }
 
             BitmapSource v = image.ToBitmapSource();
-            MyImage.Source = v;
+            this.MyImage.Source = v;
             //this.pictureBox1.ImageIpl = image;
             //Cv2.ImShow("output", image);
             //Cv2.WaitKey(0);
         }
 
         //https://www.learnopencv.com/blob-detection-using-opencv-python-c/
-        private void applyBlob()
+        private void ApplyBlob()
         {
-            var image = Cv2.ImRead(FileName, ImreadModes.Color);
+            var image = Cv2.ImRead(this.FileName, ImreadModes.Color);
 
             Mat gray = new Mat();
             Cv2.CvtColor(image, gray, ColorConversionCodes.BGR2GRAY);
 
             //Créer les paramètres de détection de blob
-            var detector = SimpleBlobDetector.Create(BlobParam.Param);
+            var detector = SimpleBlobDetector.Create(this.BlobParam.Param);
             //Détection des blobs
             var keypoints = detector.Detect(gray);
             Mat im_with_keypoints = new Mat();
@@ -151,9 +159,30 @@ namespace WpfApp1
             }
 
             var v = im_with_keypoints.ToBitmapSource();
-            MyImage.Source = v;
+            this.MyImage.Source = v;
 
         }
 
+        private void RangeParam_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            ApplyInRange();
+        }
+
+        private void ApplyInRange()
+        {
+            Mat output = new Mat();
+            Mat mask = new Mat();
+
+            //Déclaration des seuils
+            var lowher_color = new Scalar(this.RangeParam.Low.H, this.RangeParam.Low.S, this.RangeParam.Low.V);
+            var higher_color = new Scalar(this.RangeParam.High.H, this.RangeParam.High.S, this.RangeParam.High.V);
+            //Seuillage par couleur et création du masque
+            Cv2.InRange(this.HSVImage, lowher_color, higher_color, mask);
+            //Opération de masquage pour ne conserver que les pixels de seuillés
+            Cv2.BitwiseAnd(this.originalImage, this.originalImage, output, mask);
+
+            BitmapSource v = output.ToBitmapSource();
+            this.MyImage.Source = v;
+        }
     }
 }

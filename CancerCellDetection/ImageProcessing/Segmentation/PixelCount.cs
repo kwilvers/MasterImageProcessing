@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenCvSharp;
 
@@ -39,7 +40,7 @@ namespace ImageProcessing.Segmentation
             int cnt = 0;
             for (int i = 0; i < rgb.Length; i += 3)
             {
-                if (mid.B == rgb[i] && mid.G == rgb[i + 1] && mid.R == rgb[i + 2])
+                if (mid.B == rgb[i] || mid.G == rgb[i + 1] || mid.R == rgb[i + 2])
                     cnt++;
             }
 
@@ -60,8 +61,8 @@ namespace ImageProcessing.Segmentation
                 {
                     var v = input.At<Vec3b>(y, x);
                     if (v.Item0 != backgroundColor.Val0 
-                        && v.Item1 != backgroundColor.Val1
-                        && v.Item2 != backgroundColor.Val2)
+                        || v.Item1 != backgroundColor.Val1
+                        || v.Item2 != backgroundColor.Val2)
                         count++;
                 }
             }
@@ -69,5 +70,35 @@ namespace ImageProcessing.Segmentation
             return count;
         }
 
+
+        public static double ParallelCount(Mat input, Scalar backgroundColor)
+        {
+            int width = input.Cols;
+            int height = input.Rows;
+            int count = 0;
+
+            //            Parallel.For(0, height, y =>
+            Parallel.For<int>(0, height, 
+                () => 0, 
+                (y, loop, subtotal) =>
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        var v = input.At<Vec3b>(y, x);
+                        if (v.Item0 != (byte)backgroundColor.Val0
+                            || v.Item1 != (byte)backgroundColor.Val1
+                            || v.Item2 != (byte)backgroundColor.Val2)
+                            subtotal++;
+                    }
+
+                    return subtotal;
+                },
+                (sub) => Interlocked.Add(ref count, sub)
+            );
+
+
+
+            return count;
+        }
     }
 }

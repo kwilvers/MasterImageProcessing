@@ -19,12 +19,25 @@ namespace ImageProcessing.Segmentation.Tests
             Mat v = Cv2.ImRead(@".\echantillon.png");
             Mat output = new Mat();
 
-            KMeans.Proceed(v, output, 4);
+            KMeans.Proceed(v, output, 4, true, Scalar.Black);
 
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\cvKmean4.png", output);
+        }
+
+        [TestMethod]
+        public void cvKmeanLarge()
+        {
+            Mat v = Cv2.ImRead(@"D:\repos\Photos tests invasion-migration\1 test\250M04 1.png");
+            Mat output = new Mat();
+
+            KMeans.Proceed(v, output, 4, true, Scalar.Black);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@"D:\repos\Photos tests invasion-migration\1 test\KMEAN.png", output);
 
         }
+
 
         [TestMethod]
         public void cvKmeanKarl()
