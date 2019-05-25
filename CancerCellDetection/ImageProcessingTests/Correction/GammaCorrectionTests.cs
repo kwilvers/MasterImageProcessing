@@ -53,7 +53,7 @@ namespace ImageProcessingTests.Correction
 
             //Création de la table lut en fonction du facteur de correction gamma
             byte[] lookUpTable = new byte[256];
-            double gamma = 0.9;
+            double gamma = 0.5;
             for (int i = 0; i < 256; ++i)
                 lookUpTable[i] = (byte)Math.Round(Math.Pow(i / 255.0, gamma) * 255.0);
             //Application de la correction gamma

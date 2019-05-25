@@ -16,7 +16,7 @@ namespace ImageProcessingTests.Smoothing
     public class BilateralFilterTest
     {
         [TestMethod]
-        public void BilateralS7Test()
+        public void cvBilateralS7Test()
         {
             Mat v = Cv2.ImRead(@".\echantillon.png");
             Mat output = new Mat();

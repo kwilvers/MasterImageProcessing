@@ -45,32 +45,35 @@
             <TabItem Header="Circle">
                 <StackPanel Orientation="Vertical">
                     <Label>DP</Label>
-                    <xctk:SingleUpDown Value="{Binding CircleParam.Dp, Delay=200}" Increment="0.1"/>
+                    <xctk:SingleUpDown Value="{Binding CircleParam.Dp, Delay=2000}" Increment="0.1"/>
                     <StackPanel Orientation="Horizontal">
                         <Label>Distance minimum</Label>
                         <Label Content="{Binding CircleParam.MinDist}"/>
                     </StackPanel> 
-                    <Slider Value="{Binding CircleParam.MinDist, Delay=200}" Maximum="200"/>
+                    <Slider Value="{Binding CircleParam.MinDist, Delay=2000}" Maximum="200"/>
 
                     <StackPanel Orientation="Horizontal">
                         <Label>Paramètre 1</Label>
                         <Label Content="{Binding CircleParam.Param1}"/>
                     </StackPanel>
-                    <Slider Value="{Binding CircleParam.Param1, Delay=200}" Maximum="200"/>
+                    <Slider Value="{Binding CircleParam.Param1, Delay=2000}" Maximum="200"/>
 
                     <StackPanel Orientation="Horizontal">
                         <Label>Paramètre 2</Label>
                         <Label Content="{Binding CircleParam.Param2}"/>
                     </StackPanel>                    
-                    <Slider Value="{Binding CircleParam.Param2, Delay=200}" Maximum="300"/>
+                    <Slider Value="{Binding CircleParam.Param2, Delay=2000}" Maximum="300"/>
 
                     <StackPanel Orientation="Horizontal">
                         <Label>Rayon</Label>
                         <Label Content="{Binding CircleParam.MinRadius}"/>
                         <Label Content="{Binding CircleParam.MaxRadius}"/>
+                        <!--<xctk:IntegerUpDown Value="{Binding CircleParam.MinRadius, Delay=2000}"/>
+                        <xctk:IntegerUpDown Value="{Binding CircleParam.MaxRadius, Delay=2000}"/>-->
+                        <!--<TextBox Text="{Binding CircleParam.MinRadius, Delay=2000}"/>
+                        <TextBox Text="{Binding CircleParam.MaxRadius, Delay=2000}"/>-->
                     </StackPanel>
-                    <xctk:RangeSlider Minimum="1" Maximum="200" LowerValue="{Binding CircleParam.MinRadius, Delay=200}" HigherValue="{Binding CircleParam.MaxRadius, Delay=200}"/>
-                    <xctk:RangeSlider Minimum="2000" Maximum="20000" LowerValue="{Binding CircleParam.MinRadius, Delay=5000}" HigherValue="{Binding CircleParam.MaxRadius, Delay=200}"/>
+                    <xctk:RangeSlider Minimum="1" Maximum="200" LowerValue="{Binding CircleParam.MinRadius, Delay=2000}" HigherValue="{Binding CircleParam.MaxRadius, Delay=2000}"/>
                 </StackPanel>
             </TabItem>
 
@@ -172,24 +175,24 @@
 
                     <!--H-->
                     <TextBlock Text="H min. max."  Grid.Column="0" Grid.Row="0"/>
-                    <TextBlock Text="{Binding RangeParam.Low.H}"  Grid.Column="1" Grid.Row="0" />
-                    <TextBlock Text="{Binding RangeParam.High.H}"  Grid.Column="2" Grid.Row="0" />
-                    <xctk:RangeSlider  Minimum="0" Maximum="180" LowerValue="{Binding RangeParam.Low.H, Delay=200}"
-                                       HigherValue="{Binding RangeParam.High.H, Delay=200}" Step="50" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
+                    <TextBox Text="{Binding RangeParam.Low.H, Delay=2000}"  Grid.Column="1" Grid.Row="0" />
+                    <TextBox Text="{Binding RangeParam.High.H, Delay=2000}"  Grid.Column="2" Grid.Row="0" />
+                    <xctk:RangeSlider  Minimum="0" Maximum="180" LowerValue="{Binding RangeParam.Low.H, Delay=2000}"
+                                       HigherValue="{Binding RangeParam.High.H, Delay=2000}" Step="50" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"/>
 
                     <!--S-->
                     <TextBlock Text="S min. max."  Grid.Column="0" Grid.Row="2"/>
-                    <TextBlock Text="{Binding RangeParam.Low.S}"  Grid.Column="1" Grid.Row="2" />
-                    <TextBlock Text="{Binding RangeParam.High.S}"  Grid.Column="2" Grid.Row="2" />
-                    <xctk:RangeSlider  Minimum="0" Maximum="255" LowerValue="{Binding RangeParam.Low.S, Delay=200}"
-                                       HigherValue="{Binding RangeParam.High.S, Delay=200}" Step="50" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+                    <TextBox Text="{Binding RangeParam.Low.S, Delay=2000}"  Grid.Column="1" Grid.Row="2" />
+                    <TextBox Text="{Binding RangeParam.High.S, Delay=2000}"  Grid.Column="2" Grid.Row="2" />
+                    <xctk:RangeSlider  Minimum="0" Maximum="255" LowerValue="{Binding RangeParam.Low.S, Delay=2000}"
+                                       HigherValue="{Binding RangeParam.High.S, Delay=2000}" Step="50" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
 
                     <!--V-->
                     <TextBlock Text="V min. max." Grid.Column="0" Grid.Row="4"></TextBlock>
-                    <TextBlock Text="{Binding RangeParam.Low.V}"  Grid.Column="1" Grid.Row="4" />
-                    <TextBlock Text="{Binding RangeParam.High.V}"  Grid.Column="2" Grid.Row="4" />
-                    <xctk:RangeSlider  Minimum="0" Maximum="255" LowerValue="{Binding RangeParam.Low.V, Delay=200}"
-                                       HigherValue="{Binding RangeParam.High.V, Delay=200}" Step="50" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+                    <TextBox Text="{Binding RangeParam.Low.V, Delay=2000}"  Grid.Column="1" Grid.Row="4" />
+                    <TextBox Text="{Binding RangeParam.High.V, Delay=2000}"  Grid.Column="2" Grid.Row="4" />
+                    <xctk:RangeSlider  Minimum="0" Maximum="255" LowerValue="{Binding RangeParam.Low.V, Delay=2000}"
+                                       HigherValue="{Binding RangeParam.High.V, Delay=2000}" Step="50" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
 
                 </Grid>
             </TabItem>

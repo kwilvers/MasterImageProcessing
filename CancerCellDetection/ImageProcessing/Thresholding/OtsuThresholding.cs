@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using OpenCvSharp;
 
 namespace ImageProcessing.Thresholding
 {
@@ -116,7 +117,7 @@ namespace ImageProcessing.Thresholding
         }
 
         // Calcule la somme de toutes les intensités
-        private static int CalculateIntensitySum(byte[] image, int size)
+        private static double CalculateIntensitySum(byte[] image, int size)
         {
             int sum = 0;
             for (int i = 0; i < size; ++i)
@@ -149,7 +150,7 @@ namespace ImageProcessing.Thresholding
 
             // Nécessaire pour recalculer rapidement la différence de variance
             int all_pixel_count = size;
-            int all_intensity_sum = CalculateIntensitySum(rgb, size);
+            double all_intensity_sum = CalculateIntensitySum(rgb, size);
 
             int best_thresh = 0;
             double best_sigma = 0.0;
@@ -186,6 +187,5 @@ namespace ImageProcessing.Thresholding
 
             return best_thresh;
         }
-
     }
 }

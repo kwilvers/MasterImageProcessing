@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImageProcessing.Convolution">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <NestedTypes>
+      <Enum Name="ImageProcessing.Convolution.ConvolutionColorSpace" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Convolution.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAFAAAAAAAAAABAAIAAAEAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Convolution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.ConvolutionFilterBase">
+    <Position X="3" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAgIAEgAAAAAQAAAAAEAAAABIAAAAAggA=</HashCode>
+      <FileName>ConvolutionFilterBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.ConvolutionResult">
+    <Position X="11.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ConvolutionResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Smoothing.BilateralFilter" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAEAAAAQAACAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Smoothing\BilateralFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Smoothing.GaussianFilter" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAEAAAAQAACAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Smoothing\GaussianFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Smoothing.MeanFilterC24S5" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Smoothing\MeanFilterC24S5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Smoothing.MedianFilterS3" Collapsed="true">
+    <Position X="0.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Smoothing\MedianFilterS3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Smoothing.MedianWeightedFilterS5" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Smoothing\MedianWeightedFilterS5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.HorizontalFilter" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\HorizontalFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.VerticalFilter" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\VerticalFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.KirschFilter" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\KirschFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.LaplacianOfGaussianFilter" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\LaplacianOfGaussianFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.LaplacianS3C4Filter" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\LaplacianS3C4Filter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.Pratt274Filter" Collapsed="true">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\Pratt274Filter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.PrewittFilter" Collapsed="true">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\PrewittFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.RobertsFilter" Collapsed="true">
+    <Position X="4.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\RobertsFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.RobinsonFilter" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\RobinsonFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.ScharrFilter" Collapsed="true">
+    <Position X="4.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\ScharrFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Detection.SobelFilter" Collapsed="true">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Detection\SobelFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.BandThresholdingFilter" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thresholding\BandThresholdingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.BinaryThresholdingFilter" Collapsed="true">
+    <Position X="9.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thresholding\BinaryThresholdingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.HysteresisThresholdingFilter" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Thresholding\HysteresisThresholdingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.OtsuThresholding" Collapsed="true">
+    <Position X="9.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAQAAAAAAAAAAAAAAACAAEAAAAAAAAAQAAA=</HashCode>
+      <FileName>Thresholding\OtsuThresholding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.TruncatedThresholdingFilter" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thresholding\TruncatedThresholdingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProcessing.Thresholding.ZeroThresholdingFilter" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Thresholding\ZeroThresholdingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -19,31 +19,31 @@ namespace ImageProcessingTests.Xperf
     public class TestDePerformance
     {
         private static String fileName = @".\performance.csv";
-        public void ComputeCpuMemoryUsage(Action action, long length, int iteration = 1,
-                                          [CallerMemberName] string caller = null)
-        {
-            //Calcul du temps d'exécution pour n itération
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            for(int i=0; i<iteration; i++)
-                action();
-            stopwatch.Stop();
-            //Affichage des résultats dans la sortie standard
-            Process proc = Process.GetCurrentProcess();
-            CultureInfo ci = new CultureInfo("en-US");
-            CultureInfo.CurrentCulture = ci;
-            Console.WriteLine("Method : {0}", caller);
-            Console.WriteLine("Time elapsed={0}", stopwatch.Elapsed);
-            //Affichage de la charge mémoire maximum
-            Console.WriteLine("Memory usage (bytes)={0}", proc.PeakWorkingSet64);
-            Console.WriteLine("Memory usage (MByte)={0}", proc.PeakWorkingSet64/1048576);
-            Console.WriteLine("Lenght : {0}", length);
-            //Sauvegarde des résultats dans un fichier CSV
-            string str = $"{caller};{stopwatch.Elapsed.TotalSeconds};{proc.PeakWorkingSet64};{proc.PeakWorkingSet64 / 1048576};{length};{iteration}";
-            var writer = File.AppendText(@".\performance.csv");
-            writer.AutoFlush = true;
-            writer.WriteLine(str);
-            writer.Close();
-        }
+        //public void Bench.ComputeCpuMemoryUsage(Action action, long length, int iteration = 1,
+        //                                  [CallerMemberName] string caller = null)
+        //{
+        //    //Calcul du temps d'exécution pour n itération
+        //    Stopwatch stopwatch = Stopwatch.StartNew();
+        //    for(int i=0; i<iteration; i++)
+        //        action();
+        //    stopwatch.Stop();
+        //    //Affichage des résultats dans la sortie standard
+        //    Process proc = Process.GetCurrentProcess();
+        //    CultureInfo ci = new CultureInfo("en-US");
+        //    CultureInfo.CurrentCulture = ci;
+        //    Console.WriteLine("Method : {0}", caller);
+        //    Console.WriteLine("Time elapsed={0}", stopwatch.Elapsed);
+        //    //Affichage de la charge mémoire maximum
+        //    Console.WriteLine("Memory usage (bytes)={0}", proc.PeakWorkingSet64);
+        //    Console.WriteLine("Memory usage (MByte)={0}", proc.PeakWorkingSet64/1048576);
+        //    Console.WriteLine("Lenght : {0}", length);
+        //    //Sauvegarde des résultats dans un fichier CSV
+        //    string str = $"{caller};{stopwatch.Elapsed.TotalSeconds};{proc.PeakWorkingSet64};{proc.PeakWorkingSet64 / 1048576};{length};{iteration}";
+        //    var writer = File.AppendText(@".\performance.csv");
+        //    writer.AutoFlush = true;
+        //    writer.WriteLine(str);
+        //    writer.Close();
+        //}
 
         [ClassInitialize]
         public static void Setup(TestContext context)
@@ -56,7 +56,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestPerso()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
@@ -74,7 +74,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestOpenCv()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image en niveau de gris
                 Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.AnyDepth);
@@ -115,7 +115,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestPerso3Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
                 var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
@@ -128,7 +128,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestOpenCv3Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.AnyDepth);
@@ -172,7 +172,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestPerso5Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
                 var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
@@ -185,7 +185,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestOpenCv5Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.AnyDepth);
@@ -229,7 +229,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestPerso10Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
                 var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
@@ -242,7 +242,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void SmallTestOpenCv10Times()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Mat v = Cv2.ImRead(@".\echantillon.png", ImreadModes.AnyDepth);
@@ -286,7 +286,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void MediumTestPerso()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\medium.jpg");
                 var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
@@ -299,7 +299,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void MediumTestOpenCv()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Mat v = Cv2.ImRead(@".\medium.jpg", ImreadModes.AnyDepth);
@@ -343,7 +343,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void LargeTestPerso()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 Bitmap v = (Bitmap)Bitmap.FromFile(@".\Large.jpg");
                 var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
@@ -356,7 +356,7 @@ namespace ImageProcessingTests.Xperf
         [TestMethod]
         public void LargeTestOpenCv()
         {
-            ComputeCpuMemoryUsage(() =>
+            Bench.ComputeCpuMemoryUsage(() =>
             {
                 //Chargement de l'image
                 Mat v = Cv2.ImRead(@".\large.jpg", ImreadModes.AnyDepth);

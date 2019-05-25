@@ -22,7 +22,7 @@ namespace ImageProcessingTests.Segmentation
         [TestMethod]
         public void PixelCountBlack()
         {
-            Bitmap v = (Bitmap)Bitmap.FromFile(@".\echantillon.png");
+            Bitmap v = (Bitmap) Bitmap.FromFile(@".\echantillon.png");
             var res = GammaCorrection.Correct(v, 0.3);
 
             Color c = Color.FromArgb(200, 147, 233);
@@ -45,7 +45,7 @@ namespace ImageProcessingTests.Segmentation
         [TestMethod]
         public void PixelCountBlack100()
         {
-            Bitmap v = (Bitmap)Bitmap.FromFile(@".\bw.png");
+            Bitmap v = (Bitmap) Bitmap.FromFile(@".\bw.png");
 
             double count = PixelCount.Count(v);
             double black = PixelCount.Count(v, Color.Black);
@@ -77,13 +77,13 @@ namespace ImageProcessingTests.Segmentation
 
         public Dictionary<string, int> GetCsvLines(string path, bool firstLineContainsTitle)
         {
-            Dictionary<string, int> dico = new Dictionary<string, int>(); 
+            Dictionary<string, int> dico = new Dictionary<string, int>();
 
             //Read the CSV file
             using (var reader = new StreamReader(path))
             {
                 //Première ligne de titre
-                if( firstLineContainsTitle)
+                if (firstLineContainsTitle)
                     reader.ReadLine();
 
                 while (!reader.EndOfStream)
@@ -92,7 +92,7 @@ namespace ImageProcessingTests.Segmentation
                     if (line != null)
                     {
                         var values = line.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                        if( values.Length == 2 )
+                        if (values.Length == 2)
                             dico.Add(values[0], int.Parse(values[1]));
                     }
                 }
@@ -134,35 +134,62 @@ namespace ImageProcessingTests.Segmentation
 
                         var res = new Mat();
                         //Filtre rouge bleu
-                        //res = this.ColorIsolationCount(v, directory, pair.Key);
+                        res = this.ColorIsolationCount(v, directory, pair.Key);
                         var cntCI = PixelCount.ParallelCount(res, Scalar.Black);
 
                         //Seuillage couleur
-                        //res = this.ColorThresholdCount(v, directory, pair.Key);
+                        res = this.ColorThresholdCount(v, directory, pair.Key);
                         var cntTHC = PixelCount.ParallelCount(res, Scalar.Black);
 
                         //Niveau de gris
-                        //res = this.GrayThresholdCount(v, directory, pair.Key);
+                        res = this.GrayThresholdCount(v, directory, pair.Key);
                         var cntGray = PixelCount.ParallelCount(res, Scalar.Black);
 
                         //Filtre kmean
                         res = this.KMeanThresholdCount(v, directory, pair.Key);
                         var cntkmean = PixelCount.ParallelCount(res, Scalar.Black);
 
-                        //Niveau de gris
-
-                        File.AppendAllText(Path.Combine(directory, "dataset.csv"), pair.Key + "," + pair.Value + "," + cntCI+ "," + cntTHC + "," + cntGray + "," + cntkmean + Environment.NewLine);
+                        //Réalisation du dataset
+                        File.AppendAllText(Path.Combine(directory, "dataset.csv"), pair.Key + "," + pair.Value + "," + cntCI + "," + cntTHC + "," + cntGray + "," + cntkmean + Environment.NewLine);
                     }
-
-                    ///////////////////////////   a  bouger//////////////////////
-                    ///////////////////////////   a  bouger//////////////////////
-                    //return;
                 }
+            }
+        }
 
+        [TestMethod]
+        public void CountPixelOriginalInDir()
+        {
+            var path = @"D:\repos\Photos tests invasion-migration";
 
-                ///////////////////////////   a  bouger//////////////////////
-                ///////////////////////////   a  bouger//////////////////////
-                return;
+            var directories = Directory.GetDirectories(path);
+            File.Delete(Path.Combine(path, "orig.csv"));
+            File.AppendAllText(Path.Combine(path, "orig.csv"), ",original" + Environment.NewLine);
+
+            //parcourt les répertoires
+            foreach (var directory in directories)
+            {
+                //Retrouve les fichiers
+                var files = Directory.GetFiles(directory, "*_.jpg");
+
+                //Lit le fichier csv contenant les résultats connus
+                var imageCount = this.GetCsvLines(Path.Combine(directory, "count.csv"), false);
+
+                foreach (KeyValuePair<string, int> pair in imageCount)
+                {
+                    //Retrouve l'image à partir de la liste des fichiers connus
+                    var imageName = files.FirstOrDefault(f => f.Contains(pair.Key));
+
+                    if (imageName != null)
+                    {
+                        //Filtre gaussien
+                        Mat v = Cv2.ImRead(imageName);
+
+                        var cnt = v.Width * v.Height;
+
+                        //Réalisation du dataset
+                        File.AppendAllText(Path.Combine(path, "orig.csv"), cnt + Environment.NewLine);
+                    }
+                }
             }
         }
 
@@ -210,7 +237,7 @@ namespace ImageProcessingTests.Segmentation
             Mat gray = new Mat();
             //Convertion RGB vers HSB
             Cv2.CvtColor(v, gray, ColorConversionCodes.BGR2GRAY);
-            Cv2.ImWrite(Path.Combine(directory, @".\110"+name+".png"), gray);
+            Cv2.ImWrite(Path.Combine(directory, @".\110" + name + ".png"), gray);
 
 
             //Seuillage gris
