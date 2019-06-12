@@ -45,7 +45,27 @@ namespace ImageProcessingTests.Correction
         }
 
         [TestMethod]
-        public void CvGammaCorrection()
+        public void CvGammaCorrection15()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat output = new Mat();
+
+            //Création de la table lut en fonction du facteur de correction gamma
+            byte[] lookUpTable = new byte[256];
+            double gamma = 1.5;
+            for (int i = 0; i < 256; ++i)
+                lookUpTable[i] = (byte)Math.Round(Math.Pow(i / 255.0, gamma) * 255.0);
+            //Application de la correction gamma
+            Cv2.LUT(v, lookUpTable, output);
+            
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvGammaCorrection15.png", output);
+        }
+
+
+        [TestMethod]
+        public void CvGammaCorrection05()
         {
             //Chargement de l'image
             Mat v = Cv2.ImRead(@".\echantillon.png");
@@ -58,9 +78,9 @@ namespace ImageProcessingTests.Correction
                 lookUpTable[i] = (byte)Math.Round(Math.Pow(i / 255.0, gamma) * 255.0);
             //Application de la correction gamma
             Cv2.LUT(v, lookUpTable, output);
-            
+
             //Enregistrement de l'image de sortie
-            Cv2.ImWrite(@".\CvGammaCorrection.png", output);
+            Cv2.ImWrite(@".\CvGammaCorrection05.png", output);
         }
     }
 }

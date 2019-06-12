@@ -199,7 +199,7 @@ namespace ImageProcessingTests.Smoothing
             Mat v = Cv2.ImRead(@".\echantillon.png");
             Mat output = new Mat();
             //Filtre gaussien 9x9 Sigma 5
-            Cv2.GaussianBlur(v, output, new OpenCvSharp.Size(9, 9), 5, 5, BorderTypes.Default);
+            Cv2.GaussianBlur(v, output, new OpenCvSharp.Size(11, 11), 5, 5, BorderTypes.Default);
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\CvGaussianS11O5Filter.png", output);
         }

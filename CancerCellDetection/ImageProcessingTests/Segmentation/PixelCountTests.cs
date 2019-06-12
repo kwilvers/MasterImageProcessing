@@ -79,6 +79,9 @@ namespace ImageProcessingTests.Segmentation
         {
             Dictionary<string, int> dico = new Dictionary<string, int>();
 
+            if (!File.Exists(path))
+                return dico;
+
             //Read the CSV file
             using (var reader = new StreamReader(path))
             {
@@ -104,7 +107,8 @@ namespace ImageProcessingTests.Segmentation
         [TestMethod]
         public void CountPixelInDir()
         {
-            var path = @"D:\repos\Photos tests invasion-migration";
+            //var path = @"D:\repos\Photos tests invasion-migration";
+            var path = @"C:\Dev\Memoire\CancerCellDetection\ImageProcessingTests\bin\x64\Debug";
 
             var directories = Directory.GetDirectories(path);
 
@@ -112,7 +116,7 @@ namespace ImageProcessingTests.Segmentation
             foreach (var directory in directories)
             {
                 //Retrouve les fichiers
-                var files = Directory.GetFiles(directory, "*_.jpg");
+                var files = Directory.GetFiles(directory, "*_.png");
 
                 //Lit le fichier csv contenant les résultats connus
                 var imageCount = this.GetCsvLines(Path.Combine(directory, "count.csv"), false);
