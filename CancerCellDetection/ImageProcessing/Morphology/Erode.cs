@@ -70,7 +70,7 @@ namespace ImageProcessing.Morphology
                                                  (filterLineIndex * 3) +
                                                  (filterRowIndex * sourceData.Stride);
                                 
-                                //Si le pixel voisin est un contour
+                                //Si le pixel voisin est un fond
                                 if (pixelBuffer[calcOffset] == 0)
                                 {
                                     hasNeighbour = true;
@@ -79,7 +79,7 @@ namespace ImageProcessing.Morphology
                             }
                         }
 
-                        //Si au moins un des voisins est un contour le pixel de fond est dilaté
+                        //Si au moins un des voisins est un fond le pixel de contour est érodé
                         if (hasNeighbour)
                         {
                             resultBuffer[byteOffset] = 0;

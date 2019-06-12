@@ -16,7 +16,7 @@ namespace ImageProcessingTests.Detection
     public class CannyTest
     {
         Mat blur = new Mat();
-        int lowThreshold = 50;
+        int lowThreshold = 42;
         String windowName = "karl";
 
         [TestMethod]

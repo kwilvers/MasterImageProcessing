@@ -208,5 +208,133 @@ namespace ImageProcessingTests.Segmentation
             Cv2.ImWrite(@".\90FindContourColorThresholdInpaintTest.png", v);
 
         }
+
+
+
+        [TestMethod]
+        public void CvColorBandContourTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat hsv = new Mat();
+
+            //Convertion RGB vers HSB
+            Cv2.CvtColor(v, hsv, ColorConversionCodes.BGR2HSV);
+            Cv2.ImWrite(@".\CvColorBandHsvTest.png", hsv);
+
+            Mat mask = new Mat();
+            //Déclaration des seuil de couleurs HSB
+            var lowher_color = new Scalar(114, 64, 0);
+            var higher_color = new Scalar(180, 255, 194);
+
+            //Seuillage par bande de couleur
+            Cv2.InRange(hsv, lowher_color, higher_color, mask);
+            Cv2.ImWrite(@".\CvColorBandMaskTest.png", mask);
+
+            Mat output = new Mat();
+            Cv2.BitwiseAnd(v, v, output, mask);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvColorBandTest1.png", output);
+
+            //Erosion
+            var erode = mask.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(11, 11)));
+            Cv2.ImWrite(@".\CvColorBandErodeTest.png", erode);
+            //Dilatation
+            var morpho = erode.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(15, 15)));
+            Cv2.ImWrite(@".\CvColorBandMorphoTest.png", morpho);
+            output = new Mat();
+
+            //Intersection du masque et de l'image originale
+            Cv2.BitwiseAnd(v, v, output, morpho);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvColorBandTest2.png", output);
+
+
+            //Find contour
+            Point[][] contours;
+            HierarchyIndex[] hierarchy;
+
+            Cv2.FindContours(morpho, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxTC89KCOS);
+            //Dessine les contours en vert
+            for (var i = 0; i < contours.Length; i++)
+                Cv2.DrawContours(v, contours, i, new Scalar(0, 255, 0), 2);
+
+            Cv2.ImWrite(@".\FindContourColorThresholdTest.png", v);
+
+        }
+
+
+
+        [TestMethod]
+        public void CvColorBandContourCannyTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            Mat hsv = new Mat();
+
+            //Convertion RGB vers HSB
+            Cv2.CvtColor(v, hsv, ColorConversionCodes.BGR2HSV);
+            Cv2.ImWrite(@".\CvColorBandHsvTest.png", hsv);
+
+            Mat mask = new Mat();
+            //Déclaration des seuil de couleurs HSB
+            var lowher_color = new Scalar(114, 64, 0);
+            var higher_color = new Scalar(180, 255, 194);
+
+            //Seuillage par bande de couleur
+            Cv2.InRange(hsv, lowher_color, higher_color, mask);
+            Cv2.ImWrite(@".\CvColorBandMaskTest.png", mask);
+
+            Mat output = new Mat();
+            Cv2.BitwiseAnd(v, v, output, mask);
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvColorBandTest1.png", output);
+
+            //Erosion
+            var erode = mask.Erode(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(11, 11)));
+            Cv2.ImWrite(@".\CvColorBandErodeTest.png", erode);
+            //Dilatation
+            var morpho = erode.Dilate(Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(15, 15)));
+            Cv2.ImWrite(@".\CvColorBandMorphoTest.png", morpho);
+            output = new Mat();
+
+            //Intersection du masque et de l'image originale
+            Cv2.BitwiseAnd(v, v, output, morpho);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\CvColorBandTest2.png", output);
+
+
+
+            //CONTOUR
+            Mat blur = new Mat();
+            Point[][] contours;
+            HierarchyIndex[] hierarchy;
+
+            //Filtre gaussien
+            Cv2.GaussianBlur(output, blur, new OpenCvSharp.Size(7, 7), 5, 5, BorderTypes.Default);
+            Cv2.ImWrite(@".\70FindContourBlur.png", blur);
+
+            //Méthode de Otsu
+            Bitmap v2 = (Bitmap)Bitmap.FromFile(@".\70FindContourBlur.png");
+            int thOtsu = (int)OtsuThresholding.Compute(v2);
+
+            //Détecteur de contours de Canny
+            Cv2.Canny(blur, output, thOtsu / 3, thOtsu);
+            Cv2.ImWrite(@".\80FindContourCanny.png", output);
+
+            //Enumération des contours
+            Cv2.FindContours(output, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxTC89KCOS);
+
+            //Dessine les contours en vert
+            for (var i = 0; i < contours.Length; i++)
+                Cv2.DrawContours(v, contours, i, new Scalar(0, 255, 0), 2);
+
+            Cv2.ImWrite(@".\CvColorBandContourCannyTest.png", v);
+
+
+        }
+
     }
 }

@@ -52,7 +52,7 @@ namespace ImageProcessingTests.Correction
             Mat output = new Mat();
 
             //Augmente le contraste de 10%
-            v.ConvertTo(output, v.Depth(), 1.05, 0);
+            v.ConvertTo(output, v.Depth(), 1.15, 0);
 
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\CvContrastIncrease.png", output);

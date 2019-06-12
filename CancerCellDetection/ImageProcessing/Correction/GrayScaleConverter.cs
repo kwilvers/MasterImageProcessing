@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using OpenCvSharp;
+using Size = OpenCvSharp.Size;
 
 namespace ImageProcessing.Correction
 {
@@ -58,6 +60,26 @@ namespace ImageProcessing.Correction
 
             output.UnlockBits(data);
             return output;
+        }
+
+        public static Mat ToGray(Mat source, GrayConvertionMethod method)
+        {
+            Mat res = new MatOfByte(new Size(source.Width, source.Height));
+
+            int width = source.Cols;
+            int height = source.Rows;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var v = source.At<Vec3b>(y, x);
+                    var gray = ToGray(v.Item2, v.Item1, v.Item0, method);
+                    res.Set(y, x, gray);
+                }
+            }
+
+            return res;
         }
 
         /// <requires>R != null, G != null && B != null</requires>

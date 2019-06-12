@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SystemExpert;
+using ImageProcessing.Segmentation;
 using Microsoft.Win32;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
@@ -34,6 +35,9 @@ namespace WpfApp1
         public HoughCircleParam CircleParam { get; set; }
         public BlobDetectorParams BlobParam { get; set; }
         public InRangeParam RangeParam { get; set; }
+        public BilateralParam BilateralParam { get; set; }
+
+        public KMeanParam Kmeans {get;set;}
 
         public DelegateCommand<String> ChangeFileCommand { get; set; }
         public DelegateCommand OpenFileCommand { get; set; }
@@ -47,6 +51,8 @@ namespace WpfApp1
             this.CircleParam = new HoughCircleParam();
             this.BlobParam = new BlobDetectorParams();
             this.RangeParam = new InRangeParam();
+            this.BilateralParam = new BilateralParam();
+            this.Kmeans = new KMeanParam();
             this.ChangeFileCommand = new DelegateCommand<string>(this.ChangeFileName);
             this.OpenFileCommand = new DelegateCommand(this.OpenFile);
             this.CopyCommand = new DelegateCommand(this.CopyToClipboard);
@@ -59,8 +65,12 @@ namespace WpfApp1
             this.BlobParam.PropertyChanged += this.BlobParam_PropertyChanged;
             this.RangeParam.Low.PropertyChanged += this.RangeParam_PropertyChanged;
             this.RangeParam.High.PropertyChanged += this.RangeParam_PropertyChanged;
+            this.BilateralParam.PropertyChanged += this.BilateralParam_PropertyChanged;
+            this.Kmeans.PropertyChanged += this.Kmeans_PropertyChanged;
             //ApplyCircle();
         }
+
+
 
         private void CopyToClipboard()
         {
@@ -98,6 +108,23 @@ namespace WpfApp1
         private void CircleParam_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             this.ApplyCircle();
+        }
+
+        private void BilateralParam_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            this.ApplyBilateral();
+        }
+
+        private void ApplyBilateral()
+        {
+            if (this.originalImage == null)
+                return;
+            Mat output = new Mat();
+
+            Cv2.BilateralFilter(originalImage, output, this.BilateralParam.D, this.BilateralParam.SigmaColor, this.BilateralParam.SigmaSpace);
+
+            BitmapSource v = output.ToBitmapSource();
+            this.MyImage.Source = v;
         }
 
         private void ApplyCircle()
@@ -180,6 +207,18 @@ namespace WpfApp1
             Cv2.InRange(this.HSVImage, lowher_color, higher_color, mask);
             //Opération de masquage pour ne conserver que les pixels de seuillés
             Cv2.BitwiseAnd(this.originalImage, this.originalImage, output, mask);
+
+            BitmapSource v = output.ToBitmapSource();
+            this.MyImage.Source = v;
+        }
+
+        private void Kmeans_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (this.originalImage == null)
+                return;
+            Mat output = new Mat();
+
+            KMeans.Proceed(originalImage, output, this.Kmeans.K);
 
             BitmapSource v = output.ToBitmapSource();
             this.MyImage.Source = v;

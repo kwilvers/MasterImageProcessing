@@ -126,9 +126,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BilateralParam.cs" />
     <Compile Include="BlobDetectorParams.cs" />
     <Compile Include="HoughCircleParam.cs" />
     <Compile Include="InRangeParam.cs" />
+    <Compile Include="KMeanParam.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -160,6 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageProcessing\ImageProcessing.csproj">
+      <Project>{5D53A689-640F-4268-83C1-3044445CFDCE}</Project>
+      <Name>ImageProcessing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -112,6 +112,9 @@ namespace ImageProcessingTests.Correction
         }
 
 
+
+
+
         [TestMethod]
         public void CvGrayRec601ConversionFilter()
         {
@@ -122,6 +125,125 @@ namespace ImageProcessingTests.Correction
             Cv2.CvtColor(v, output, ColorConversionCodes.RGB2GRAY);
             //Enregistrement de l'image de sortie
             Cv2.ImWrite(@".\CvGrayRec601ConversionFilter.png", output);
+        }
+
+        [TestMethod()]
+        public void cvColorAverageTest()
+        {
+            //Chargement de l'image
+            try
+            {
+                Mat v = Cv2.ImRead(@".\echantillon.png");
+                //Convertion en niveau de gris selon la moyenne
+                var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Average);
+
+                //Enregistrement de l'image de sortie
+                Cv2.ImWrite(@".\cvColorAverageTest.png", res);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+        }
+
+        [TestMethod()]
+        public void cvBt709Test()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.Bt709);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvBt709Test.png", res);
+
+        }
+
+        [TestMethod()]
+        public void cvFromRedTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromRed);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromRedTest.png", res);
+        }
+
+        [TestMethod()]
+        public void cvFromGreenTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromGreen);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromGreenTest.png", res);
+        }
+
+        [TestMethod()]
+        public void cvFromBlueTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromBlue);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromBlueTest.png", res);
+        }
+
+        [TestMethod()]
+        public void cvFromBlueAndGreenTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromBlueAndGreen);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromBlueAndGreenTest.png", res);
+        }
+
+        [TestMethod()]
+        public void cvFromRedAndBlueTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromRedAndBlue);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromRedAndBlueTest.png", res);
+        }
+
+        [TestMethod()]
+        public void cvFromRedAndGreenTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromRedAndGreen);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromRedAndGreenTest.png", res);
+        }
+
+
+        [TestMethod()]
+        public void cvFromBrightnessTest()
+        {
+            //Chargement de l'image
+            Mat v = Cv2.ImRead(@".\echantillon.png");
+            //Convertion en niveau de gris selon la moyenne
+            var res = GrayScaleConverter.ToGray(v, GrayScaleConverter.GrayConvertionMethod.FromBrightness);
+
+            //Enregistrement de l'image de sortie
+            Cv2.ImWrite(@".\cvFromBrightnessTest.png", res);
         }
 
     }
