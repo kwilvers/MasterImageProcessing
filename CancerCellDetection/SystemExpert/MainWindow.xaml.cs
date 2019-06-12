@@ -151,7 +151,7 @@ namespace WpfApp1
             Mat im_with_keypoints = new Mat();
             //Dessine les cercles représentant les blobs
             
-            Cv2.DrawKeypoints(image, keypoints, im_with_keypoints, new Scalar(0, 0, 0), DrawMatchesFlags.DrawRichKeypoints);
+            Cv2.DrawKeypoints(image, keypoints, im_with_keypoints, -1, DrawMatchesFlags.DrawRichKeypoints);
 
             foreach (var point in keypoints)
             {
